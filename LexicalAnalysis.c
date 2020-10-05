@@ -82,16 +82,22 @@ int transNum(char s[]){
     return num;
 }
 void error(){
-    strcpy(token,"ERROR");
-    symbol=-1;
-    printf("Unknown\n");
-    flag=0;
+    if(c!=EOF){
+        strcpy(token,"ERROR");
+        symbol=-1;
+        printf("Unknown\n");
+        flag=0;
+    }
+    else{
+        symbol=-1;
+        flag=0;
+    }
 }
 void getsym(){
     clearToken();
     if(c=='\0'){
         c=fgetc(in);
-        if(c==EOF)flag=0;
+        if(c==EOF){flag=0;}
     }//c=getchar();
     while(isSpace(c)||isNewline(c)||isTab(c)){
         c=fgetc(in);

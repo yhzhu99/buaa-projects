@@ -143,7 +143,7 @@ void getsym(){
     //printf("%s : %d\n",token,symbol);
     if(symbol==1){printf("Begin\n");}
     else if(symbol==2){printf("End\n");}
-    else if(symbol==3){printf("\n");}
+    else if(symbol==3){printf("For\n");}
     //else if(symbol==4){printf("Do\n");}
     else if(symbol==5){printf("If\n");}
     else if(symbol==6){printf("Then\n");}

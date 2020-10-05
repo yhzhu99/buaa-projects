@@ -99,7 +99,7 @@ void getsym(){
         c=fgetc(in);
         if(c==EOF){flag=0;}
     }//c=getchar();
-    while(isSpace(c)||isNewline(c)||isTab(c)){
+    while(isSpace(c)||isNewline(c)||isTab(c)||c=='\r'){
         c=fgetc(in);
         if(c==EOF)flag=0;
         //c=getchar();

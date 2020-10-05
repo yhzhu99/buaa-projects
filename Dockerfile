@@ -1,5 +1,5 @@
-FROM g++:10
+FROM gcc:10
 WORKDIR /app/
 COPY ./* ./
-RUN g++ LexicalAnalysis.cpp -o program
+RUN gcc LexicalAnalysis.c -o program
 RUN chmod +x program

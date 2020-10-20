@@ -1,4 +1,3 @@
-# Compilers
-used for OJ
+# miniplc0-java
 
-https://TualatinX:435fd083d3820718c4c981e19302a024f6ebfe32@github.com/TualatinX/Compilers.git
+这里是 miniplc0 实验的 Java 版本。

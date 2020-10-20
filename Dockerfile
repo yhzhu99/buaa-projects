@@ -1,5 +1,6 @@
-FROM gcc:10
-WORKDIR /app/
-COPY ./* ./
-RUN gcc LexicalAnalysis.c -o program
-RUN chmod +x program
+# gradle 好大
+FROM gradle:jdk14
+WORKDIR /app
+COPY build.gradle gradle settings.gradle .project miniplc0-java.iml .classpath /app/
+COPY src /app/src
+RUN gradle fatjar --no-daemon

@@ -1,0 +1,5 @@
+PRINT
+BEGIN
+abcd
+1234
+124abc

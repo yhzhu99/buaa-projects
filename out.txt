@@ -1,0 +1,6 @@
+Line: 0 Column: 4 Type: Identifier Value: PRINT
+Line: 1 Column: 4 Type: Identifier Value: BEGIN
+Line: 2 Column: 3 Type: Identifier Value: abcd
+Line: 3 Column: 3 Type: UnsignedInteger Value: 1234
+Line: 4 Column: 2 Type: UnsignedInteger Value: 124
+Line: 4 Column: 5 Type: Identifier Value: abc

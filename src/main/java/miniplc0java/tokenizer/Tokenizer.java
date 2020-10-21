@@ -49,12 +49,12 @@ public class Tokenizer {
         //
         // Token 的 Value 应填写数字的值
         String str="";
-        Pos start_pos=it.currentPos();
+        Pos startPos=it.currentPos();
         while(Character.isDigit(it.peekChar())){
             str+=it.nextChar();
         }
         int dig=Integer.parseInt(str);
-        return new Token(TokenType.Uint, dig, start_pos, it.currentPos());
+        return new Token(TokenType.Uint, dig, startPos, it.currentPos());
     }
 
     private Token lexIdentOrKeyword() throws TokenizeError {
@@ -68,23 +68,23 @@ public class Tokenizer {
         //
         // Token 的 Value 应填写标识符或关键字的字符串
         String str="";
-        Pos start_pos=it.currentPos();
+        Pos startPos=it.currentPos();
         while(Character.isDigit(it.peekChar())||Character.isAlphabetic(it.peekChar())){
             str+=it.nextChar();
         }
         switch (str) {
             case "begin":
-                return new Token(TokenType.Begin, str, start_pos, it.currentPos());
+                return new Token(TokenType.Begin, str, startPos, it.currentPos());
             case "end":
-                return new Token(TokenType.End, str, start_pos, it.currentPos());
+                return new Token(TokenType.End, str, startPos, it.currentPos());
             case "var":
-                return new Token(TokenType.Var, str, start_pos, it.currentPos());
+                return new Token(TokenType.Var, str, startPos, it.currentPos());
             case "const":
-                return new Token(TokenType.Const, str, start_pos, it.currentPos());
+                return new Token(TokenType.Const, str, startPos, it.currentPos());
             case "print":
-                return new Token(TokenType.Print, str, start_pos, it.currentPos());
+                return new Token(TokenType.Print, str, startPos, it.currentPos());
             default:
-                return new Token(TokenType.Ident, str, start_pos, it.currentPos());
+                return new Token(TokenType.Ident, str, startPos, it.currentPos());
         }
     }
 

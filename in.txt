@@ -1,5 +1,7 @@
-begin
-var a=1;
-print(a   );
-    end
-1a1
+12343
+beigin
+Begin
+    End
+;
+()
+1983df90+9103d

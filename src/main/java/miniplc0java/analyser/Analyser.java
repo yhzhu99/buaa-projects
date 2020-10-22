@@ -271,7 +271,7 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseStatementSequence() throws CompileError {
-        while(nextIf(TokenType.Ident)!=null||nextIf(TokenType.Print)!=null||nextIf(TokenType.Semicolon)!=null){
+        while(check(TokenType.Ident)||check(TokenType.Print)||check(TokenType.Semicolon)){
             analyseStatement();
         }
         // throw new Error("Not implemented");
@@ -283,13 +283,13 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseStatement() throws CompileError {
-        if(nextIf(TokenType.Ident)!=null){
+        if(check(TokenType.Ident)){
             analyseAssignmentStatement();
         }
-        else if(nextIf(TokenType.Print)!=null){
+        else if(check(TokenType.Print)){
             analyseOutputStatement();
         }
-        else if(nextIf(TokenType.Semicolon)!=null){
+        else if(check(TokenType.Semicolon)){
             expect(TokenType.Semicolon);
         }
         else{

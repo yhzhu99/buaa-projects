@@ -2,6 +2,6 @@ begin
     const a=1;
     var b=2;
     a=123;
-    b=a+b;
+    b=-a*(a+b);
     print(b);
     end

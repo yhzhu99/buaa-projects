@@ -1,0 +1,4 @@
+LIT 0
+SUB
+MUL
+WRT

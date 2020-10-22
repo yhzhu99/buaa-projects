@@ -316,7 +316,6 @@ public final class Analyser {
         if (negate) {
             instructions.add(new Instruction(Operation.SUB));
         }
-        expect(TokenType.Uint);
         // throw new Error("Not implemented");
     }
 
@@ -336,7 +335,6 @@ public final class Analyser {
                 nextIf(TokenType.Plus);
                 negate = false;
             }
-            expect(TokenType.Uint);
             if (negate) {
                 instructions.add(new Instruction(Operation.SUB));
             }
@@ -406,10 +404,13 @@ public final class Analyser {
 
         if (check(TokenType.Ident)) {
             // 调用相应的处理函数
+            expect(TokenType.Ident);
         } else if (check(TokenType.Uint)) {
             // 调用相应的处理函数
+            expect(TokenType.Uint);
         } else if (check(TokenType.LParen)) {
             // 调用相应的处理函数
+            expect(TokenType.LParen);
         } else {
             // 都不是，摸了
             throw new ExpectedTokenError(List.of(TokenType.Ident, TokenType.Uint, TokenType.LParen), next());
@@ -418,6 +419,6 @@ public final class Analyser {
         if (negate) {
             instructions.add(new Instruction(Operation.SUB));
         }
-        throw new Error("Not implemented");
+        // throw new Error("Not implemented");
     }
 }

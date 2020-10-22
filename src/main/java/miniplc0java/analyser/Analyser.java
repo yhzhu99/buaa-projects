@@ -307,14 +307,14 @@ public final class Analyser {
         if (nextIf(TokenType.Minus)!=null) {
             negate = true;
             // 计算结果需要被 0 减
-            instructions.add(new Instruction(Operation.LIT, 0));
+            //instructions.add(new Instruction(Operation.LIT, 0));
         } else {
             nextIf(TokenType.Plus);
             negate = false;
         }
         expect(TokenType.Uint);
         if (negate) {
-            instructions.add(new Instruction(Operation.SUB));
+            //instructions.add(new Instruction(Operation.SUB));
         }
         // throw new Error("Not implemented");
     }
@@ -330,13 +330,13 @@ public final class Analyser {
             if (nextIf(TokenType.Minus) != null) {
                 negate = true;
                 // 计算结果需要被 0 减
-                instructions.add(new Instruction(Operation.LIT, 0));
+                //instructions.add(new Instruction(Operation.LIT, 0));
             } else {
                 nextIf(TokenType.Plus);
                 negate = false;
             }
             if (negate) {
-                instructions.add(new Instruction(Operation.SUB));
+                ////instructions.add(new Instruction(Operation.SUB));
             }
             analyseItem();
         }
@@ -365,7 +365,7 @@ public final class Analyser {
         analyseExpression();
         expect(TokenType.RParen);
         expect(TokenType.Semicolon);
-        instructions.add(new Instruction(Operation.WRT));
+        //instructions.add(new Instruction(Operation.WRT));
     }
 
     /**
@@ -376,10 +376,10 @@ public final class Analyser {
         analyseFactor();
         while(check(TokenType.Mult)||check(TokenType.Div)){
             if (nextIf(TokenType.Mult) != null) {
-                instructions.add(new Instruction(Operation.MUL));
+                //instructions.add(new Instruction(Operation.MUL));
             } else {
                 nextIf(TokenType.Div);
-                instructions.add(new Instruction(Operation.DIV));
+                //instructions.add(new Instruction(Operation.DIV));
             }
             analyseFactor();
         }
@@ -396,7 +396,7 @@ public final class Analyser {
         if (nextIf(TokenType.Minus) != null) {
             negate = true;
             // 计算结果需要被 0 减
-            instructions.add(new Instruction(Operation.LIT, 0));
+            //instructions.add(new Instruction(Operation.LIT, 0));
         } else {
             nextIf(TokenType.Plus);
             negate = false;
@@ -419,7 +419,7 @@ public final class Analyser {
         }
 
         if (negate) {
-            instructions.add(new Instruction(Operation.SUB));
+            //instructions.add(new Instruction(Operation.SUB));
         }
         // throw new Error("Not implemented");
     }

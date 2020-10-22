@@ -304,7 +304,7 @@ public final class Analyser {
      */
     private void analyseConstantExpression() throws CompileError {
         boolean negate;
-        if (nextIf(TokenType.Minus) != null) {
+        if (nextIf(TokenType.Minus)!=null) {
             negate = true;
             // 计算结果需要被 0 减
             instructions.add(new Instruction(Operation.LIT, 0));
@@ -326,7 +326,7 @@ public final class Analyser {
     private void analyseExpression() throws CompileError {
         boolean negate;
         analyseItem();
-        while(nextIf(TokenType.Plus)!=null||nextIf(TokenType.Minus)!=null){
+        while(check(TokenType.Plus)||check(TokenType.Minus)){
             if (nextIf(TokenType.Minus) != null) {
                 negate = true;
                 // 计算结果需要被 0 减
@@ -348,7 +348,7 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseAssignmentStatement() throws CompileError {
-        expect(TokenType.Ident);
+        var nameToken=expect(TokenType.Ident);
         expect(TokenType.Equal);
         analyseExpression();
         expect(TokenType.Semicolon);
@@ -374,11 +374,11 @@ public final class Analyser {
      */
     private void analyseItem() throws CompileError {
         analyseFactor();
-        while(nextIf(TokenType.Mult)!=null||nextIf(TokenType.Div)!=null){
+        while(check(TokenType.Mult)||check(TokenType.Div)){
             if (nextIf(TokenType.Mult) != null) {
                 instructions.add(new Instruction(Operation.MUL));
             } else {
-                nextIf(TokenType.Mult);
+                nextIf(TokenType.Div);
                 instructions.add(new Instruction(Operation.DIV));
             }
             analyseFactor();
@@ -411,6 +411,8 @@ public final class Analyser {
         } else if (check(TokenType.LParen)) {
             // 调用相应的处理函数
             expect(TokenType.LParen);
+            analyseExpression();
+            expect(TokenType.RParen);
         } else {
             // 都不是，摸了
             throw new ExpectedTokenError(List.of(TokenType.Ident, TokenType.Uint, TokenType.LParen), next());

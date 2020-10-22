@@ -1,7 +1,5 @@
 begin
-    const a=1;
-    var b=2;
-    a=123;
-    b=-a*(a+b);
-    print(b);
-    end
+const a=-2;
+const b=3;
+print(666);
+end

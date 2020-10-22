@@ -232,7 +232,7 @@ public final class Analyser {
         while (nextIf(TokenType.Const) != null) {
             // 变量名
             var nameToken = expect(TokenType.Ident);
-
+            addSymbol(nameToken.getValueString(), true, true, nameToken.getStartPos());
             // 等于号
             expect(TokenType.Equal);
 
@@ -241,6 +241,7 @@ public final class Analyser {
 
             // 分号
             expect(TokenType.Semicolon);
+
         }
     }
     
@@ -306,16 +307,16 @@ public final class Analyser {
         boolean negate;
         if (nextIf(TokenType.Minus)!=null) {
             negate = true;
-            // 计算结果需要被 0 减
-            //instructions.add(new Instruction(Operation.LIT, 0));
         } else {
             nextIf(TokenType.Plus);
             negate = false;
         }
-        expect(TokenType.Uint);
+        Token uint=expect(TokenType.Uint);
+        int dig=(Integer)uint.getValue();
         if (negate) {
-            //instructions.add(new Instruction(Operation.SUB));
+            dig*=-1;
         }
+        instructions.add(new Instruction(Operation.LIT, dig));
         // throw new Error("Not implemented");
     }
 
@@ -324,19 +325,13 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseExpression() throws CompileError {
-        boolean negate;
         analyseItem();
         while(check(TokenType.Plus)||check(TokenType.Minus)){
             if (nextIf(TokenType.Minus) != null) {
-                negate = true;
-                // 计算结果需要被 0 减
-                //instructions.add(new Instruction(Operation.LIT, 0));
-            } else {
-                nextIf(TokenType.Plus);
-                negate = false;
+                instructions.add(new Instruction(Operation.SUB));
             }
-            if (negate) {
-                ////instructions.add(new Instruction(Operation.SUB));
+            else if(nextIf(TokenType.Plus)!=null){
+                instructions.add(new Instruction(Operation.ADD));
             }
             analyseItem();
         }
@@ -352,6 +347,7 @@ public final class Analyser {
         expect(TokenType.Equal);
         analyseExpression();
         expect(TokenType.Semicolon);
+        //instructions.add(new Instruction(Operation.STO));
         // throw new Error("Not implemented");
     }
 
@@ -365,7 +361,7 @@ public final class Analyser {
         analyseExpression();
         expect(TokenType.RParen);
         expect(TokenType.Semicolon);
-        //instructions.add(new Instruction(Operation.WRT));
+        instructions.add(new Instruction(Operation.WRT));
     }
 
     /**
@@ -376,10 +372,10 @@ public final class Analyser {
         analyseFactor();
         while(check(TokenType.Mult)||check(TokenType.Div)){
             if (nextIf(TokenType.Mult) != null) {
-                //instructions.add(new Instruction(Operation.MUL));
-            } else {
-                nextIf(TokenType.Div);
-                //instructions.add(new Instruction(Operation.DIV));
+                instructions.add(new Instruction(Operation.MUL));
+            }
+            else if(nextIf(TokenType.Div)!=null){
+                instructions.add(new Instruction(Operation.DIV));
             }
             analyseFactor();
         }
@@ -396,7 +392,7 @@ public final class Analyser {
         if (nextIf(TokenType.Minus) != null) {
             negate = true;
             // 计算结果需要被 0 减
-            //instructions.add(new Instruction(Operation.LIT, 0));
+            instructions.add(new Instruction(Operation.LIT, 0));
         } else {
             nextIf(TokenType.Plus);
             negate = false;
@@ -419,7 +415,7 @@ public final class Analyser {
         }
 
         if (negate) {
-            //instructions.add(new Instruction(Operation.SUB));
+            instructions.add(new Instruction(Operation.SUB));
         }
         // throw new Error("Not implemented");
     }

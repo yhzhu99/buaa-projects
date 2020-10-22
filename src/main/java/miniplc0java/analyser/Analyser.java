@@ -316,6 +316,7 @@ public final class Analyser {
         if (negate) {
             instructions.add(new Instruction(Operation.SUB));
         }
+        expect(TokenType.Uint);
         // throw new Error("Not implemented");
     }
 
@@ -324,11 +325,24 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseExpression() throws CompileError {
-        // analyseItem();
-        // while(nextIf(TokenType.Plus)!=null||nextIf(TokenType.Minus)!=null){
-            
-        // }
-        throw new Error("Not implemented");
+        boolean negate;
+        analyseItem();
+        while(nextIf(TokenType.Plus)!=null||nextIf(TokenType.Minus)!=null){
+            if (nextIf(TokenType.Minus) != null) {
+                negate = true;
+                // 计算结果需要被 0 减
+                instructions.add(new Instruction(Operation.LIT, 0));
+            } else {
+                nextIf(TokenType.Plus);
+                negate = false;
+            }
+            expect(TokenType.Uint);
+            if (negate) {
+                instructions.add(new Instruction(Operation.SUB));
+            }
+            analyseItem();
+        }
+        // throw new Error("Not implemented");
     }
 
     /**
@@ -336,7 +350,11 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseAssignmentStatement() throws CompileError {
-        throw new Error("Not implemented");
+        expect(TokenType.Ident);
+        expect(TokenType.Equal);
+        analyseExpression();
+        expect(TokenType.Semicolon);
+        // throw new Error("Not implemented");
     }
 
     /**
@@ -357,7 +375,17 @@ public final class Analyser {
      * @throws CompileError
      */
     private void analyseItem() throws CompileError {
-        throw new Error("Not implemented");
+        analyseFactor();
+        while(nextIf(TokenType.Mult)!=null||nextIf(TokenType.Div)!=null){
+            if (nextIf(TokenType.Mult) != null) {
+                instructions.add(new Instruction(Operation.MUL));
+            } else {
+                nextIf(TokenType.Mult);
+                instructions.add(new Instruction(Operation.DIV));
+            }
+            analyseFactor();
+        }
+        // throw new Error("Not implemented");
     }
 
     /**

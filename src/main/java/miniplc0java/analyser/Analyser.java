@@ -255,10 +255,15 @@ public final class Analyser {
         while (nextIf(TokenType.Var) != null) {
             // 变量名
             var nameToken = expect(TokenType.Ident);
-
             // ['='<表达式>]
             if (nextIf(TokenType.Equal) != null) {
+                addSymbol(nameToken.getValueString(), true, false, nameToken.getStartPos());
                 analyseExpression();
+                // 分号
+            }
+            else{
+                addSymbol(nameToken.getValueString(), false, false, nameToken.getStartPos());
+                instructions.add(new Instruction(Operation.LIT, 0));
             }
 
             // 分号

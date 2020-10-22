@@ -1,3 +1,4 @@
 LIT -2
 LIT 3
+LIT 0
 WRT

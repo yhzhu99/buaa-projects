@@ -1,5 +1,7 @@
 begin
 const a=-2;
 const b=3;
+var d=3;
+var c;
 print(666);
 end

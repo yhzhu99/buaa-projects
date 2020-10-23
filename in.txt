@@ -1,5 +1,6 @@
 begin
 const a=3;
 const b=4;
-var c=2+3;
+var c=a+b;
+c=8;
 end

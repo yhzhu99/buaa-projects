@@ -367,12 +367,16 @@ public final class Analyser {
     private void analyseAssignmentStatement() throws CompileError {
         var nameToken=expect(TokenType.Ident);
         expect(TokenType.Equal);
-        if(!isConstant(nameToken.getValueString(), nameToken.getStartPos())){
+        if(isConstant(nameToken.getValueString(), nameToken.getStartPos())){
+            throw new AnalyzeError(ErrorCode.AssignToConstant, nameToken.getStartPos());
+        }
+        else{
             declareSymbol(nameToken.getValueString(), nameToken.getStartPos());
             analyseExpression();
             expect(TokenType.Semicolon);
-            instructions.add(new Instruction(Operation.STO));
+            instructions.add(new Instruction(Operation.STO,getOffset(nameToken.getValueString(), nameToken.getStartPos())));
         }
+        
         //instructions.add(new Instruction(Operation.STO));
         // throw new Error("Not implemented");
     }
@@ -430,10 +434,6 @@ public final class Analyser {
             if(!isInitialized(nameToken.getValueString(), nameToken.getStartPos())){
                 throw new AnalyzeError(ErrorCode.NotInitialized, nameToken.getStartPos());
             }
-            if(isConstant(nameToken.getValueString(), nameToken.getStartPos())){
-                throw new AnalyzeError(ErrorCode.AssignToConstant, nameToken.getStartPos());
-            }
-            declareSymbol(nameToken.getValueString(), nameToken.getStartPos());
             instructions.add(new Instruction(Operation.LOD,getOffset(nameToken.getValueString(), nameToken.getStartPos())));
         } else if (check(TokenType.Uint)) {
             Token uint=expect(TokenType.Uint);

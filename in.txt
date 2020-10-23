@@ -1,6 +1,7 @@
 begin
 const a=3;
 const b=4;
-var c=a+b;
+var c=a+(b/a);
 c=8;
+print(a);
 end

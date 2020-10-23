@@ -1,7 +1,6 @@
 begin
-const a=3;
-const b=4;
-var c=a+(b/a);
-c=8;
-print(a);
+    var a=100;
+    var b=3;
+    a=a+4;
+    print(b);
 end

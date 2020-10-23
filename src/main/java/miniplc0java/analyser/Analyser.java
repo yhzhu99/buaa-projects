@@ -26,7 +26,7 @@ public final class Analyser {
     HashMap<String, SymbolEntry> symbolTable = new HashMap<>();
 
     /** 下一个变量的栈偏移 */
-    int nextOffset = 100;
+    int nextOffset = 1;
 
     public Analyser(Tokenizer tokenizer) {
         this.tokenizer = tokenizer;
@@ -117,7 +117,7 @@ public final class Analyser {
      * @return
      */
     private int getNextVariableOffset() {
-        return this.nextOffset+=100;
+        return this.nextOffset++;
     }
 
     /**
@@ -349,13 +349,20 @@ public final class Analyser {
     private void analyseExpression() throws CompileError {
         analyseItem();
         while(check(TokenType.Plus)||check(TokenType.Minus)){
+            boolean isMinus=false;
             if (nextIf(TokenType.Minus) != null) {
-                instructions.add(new Instruction(Operation.SUB));
+                isMinus=true;
             }
             else if(nextIf(TokenType.Plus)!=null){
-                instructions.add(new Instruction(Operation.ADD));
+                isMinus=false;
             }
             analyseItem();
+            if(isMinus){
+                instructions.add(new Instruction(Operation.SUB));
+            }
+            else{
+                instructions.add(new Instruction(Operation.ADD));
+            }
         }
         // throw new Error("Not implemented");
     }
@@ -401,13 +408,21 @@ public final class Analyser {
     private void analyseItem() throws CompileError {
         analyseFactor();
         while(check(TokenType.Mult)||check(TokenType.Div)){
+            boolean isMult=false;
             if (nextIf(TokenType.Mult) != null) {
-                instructions.add(new Instruction(Operation.MUL));
+                isMult=true;
+                
             }
             else if(nextIf(TokenType.Div)!=null){
-                instructions.add(new Instruction(Operation.DIV));
+                isMult=false;   
             }
             analyseFactor();
+            if(isMult){
+                instructions.add(new Instruction(Operation.MUL));
+            }
+            else{
+                instructions.add(new Instruction(Operation.DIV));
+            }
         }
         // throw new Error("Not implemented");
     }
@@ -426,6 +441,7 @@ public final class Analyser {
         } else {
             nextIf(TokenType.Plus);
             negate = false;
+            //instructions.add(new Instruction(Operation.LIT, 0));
         }
 
         if (check(TokenType.Ident)) {
@@ -438,9 +454,9 @@ public final class Analyser {
         } else if (check(TokenType.Uint)) {
             Token uint=expect(TokenType.Uint);
             int dig=(Integer)uint.getValue();
-            if (negate) {
-                dig*=-1;
-            }
+            // if (negate) {
+            //     dig*=-1;
+            // }
             instructions.add(new Instruction(Operation.LIT, dig));
         } else if (check(TokenType.LParen)) {
             // 调用相应的处理函数

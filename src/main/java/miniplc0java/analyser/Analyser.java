@@ -188,6 +188,23 @@ public final class Analyser {
     }
 
     /**
+     * 获取变量是否已初始化
+     * 
+     * @param name   符号名
+     * @param curPos 当前位置（报错用）
+     * @return 是否已初始化
+     * @throws AnalyzeError
+     */
+    private boolean isInitialized(String name, Pos curPos) throws AnalyzeError {
+        var entry = this.symbolTable.get(name);
+        if (entry == null) {
+            throw new AnalyzeError(ErrorCode.NotDeclared, curPos);
+        } else {
+            return entry.isInitialized();
+        }
+    }
+
+    /**
      * <程序> ::= 'begin'<主过程>'end'
      */
     private void analyseProgram() throws CompileError {
@@ -350,8 +367,12 @@ public final class Analyser {
     private void analyseAssignmentStatement() throws CompileError {
         var nameToken=expect(TokenType.Ident);
         expect(TokenType.Equal);
-        analyseExpression();
-        expect(TokenType.Semicolon);
+        if(!isConstant(nameToken.getValueString(), nameToken.getStartPos())){
+            declareSymbol(nameToken.getValueString(), nameToken.getStartPos());
+            analyseExpression();
+            expect(TokenType.Semicolon);
+            instructions.add(new Instruction(Operation.STO));
+        }
         //instructions.add(new Instruction(Operation.STO));
         // throw new Error("Not implemented");
     }
@@ -405,10 +426,22 @@ public final class Analyser {
 
         if (check(TokenType.Ident)) {
             // 调用相应的处理函数
-            expect(TokenType.Ident);
+            var nameToken = expect(TokenType.Ident);
+            if(!isInitialized(nameToken.getValueString(), nameToken.getStartPos())){
+                throw new AnalyzeError(ErrorCode.NotInitialized, nameToken.getStartPos());
+            }
+            if(isConstant(nameToken.getValueString(), nameToken.getStartPos())){
+                throw new AnalyzeError(ErrorCode.AssignToConstant, nameToken.getStartPos());
+            }
+            declareSymbol(nameToken.getValueString(), nameToken.getStartPos());
+            instructions.add(new Instruction(Operation.LOD,getOffset(nameToken.getValueString(), nameToken.getStartPos())));
         } else if (check(TokenType.Uint)) {
-            // 调用相应的处理函数
-            expect(TokenType.Uint);
+            Token uint=expect(TokenType.Uint);
+            int dig=(Integer)uint.getValue();
+            if (negate) {
+                dig*=-1;
+            }
+            instructions.add(new Instruction(Operation.LIT, dig));
         } else if (check(TokenType.LParen)) {
             // 调用相应的处理函数
             expect(TokenType.LParen);

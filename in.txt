@@ -1,7 +1,5 @@
 begin
-const a=-2;
-const b=3;
-var d=3;
-var c;
-print(666);
+const a=3;
+const b=4;
+var c=2+3;
 end

@@ -1,4 +1,5 @@
-LIT -2
 LIT 3
-LIT 0
-WRT
+LIT 4
+LIT 2
+ADD
+LIT 3

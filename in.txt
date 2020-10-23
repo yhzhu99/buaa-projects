@@ -1,6 +1,7 @@
 begin
     var a=100;
-    var b=3;
-    a=a+4;
+    var b=200;
+    a=a+b;
+    print(a);
     print(b);
 end

@@ -26,7 +26,7 @@ public final class Analyser {
     HashMap<String, SymbolEntry> symbolTable = new HashMap<>();
 
     /** 下一个变量的栈偏移 */
-    int nextOffset = 1;
+    int nextOffset = 0;
 
     public Analyser(Tokenizer tokenizer) {
         this.tokenizer = tokenizer;
@@ -383,8 +383,6 @@ public final class Analyser {
             expect(TokenType.Semicolon);
             instructions.add(new Instruction(Operation.STO,getOffset(nameToken.getValueString(), nameToken.getStartPos())));
         }
-        
-        //instructions.add(new Instruction(Operation.STO));
         // throw new Error("Not implemented");
     }
 
@@ -441,7 +439,6 @@ public final class Analyser {
         } else {
             nextIf(TokenType.Plus);
             negate = false;
-            //instructions.add(new Instruction(Operation.LIT, 0));
         }
 
         if (check(TokenType.Ident)) {

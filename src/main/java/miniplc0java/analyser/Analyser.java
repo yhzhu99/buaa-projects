@@ -26,7 +26,7 @@ public final class Analyser {
     HashMap<String, SymbolEntry> symbolTable = new HashMap<>();
 
     /** 下一个变量的栈偏移 */
-    int nextOffset = 100;
+    int nextOffset = 1;
 
     public Analyser(Tokenizer tokenizer) {
         this.tokenizer = tokenizer;

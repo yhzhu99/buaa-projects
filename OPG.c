@@ -1,8 +1,13 @@
 #include<stdio.h>
 #include<string.h>
 FILE *in;
+char c;
 int main(int argc, char* argv[]){
     // in=fopen(argv[1],"r");
     in=fopen("test.in","r");
-    printf("nb\n");
+    c=fgetc(in);
+    while(c!=NULL){
+        printf("%c",c);
+        c=fgetc(in);
+    }
 }

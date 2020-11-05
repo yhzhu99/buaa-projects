@@ -27,6 +27,7 @@ int main(int argc, char* argv[]){
     s[len++]='#';
     st[top++]='#';
     while(stat){
+        //printf("         %d, %s\n",top,st);
         l=find_last_sym(st),r=s[pos];
         if(top==2&&st[1]=='E'&&r=='#'){
             stat=0;
@@ -54,17 +55,17 @@ int main(int argc, char* argv[]){
                     x=st[top-3],y=st[top-2],z=st[top-1];
                     if(x=='E'&&y=='+'&&z=='E'){
                         printf("R\n");
-                        top-=3;
+                        st[--top]='\0',st[--top]='\0',st[--top]='\0';
                         st[top++]='E';
                     }
                     else if(x=='E'&&y=='*'&&z=='E'){
                         printf("R\n");
-                        top-=3;
+                        st[--top]='\0',st[--top]='\0',st[--top]='\0';
                         st[top++]='E';
                     }
                     else if(x=='('&&y=='E'&&z==')'){
                         printf("R\n");
-                        top-=3;
+                        st[--top]='\0',st[--top]='\0',st[--top]='\0';
                         st[top++]='E';
                     }
                     else{

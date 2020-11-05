@@ -13,8 +13,8 @@ char find_last_sym(char s[]){
     return 0;
 }
 int main(int argc, char* argv[]){
-    //in=fopen(argv[1],"r");
-    in=fopen("test.in","r");
+    in=fopen(argv[1],"r");
+    //in=fopen("test.in","r");
     //0: error, 1: larger, 2: equal, -1: smaller
     p['+']['+']=1,p['+']['*']=-1,p['+']['i']=-1,p['+']['(']=-1,p['+'][')']=1,p['+']['#']=1;
     p['*']['+']=1,p['*']['*']=1,p['*']['i']=-1,p['*']['(']=-1,p['*'][')']=1,p['*']['#']=1;

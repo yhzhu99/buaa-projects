@@ -1,0 +1,7 @@
+[jobs.opg]
+
+image = { source = "dockerfile", path = ".", tag = "opg" }
+
+run = [
+  "./program $input",
+]

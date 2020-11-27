@@ -1,7 +1,7 @@
-[jobs.opg]
+[jobs.c0]
 
 image = { source = "dockerfile", path = ".", tag = "opg" }
 
 run = [
-  "./program $input",
+  "./program $input -o $asm",
 ]

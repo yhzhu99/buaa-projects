@@ -10,8 +10,11 @@
 pip install Scrapy
 ```
 
-## 创建项目
+## 初始化项目
 
 ```bash
 scrapy startproject pkx_flight
+cd pkx_flight # Path: pkx_flight/pkx_flight
+scrapy genspider pkx_flight_spider "http://data.carnoc.com/corp/airport/pkx__airportflight.html"
 ```
+

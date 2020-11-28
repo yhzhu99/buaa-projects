@@ -1,14 +1,14 @@
 import scrapy
-
+from pkx_flight.items import PkxFlightItem
 
 class PkxFlightSpiderSpider(scrapy.Spider):
     name = 'pkx_flight_spider'
-    allowed_domains = ['http://data.carnoc.com/corp/airport/pkx__airportflight.html']
-    start_urls = ['http://http://data.carnoc.com/corp/airport/pkx__airportflight.html/']
+    allowed_domains = ['data.carnoc.com']
+    start_urls = ['http://http://data.carnoc.com/corp/airport/nkg__airportflight.html/']
 
     def parse(self, response):
         items=[]
-        item = TranspiderItem()
+        item = PkxFlightItem()
         item['type'] = "进港"
         items.append(item)
         yield(item)
@@ -16,7 +16,7 @@ class PkxFlightSpiderSpider(scrapy.Spider):
         node_list = response.xpath("//div[@id='icefable1']/li")
         
         for node in node_list:
-            item = TranspiderItem()
+            item = PkxFlightItem()
 
             number = node.xpath("./span[1]/text()").extract()
             city = node.xpath("./span[2]/text()").extract()
@@ -34,19 +34,19 @@ class PkxFlightSpiderSpider(scrapy.Spider):
             items.append(item)
             yield(item)
         
-        item = TranspiderItem()
+        item = PkxFlightItem()
         item['seperate'] = "----------------------------------------------"
         items.append(item)
         yield(item)
 
-        item = TranspiderItem()
+        item = PkxFlightItem()
         item['type'] = "出港"
         items.append(item)
         yield(item)
 
         node_list = response.xpath("//div[@id='icefable2']/li")
         for node in node_list:
-            item = TranspiderItem()
+            item = PkxFlightItem()
             number = node.xpath("./span[1]/text()").extract()
             city = node.xpath("./span[2]/text()").extract()
             terminal = node.xpath("./span[3]/text()").extract()

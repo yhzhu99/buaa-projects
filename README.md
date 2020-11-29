@@ -1,4 +1,4 @@
-# scrapy-demo
+# flight-scraper
 
 > PKX Airport Flight Info (Computer Networks Course Assignment)
 > 

@@ -13,21 +13,17 @@ import json
 
 class FlightPipeline:
     def __init__(self):
-        #打开文件
-        now_time = datetime.now().strftime('%Y-%m-%d H:%H')
-        filename = 'data '+now_time+'.json'
-        self.file = open(filename, 'w', encoding='utf-8')
-    #该方法用于处理数据
+        cur_time = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+        filename = '北京大兴机场进出港情况'+cur_time+'.json'
+        self.file = open(filename, 'w', encoding='utf-8') # 设置写入文件名
+    #处理获取得到的item数据
     def process_item(self, item, spider):
-        #读取item中的数据
-        line = json.dumps(dict(item), ensure_ascii=False) + "\n"
-        #写入文件
-        self.file.write(line)
-        #返回item
+        line = json.dumps(dict(item), ensure_ascii=False) # json序列化item list
+        self.file.write(line) # 把json写入至文件
         return item
-    #该方法在spider被开启时被调用。
+
     def open_spider(self, spider):
         pass
-    #该方法在spider被关闭时被调用。
+
     def close_spider(self, spider):
         pass

@@ -6,9 +6,7 @@
 import scrapy
 
 
-class PkxFlightItem(scrapy.Item):
-    # define the fields for your item here like:
-
+class FlightItem(scrapy.Item):
     #分隔符
     seperate = scrapy.Field()
     #类型

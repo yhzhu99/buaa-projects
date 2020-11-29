@@ -6,14 +6,15 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-import datetime
+from scrapy.exceptions import DropItem
+from datetime import datetime
 import json
 
 
-class PkxFlightPipeline:
+class FlightPipeline:
     def __init__(self):
         #打开文件
-        now_time = datetime.datetime.now().strftime('%Y-%m-%d H:%H')
+        now_time = datetime.now().strftime('%Y-%m-%d H:%H')
         filename = 'data '+now_time+'.json'
         self.file = open(filename, 'w', encoding='utf-8')
     #该方法用于处理数据

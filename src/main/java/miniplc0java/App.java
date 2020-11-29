@@ -18,20 +18,61 @@ import miniplc0java.tokenizer.Token;
 import miniplc0java.tokenizer.TokenType;
 import miniplc0java.tokenizer.Tokenizer;
 
+import net.sourceforge.argparse4j.*;
+import net.sourceforge.argparse4j.impl.Arguments;
+import net.sourceforge.argparse4j.inf.ArgumentAction;
+import net.sourceforge.argparse4j.inf.ArgumentParser;
+import net.sourceforge.argparse4j.inf.ArgumentParserException;
+import net.sourceforge.argparse4j.inf.Namespace;
+
 public class App {
-    public static void main(String[] args) throws CompileError, FileNotFoundException {
+    public static void main(String[] args) throws CompileError{
+        var argparse = buildArgparse();
+        Namespace result;
+        try {
+            result = argparse.parseArgs(args);
+        } catch (ArgumentParserException e1) {
+            argparse.handleError(e1);
+            return;
+        }
+
+        var inputFileName = result.getString("input");
+        var outputFileName = result.getString("output");
 
         InputStream input;
-        PrintStream output;
+        if (inputFileName.equals("-")) {
+            input = System.in;
+        } else {
+            try {
+                input = new FileInputStream(inputFileName);
+            } catch (FileNotFoundException e) {
+                System.err.println("Cannot find input file.");
+                e.printStackTrace();
+                System.exit(2);
+                return;
+            }
+        }
 
-        input = new FileInputStream(new File("C:\\Users\\鸡蛋酱\\IdeaProjects\\miniplc0-java\\src\\main\\java\\miniplc0java\\input.txt"));
-        output = new PrintStream(new FileOutputStream(new File("C:\\Users\\鸡蛋酱\\IdeaProjects\\miniplc0-java\\src\\main\\java\\miniplc0java\\output.txt")));
+        PrintStream output;
+        if (outputFileName.equals("-")) {
+            output = System.out;
+        } else {
+            try {
+                output = new PrintStream(new FileOutputStream(outputFileName));
+            } catch (FileNotFoundException e) {
+                System.err.println("Cannot open output file.");
+                e.printStackTrace();
+                System.exit(2);
+                return;
+            }
+        }
 
         Scanner scanner;
         scanner = new Scanner(input);
         var iter = new StringIter(scanner);
         var tokenizer = tokenize(iter);
-        if (args[0].equals("t")) {
+
+        if (result.getBoolean("tokenize")) {
             // tokenize
             var tokens = new ArrayList<Token>();
             try {
@@ -51,7 +92,7 @@ public class App {
             for (Token token : tokens) {
                 output.println(token.toString());
             }
-        } else if (args[0].equals("l")) {
+        } else if (result.getBoolean("analyse")) {
             // analyze
             var analyzer = new Analyser(tokenizer);
             Table table;
@@ -68,26 +109,22 @@ public class App {
                 output.println(function.getName()+" pos:"+function.getPos()+" params:"+function.getParamSoltNum()+" var:"+function.getVarSoltNmum()+" -> "+function.getReturnSoltNmum());
                 output.println(function.getInstructions());
             }
-   /*         var analyzer = new Analyser(tokenizer);
-            List<Instruction> instructions;
-            try {
-                instructions = analyzer.analyse();
-            } catch (Exception e) {
-                // 遇到错误不输出，直接退出
-                System.err.println(e);
-                System.exit(0);
-                return;
-            }
-            for (Instruction instruction : instructions) {
-                output.println(instruction.toString());
-            }*/
         } else {
             System.err.println("Please specify either '--analyse' or '--tokenize'.");
             System.exit(3);
         }
     }
 
-
+    private static ArgumentParser buildArgparse() {
+        var builder = ArgumentParsers.newFor("miniplc0-java");
+        var parser = builder.build();
+        parser.addArgument("-t", "--tokenize").help("Tokenize the input").action(Arguments.storeTrue());
+        parser.addArgument("-l", "--analyse").help("Analyze the input").action(Arguments.storeTrue());
+        parser.addArgument("-o", "--output").help("Set the output file").required(true).dest("output")
+                .action(Arguments.store());
+        parser.addArgument("file").required(true).dest("input").action(Arguments.store()).help("Input file");
+        return parser;
+    }
 
     private static Tokenizer tokenize(StringIter iter) {
         var tokenizer = new Tokenizer(iter);

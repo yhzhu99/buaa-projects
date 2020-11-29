@@ -1,9 +1,7 @@
 # Ignore Gradle project-specific cache directory
 .gradle
-.idea
 .vscode
-.settings
-fetch_test_data
+.idea
 # Ignore Gradle build output directory
 build
 bin

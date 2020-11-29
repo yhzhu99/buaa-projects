@@ -12,7 +12,7 @@ class PkxSpider(scrapy.Spider):
         
         flight_info = {}
         data = json.loads(json.dumps(flight_info))
-        data['arrival']={'type':'到港','detail':[]}
+        data['arrival']={'type':'进港','detail':[]}
 
         node_list = response.xpath("//div[@id='icefable1']/li")
         for node in node_list:
@@ -49,7 +49,7 @@ class PkxSpider(scrapy.Spider):
             content={
                 'flight_number' : flight_number[0],
                 'from_city' : from_city[0],
-                'pick_up_building' : pick_up_building[0],
+                'check_in_building' : pick_up_building[0],
                 'expect_time' : expect_time[0],
                 'actual_time' : actual_time[0],
                 'state' : state[0]

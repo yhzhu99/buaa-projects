@@ -1,2 +1,8 @@
-.fetch_test_data
+# Ignore Gradle project-specific cache directory
+.gradle
 .idea
+.settings
+fetch_test_data
+# Ignore Gradle build output directory
+build
+bin

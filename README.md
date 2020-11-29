@@ -16,7 +16,7 @@ pip install Scrapy
 
 ```bash
 scrapy startproject flight
-cd flight # into directory: pkx_flight/pkx_flight
+cd flight # into project directory: flight
 scrapy genspider pkx "http://data.carnoc.com/corp/airport/pkx__airportflight.html"
 ```
 

@@ -1,4 +1,4 @@
-package miniplc0java.AbstractTree;
+package miniplc0java.ast;
 
 import miniplc0java.instruction.Instruction;
 import miniplc0java.instruction.Operation;

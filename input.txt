@@ -1,3 +1,31 @@
-fn main() -> int {
-    let i: int = 1+2+3+1*2*(2+3)+(2*3)*2;
+fn
+let
+const
+as
+while
+if
+else
+return
+break
+continue
+123
+x
++
+-
+*
+/
+=
+==
+!=
+<
+>
+<=
+>=
+(
+)
+{
 }
+->
+,
+:
+;

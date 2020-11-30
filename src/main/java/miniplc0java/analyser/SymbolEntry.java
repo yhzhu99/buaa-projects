@@ -4,7 +4,7 @@ import miniplc0java.tokenizer.TokenType;
 
 public class SymbolEntry {
     String name;
-    NameType nametype;
+    NameType nameType;
     TokenType tokenType;
     int deep;
     boolean isConstant;
@@ -19,7 +19,7 @@ public class SymbolEntry {
     public SymbolEntry(String name,NameType nameType,TokenType tokenType,int deep,boolean isConstant, boolean isDeclared, int stackOffset) {
         this.name=name;
         //proc params var
-        this.nametype=nameType;
+        this.nameType=nameType;
         this.tokenType=tokenType;
         this.deep=deep;
         this.isConstant = isConstant;
@@ -31,8 +31,8 @@ public class SymbolEntry {
         return name;
     }
 
-    public NameType getNametype() {
-        return nametype;
+    public NameType getNameType() {
+        return nameType;
     }
 
     /**

@@ -106,7 +106,7 @@ public class App {
                 output.println(token);
             }
             for (FunctionTable function:functionTables){
-                output.println(function.getName()+" pos:"+function.getPos()+" params:"+function.getParamSoltNum()+" var:"+function.getVarSoltNmum()+" -> "+function.getReturnSoltNmum());
+                output.println(function.getName()+" pos:"+function.getPos()+" params:"+function.getParamSoltNum()+" var:"+function.getVarSoltNum()+" -> "+function.getReturnSoltNum());
                 output.println(function.getInstructions());
             }
         } else {

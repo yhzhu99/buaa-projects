@@ -1,24 +1,31 @@
-Line: -1 Column: -1 Type: IDENT Value: getint
-Line: -1 Column: -1 Type: IDENT Value: getchar
-Line: -1 Column: -1 Type: IDENT Value: putint
-Line: -1 Column: -1 Type: IDENT Value: putchar
-Line: -1 Column: -1 Type: IDENT Value: putstr
-Line: -1 Column: -1 Type: IDENT Value: putln
-Line: 0 Column: 3 Type: IDENT Value: main
-Line: -1 Column: -1 Type: IDENT Value: _start
-_start pos:7 params:0 var:0 -> 0
-[stackalloc  1, stackalloc  0, call  7]
-getint pos:0 params:0 var:0 -> 1
-[]
-getchar pos:1 params:0 var:0 -> 1
-[]
-putint pos:2 params:0 var:0 -> 0
-[]
-putchar pos:3 params:0 var:0 -> 0
-[]
-putstr pos:4 params:0 var:0 -> 0
-[]
-putln pos:5 params:0 var:0 -> 0
-[]
-main pos:-1 params:0 var:1 -> 1
-[loca  0, push  1, push  2, push  3, push  1, add_i, add_i, add_i, store_64, ret]
+Line: 0 Column: 0 Type: FN_KW Value: fn
+Line: 1 Column: 0 Type: LET_KW Value: let
+Line: 2 Column: 0 Type: CONST_KW Value: const
+Line: 3 Column: 0 Type: AS_KW Value: as
+Line: 4 Column: 0 Type: WHILE_KW Value: while
+Line: 5 Column: 0 Type: IF_KW Value: if
+Line: 6 Column: 0 Type: ELSE_KW Value: else
+Line: 7 Column: 0 Type: RETURN_KW Value: return
+Line: 8 Column: 0 Type: IDENT Value: break
+Line: 9 Column: 0 Type: IDENT Value: continue
+Line: 10 Column: 0 Type: UINT_LITERAL Value: 123
+Line: 11 Column: 0 Type: IDENT Value: x
+Line: 12 Column: 0 Type: PLUS Value: +
+Line: 13 Column: 0 Type: MINUS Value: -
+Line: 14 Column: 0 Type: MUL Value: *
+Line: 15 Column: 0 Type: DIV Value: /
+Line: 16 Column: 0 Type: ASSIGN Value: =
+Line: 17 Column: 0 Type: EQ Value: ==
+Line: 18 Column: 0 Type: NEQ Value: !=
+Line: 19 Column: 0 Type: LT Value: <
+Line: 20 Column: 0 Type: GT Value: >
+Line: 21 Column: 0 Type: LE Value: <=
+Line: 22 Column: 0 Type: GE Value: >=
+Line: 23 Column: 0 Type: L_PAREN Value: (
+Line: 24 Column: 0 Type: R_PAREN Value: )
+Line: 25 Column: 0 Type: L_BRACE Value: {
+Line: 26 Column: 0 Type: R_BRACE Value: }
+Line: 27 Column: 0 Type: ARROW Value: ->
+Line: 28 Column: 0 Type: COMMA Value: ,
+Line: 29 Column: 0 Type: COLON Value: :
+Line: 30 Column: 0 Type: SEMICOLON Value: ;

@@ -17,7 +17,7 @@ public class FunctionTable {
     TokenType tokenType;
     long pos;
     int paramSoltNum;
-    int varSoltNmum;
+    int varSoltNum;
     int deep;
     /** 符号表 */
     List<SymbolEntry> symbolEntries;
@@ -28,7 +28,7 @@ public class FunctionTable {
         this.params=new ArrayList<>();
         this.symbolEntries=new ArrayList<>();
         this.paramSoltNum=0;
-        this.varSoltNmum=0;
+        this.varSoltNum=0;
         this.tokenType=tokenType;
     }
 
@@ -56,11 +56,11 @@ public class FunctionTable {
         return paramSoltNum;
     }
 
-    public int getVarSoltNmum() {
-        return varSoltNmum;
+    public int getVarSoltNum() {
+        return varSoltNum;
     }
 
-    public int getReturnSoltNmum() {
+    public int getReturnSoltNum() {
         if (tokenType!=TokenType.VOID_KW)
             return 1;
         else return 0;
@@ -76,19 +76,19 @@ public class FunctionTable {
 
     public void addSymbolEntry(SymbolEntry symbolEntry) {
         this.symbolEntries.add(symbolEntry);
-        if(symbolEntry.getNametype()== NameType.Params)
+        if(symbolEntry.getNameType()== NameType.Params)
             this.paramSoltNum++;
         else{
-            int currentvarSoltNUm=this.symbolEntries.size()-this.paramSoltNum;
-            if(currentvarSoltNUm>this.varSoltNmum)
-                this.varSoltNmum=currentvarSoltNUm;
+            int currentVarSoltNum=this.symbolEntries.size()-this.paramSoltNum;
+            if(currentVarSoltNum>this.varSoltNum)
+                this.varSoltNum=currentVarSoltNum;
         }
     }
 
     public void outDeep(int deep) {
         int i=symbolEntries.size()-1;
         for(;i>=0;i--){
-            if (symbolEntries.get(i).getNametype()==NameType.Params)
+            if (symbolEntries.get(i).getNameType()==NameType.Params)
                 return;
             if(symbolEntries.get(i).getDeep()==deep)
                 symbolEntries.remove(i);

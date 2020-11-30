@@ -20,7 +20,7 @@ public enum TokenType {
     /** else */
     ELSE_KW,
     /** return */
-    RETRUN_KW,
+    RETURN_KW,
     /** int */
     INT_KW,
     /** void */
@@ -28,7 +28,7 @@ public enum TokenType {
 
     /** 字面量 */
     /** 无符号整数 */
-    UNIT_LITERAL,
+    UINT_LITERAL,
     /** 字符串常量 */
     STRING_LITERAL,
 
@@ -83,27 +83,27 @@ public enum TokenType {
             case None:
                 return "NullToken";
             case FN_KW:
-                return "fn";
+                return "FN_KW";
             case LET_KW:
-                return "let";
+                return "LET_KW";
             case CONST_KW:
-                return "const";
+                return "CONST_KW";
             case AS_KW:
-                return "as";
+                return "AS_KW";
             case WHILE_KW:
-                return "while";
+                return "WHILE_KW";
             case IF_KW:
-                return "if";
+                return "IF_KW";
             case ELSE_KW:
-                return "else";
-            case RETRUN_KW:
-                return "return";
+                return "ELSE_KW";
+            case RETURN_KW:
+                return "RETURN_KW";
             case INT_KW:
-                return "int";
+                return "INT_KW";
             case VOID_KW:
-                return "void";
-            case UNIT_LITERAL:
-                return "UNIT_LITERAL";
+                return "VOID_KW";
+            case UINT_LITERAL:
+                return "UINT_LITERAL";
             case STRING_LITERAL:
                 return "STRING_LITERAL";
             case IDENT:

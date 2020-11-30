@@ -45,7 +45,7 @@ public class Table {
     }
     private void init() throws AnalyzeError {
         this.symbolEntries.add(new SymbolEntry("getint",NameType.Proc,TokenType.IDENT,1,true,true,0));
-        FunctionTable getint=new FunctionTable("getint",getGlobalId(new Token(TokenType.IDENT,"getint",new Pos(-1,-1),new Pos(-1,-1))),TokenType.UNIT_LITERAL);
+        FunctionTable getint=new FunctionTable("getint",getGlobalId(new Token(TokenType.IDENT,"getint",new Pos(-1,-1),new Pos(-1,-1))),TokenType.UINT_LITERAL);
         this.functionTables.add(getint);
 
       /*  this.symbolEntries.add(new SymbolEntry("getdouble",NameType.Proc,TokenType.IDENT,1,true,true,0));
@@ -53,12 +53,12 @@ public class Table {
         this.functionTables.add(getdouble);*/
 
         this.symbolEntries.add(new SymbolEntry("getchar",NameType.Proc,TokenType.IDENT,1,true,true,0));
-        FunctionTable getchar=new FunctionTable("getchar",getGlobalId(new Token(TokenType.IDENT,"getchar",new Pos(-1,-1),new Pos(-1,-1))),TokenType.UNIT_LITERAL);
+        FunctionTable getchar=new FunctionTable("getchar",getGlobalId(new Token(TokenType.IDENT,"getchar",new Pos(-1,-1),new Pos(-1,-1))),TokenType.UINT_LITERAL);
         this.functionTables.add(getchar);
 
         this.symbolEntries.add(new SymbolEntry("putint",NameType.Proc,TokenType.IDENT,1,true,true,0));
         FunctionTable putint=new FunctionTable("putint",getGlobalId(new Token(TokenType.IDENT,"putint",new Pos(-1,-1),new Pos(-1,-1))),TokenType.VOID_KW);
-        putint.getSymbolEntries().add(new SymbolEntry("",NameType.Params,TokenType.UNIT_LITERAL,2,false,true,0));
+        putint.getSymbolEntries().add(new SymbolEntry("",NameType.Params,TokenType.UINT_LITERAL,2,false,true,0));
         this.functionTables.add(putint);
     /*    this.symbolEntries.add(new SymbolEntry("putdouble",NameType.Proc,TokenType.IDENT,1,true,true,0));
         FunctionTable putdouble=new FunctionTable("putdouble",-1);
@@ -66,12 +66,12 @@ public class Table {
 
         this.symbolEntries.add(new SymbolEntry("putchar",NameType.Proc,TokenType.IDENT,1,true,true,0));
         FunctionTable putchar=new FunctionTable("putchar",getGlobalId(new Token(TokenType.IDENT,"putchar",new Pos(-1,-1),new Pos(-1,-1))),TokenType.VOID_KW);
-        putchar.getSymbolEntries().add(new SymbolEntry("",NameType.Params,TokenType.UNIT_LITERAL,2,false,true,0));
+        putchar.getSymbolEntries().add(new SymbolEntry("",NameType.Params,TokenType.UINT_LITERAL,2,false,true,0));
         this.functionTables.add(putchar);
 
         this.symbolEntries.add(new SymbolEntry("putstr",NameType.Proc,TokenType.VOID_KW,1,true,true,0));
         FunctionTable putstr=new FunctionTable("putstr",getGlobalId(new Token(TokenType.IDENT,"putstr",new Pos(-1,-1),new Pos(-1,-1))),TokenType.VOID_KW);
-        putstr.getSymbolEntries().add(new SymbolEntry("",NameType.Params,TokenType.UNIT_LITERAL,2,false,true,0));
+        putstr.getSymbolEntries().add(new SymbolEntry("",NameType.Params,TokenType.UINT_LITERAL,2,false,true,0));
         this.functionTables.add(putstr);
 
         this.symbolEntries.add(new SymbolEntry("putln",NameType.Proc,TokenType.VOID_KW,1,true,true,0));
@@ -91,12 +91,12 @@ public class Table {
 
         if(deep>1){
             List<SymbolEntry> symbolEntries=this.functionTables.get(this.functionTables.size()-1).getSymbolEntries();
-            String funcname=this.functionTables.get(this.functionTables.size()-1).getName();
-            if(getSymbolEntry(funcname).getTokenType()!=TokenType.VOID_KW)
+            String funcName=this.functionTables.get(this.functionTables.size()-1).getName();
+            if(getSymbolEntry(funcName).getTokenType()!=TokenType.VOID_KW)
                 off++;
             for(SymbolEntry symbolEntry:symbolEntries){
                 off++;
-                if(symbolEntry.getNametype()==NameType.Var)
+                if(symbolEntry.getNameType()==NameType.Var)
                     off=0;
                 if(symbolEntry.getName().equals(name)){
                     symbolEntry.setOff(off);
@@ -131,7 +131,7 @@ public class Table {
         if(deep==1){
             this.addGlobal(token);
             this.symbolEntries.add(symbolEntry);
-            if(symbolEntry.getNametype()== NameType.Proc){
+            if(symbolEntry.getNameType()== NameType.Proc){
                 this.functionTables.add(new FunctionTable(symbolEntry.getName(),this.global.size()-1,symbolEntry.getTokenType()));
             }
         }
@@ -162,7 +162,7 @@ public class Table {
             if(func.getName().equals(nameToken.getValueString())){
                 flag=true;
                 for (SymbolEntry symbolEntry:func.getSymbolEntries()){
-                    if(symbolEntry.getNametype()==NameType.Params){
+                    if(symbolEntry.getNameType()==NameType.Params){
                         tokenTypes.add(symbolEntry.getTokenType());
                     }
                     else break;
@@ -201,8 +201,8 @@ public class Table {
 
     public void generate() throws AnalyzeError {
         SymbolEntry symbolEntry=getSymbolEntry("main");
-        if(symbolEntry==null||symbolEntry.getNametype()!=NameType.Proc){
-            throw new AnalyzeError(ErrorCode.notHaveMainFunc,new Pos(0,0));
+        if(symbolEntry==null||symbolEntry.getNameType()!=NameType.Proc){
+            throw new AnalyzeError(ErrorCode.NoMainFunc,new Pos(0,0));
         }
         long id=getGlobalId(new Token(TokenType.IDENT,"main",new Pos(-1,-1),new Pos(-1,-1)));
         addGlobal(new Token(TokenType.IDENT,"_start",new Pos(-1,-1),new Pos(-1,-1)));
@@ -228,7 +228,7 @@ public class Table {
             }
         }
         List<Instruction> instructions=new ArrayList<>();
-        instructions.add(new Instruction(Operation.stackalloc,(long)func.getReturnSoltNmum()));
+        instructions.add(new Instruction(Operation.stackalloc,(long)func.getReturnSoltNum()));
 
         return instructions;
     }

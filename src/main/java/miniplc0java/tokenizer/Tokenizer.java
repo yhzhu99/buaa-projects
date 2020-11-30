@@ -55,7 +55,7 @@ public class Tokenizer {
        //       throw new TokenizeError(ErrorCode.IntegerOverflow,it.currentPos());
         }
         endPos=it.currentPos();
-        return new Token(TokenType.UNIT_LITERAL,new Long(value),startPos,endPos);
+        return new Token(TokenType.UINT_LITERAL,new Long(value),startPos,endPos);
         // 请填空：
         // 直到查看下一个字符不是数字为止:
         // -- 前进一个字符，并存储这个字符
@@ -118,7 +118,7 @@ public class Tokenizer {
         else if(value.equals("else"))
             return new Token(TokenType.ELSE_KW,value,startPos,endPos);
         else if(value.equals("return"))
-            return new Token(TokenType.RETRUN_KW,value,startPos,endPos);
+            return new Token(TokenType.RETURN_KW,value,startPos,endPos);
         else if(value.equals("int"))
             return new Token(TokenType.INT_KW,value,startPos,endPos);
         else if(value.equals("void"))

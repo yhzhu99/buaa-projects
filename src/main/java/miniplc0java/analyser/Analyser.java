@@ -134,8 +134,8 @@ public final class Analyser {
 
     private Token expectTy() throws CompileError {
         var token = peek();
-        var tokentype=token.getTokenType();
-        if ( tokentype== TokenType.INT_KW) {
+        var tokenType=token.getTokenType();
+        if ( tokenType== TokenType.INT_KW) {
             return next();
         } else {
             throw new ExpectedTokenError(List.of(TokenType.INT_KW), next());
@@ -307,7 +307,7 @@ public final class Analyser {
      */
     //
     private void analyseProgram() throws CompileError {
-        while(check(TokenType.EOF)==false){
+        while(!check(TokenType.EOF)){
             if(check(TokenType.FN_KW)){
                 analyseFunction();
             }else if(check(TokenType.LET_KW)||check(TokenType.CONST_KW)){
@@ -318,14 +318,14 @@ public final class Analyser {
         }
         expect(TokenType.EOF);
     }
-//
+
     private void analyseFunction() throws CompileError {
         expect(TokenType.FN_KW);
         var nameToken = expect(TokenType.IDENT);
         List<Instruction> instructions;
         addSymbol(nameToken,NameType.Proc,TokenType.VOID_KW,this.deep,true,true,nameToken.getStartPos());
         expect(TokenType.L_PAREN);
-        if(check(TokenType.R_PAREN)==false)
+        if(!check(TokenType.R_PAREN))
             analyseFunctionParamList();
         expect(TokenType.R_PAREN);
         expect(TokenType.ARROW);
@@ -333,9 +333,8 @@ public final class Analyser {
         if(ty.getTokenType()!=TokenType.VOID_KW){
             this.table.setFuncReturn(nameToken.getValueString(),this.deep,nameToken.getStartPos(),ty.getTokenType());
         }
-        instructions=new ArrayList<>();
 
-        instructions.addAll(analyseBlockStmt());
+        instructions = new ArrayList<>(analyseBlockStmt());
         instructions.add(new Instruction(Operation.ret));
         this.table.addAllInstructions(instructions,this.deep+1);
     }
@@ -410,7 +409,7 @@ public final class Analyser {
         this.deep++;
         List<Instruction> instructions=new ArrayList<>();
         expect(TokenType.L_BRACE);
-        while (check(TokenType.R_BRACE)==false){
+        while (!check(TokenType.R_BRACE)){
             if(check(TokenType.LET_KW)||check(TokenType.CONST_KW)){
                 instructions.addAll(analyseDeclStmt());
             }
@@ -627,17 +626,16 @@ public final class Analyser {
 
     private List<Instruction> analyseOperatorExpr() throws CompileError {
         List<Instruction> instructions=new ArrayList<>();
-        var opetator=next();
-        instructions.addAll(OperatorTree.getNewOperator(opetator.getTokenType()));
+        var operator=next();
+        instructions.addAll(OperatorTree.getNewOperator(operator.getTokenType()));
         instructions.addAll(analyseExpr());
         return instructions;
     }
 
     private BooleanTree analyseBooleanExpr() throws CompileError {
         BooleanTree booleanTree=new BooleanTree();
-        List<Instruction> instructions=new ArrayList<Instruction>();
         Instruction b;
-        instructions.addAll(analyseExpr());
+        List<Instruction> instructions = new ArrayList<Instruction>(analyseExpr());
         if(nextIf(TokenType.EQ)!=null){
             instructions.addAll(analyseExpr());
             //true 0 false 1 -1
@@ -699,168 +697,3 @@ public final class Analyser {
     }
 }
 
-//     private void analyseConstantDeclaration() throws CompileError {
-//         // 示例函数，示例如何解析常量声明
-//         // 如果下一个 token 是 const 就继续
-//         while (nextIf(TokenType.Const) != null) {
-//             // 常量名
-//             var nameToken = expect(TokenType.Ident);
-
-//             addSymbol(nameToken.getValueString(),true, true,nameToken.getStartPos());
-            
-//             // 等于号
-//             expect(TokenType.Equal);
-
-//             // 常表达式
-//             analyseConstantExpression();
-
-//             // 分号
-//             expect(TokenType.Semicolon);
-//         }
-//     }
-
-//     private void analyseConstantExpression() throws CompileError {
-//         if(nextIf(TokenType.Minus)!=null){
-//             var nameToken=expect(TokenType.Uint);
-//             instructions.add(new Instruction(Operation.LIT,0));
-//             instructions.add(new Instruction(Operation.LIT,(Integer)nameToken.getValue()));
-//             instructions.add(new Instruction(Operation.SUB));
-//         }else{
-//             nextIf(TokenType.Plus);
-//             var nameToken=nextIf(TokenType.Uint);
-//             instructions.add(new Instruction(Operation.LIT,(Integer)nameToken.getValue()));
-//         }
-//     }
-
-//     private void analyseVariableDeclaration() throws CompileError {
-//         while (nextIf(TokenType.Var) != null) {
-//             // 变量名
-//             var nameToken = expect(TokenType.Ident);
-            
-//             addSymbol(nameToken.getValueString(),false,false,nameToken.getStartPos());
-            
-//             if(nextIf(TokenType.Equal) != null){
-
-//                 declareSymbol(nameToken.getValueString(), nameToken.getStartPos());
-
-//                 // 表达式
-//                 analyseExpression();
-                
-//             }
-            
-//             // 分号
-//             expect(TokenType.Semicolon);
-           
-//         }
-//     }
-
-//     private void analyseStatementSequence() throws CompileError {
-//         while(check(TokenType.Ident)||check(TokenType.Print)||check(TokenType.Semicolon)){
-//             analyseStatement();
-//         }
-//     }
-
-//     private void analyseStatement() throws CompileError {
-//         if(check(TokenType.Ident))
-//             analyseAssignmentStatement();
-//         else if(check(TokenType.Print))
-//             analyseOutputStatement();
-//         else
-//             expect(TokenType.Semicolon);
-//     }
-
-//     private void analyseAssignmentStatement() throws CompileError,AnalyzeError {
-//         var nameToken=expect(TokenType.Ident);
-//         if(isConstant(nameToken.getValueString(),nameToken.getStartPos())){
-//             throw new AnalyzeError(ErrorCode.AssignToConstant, nameToken.getStartPos());
-//         }
-//         expect(TokenType.Equal);
-//         analyseExpression();
-
-//         instructions.add(new Instruction(Operation.STO,getOffset(nameToken.getValueString(),nameToken.getStartPos())));
-        
-//         declareSymbol(nameToken.getValueString(), nameToken.getStartPos());
-
-//         expect(TokenType.Semicolon);
-//     }
-
-//     private void analyseExpression() throws CompileError {
-//         boolean positive;
-//         analyseItem();
-//         while(check(TokenType.Plus)||check(TokenType.Minus)){    
-//             if(nextIf(TokenType.Plus)!=null){
-//                 positive=true;
-//             }
-//             else{
-//                 nextIf(TokenType.Minus);
-//                 positive=false;
-//             }
-//             analyseItem();
-//             if(positive)
-//                 instructions.add(new Instruction(Operation.ADD));
-//             else
-//                 instructions.add(new Instruction(Operation.SUB));
-//         }
-//     }
-
-//     private void analyseItem() throws CompileError {
-//         boolean mult;
-//         analyseFactor();
-//         while(check(TokenType.Mult)||check(TokenType.Div)){
-//             if(nextIf(TokenType.Mult)!=null){
-//                 mult=true;    
-//             }
-//             else{
-//                 nextIf(TokenType.Div);
-//                 mult=false;  
-//             }
-//             analyseFactor();
-//             if(mult)
-//                 instructions.add(new Instruction(Operation.MUL));
-//             else
-//                 instructions.add(new Instruction(Operation.DIV));
-//         }
-//     }
-
-
-//     private void analyseOutputStatement() throws CompileError {
-//         expect(TokenType.Print);
-//         expect(TokenType.LParen);
-//         analyseExpression();
-//         expect(TokenType.RParen);
-//         expect(TokenType.Semicolon);
-//         instructions.add(new Instruction(Operation.WRT));
-//     }
-
-//     private void analyseFactor() throws CompileError {
-//         boolean negate;
-//         if (nextIf(TokenType.Minus) != null) {
-//             negate = true;
-//             // 计算结果需要被 0 减
-//             instructions.add(new Instruction(Operation.LIT, 0));
-//         } else {
-//             nextIf(TokenType.Plus);
-//             negate = false;
-//         }
-
-//         if (check(TokenType.Ident)) {
-//             var nameToken=expect(TokenType.Ident);
-//             if(isInitialized(nameToken.getValueString(),nameToken.getStartPos()))
-//                 instructions.add(new Instruction(Operation.LOD,getOffset(nameToken.getValueString(),nameToken.getStartPos())));
-//         } else if (check(TokenType.Uint)) {
-//             var nameToken=expect(TokenType.Uint);
-//             instructions.add(new Instruction(Operation.LIT,(Integer)nameToken.getValue()));
-//         } else if (check(TokenType.LParen)) {
-//             expect(TokenType.LParen);
-//             analyseExpression();
-//             expect(TokenType.RParen);
-//         } else {
-//             // 都不是，摸了
-//             throw new ExpectedTokenError(List.of(TokenType.Ident, TokenType.Uint, TokenType.LParen), next());
-//         }
-
-//         if (negate) {
-//             instructions.add(new Instruction(Operation.SUB));
-//         }
-//     }
-// }

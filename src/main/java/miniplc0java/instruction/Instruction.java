@@ -39,6 +39,9 @@ public class Instruction {
         this.opt = opt;
     }
 
+    public void setX(Long x) {
+        this.x = x;
+    }
 
     @Override
     public String toString() {

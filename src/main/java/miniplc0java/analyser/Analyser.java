@@ -2,6 +2,7 @@ package miniplc0java.analyser;
 
 import miniplc0java.AbstractTree.BooleanTree;
 import miniplc0java.AbstractTree.ConditionTree;
+import miniplc0java.AbstractTree.OperatorTree;
 import miniplc0java.AbstractTree.WhileTree;
 import miniplc0java.FunctionTable;
 import miniplc0java.Table;
@@ -409,7 +410,7 @@ public final class Analyser {
         this.deep++;
         List<Instruction> instructions=new ArrayList<>();
         expect(TokenType.L_BRACE);
-        while(check(TokenType.R_BRACE)==false){
+        while (check(TokenType.R_BRACE)==false){
             if(check(TokenType.LET_KW)||check(TokenType.CONST_KW)){
                 instructions.addAll(analyseDeclStmt());
             }
@@ -430,6 +431,8 @@ public final class Analyser {
             }
             else{
                 instructions.addAll(analyseExpr());
+                expect(TokenType.SEMICOLON);
+                instructions.addAll(OperatorTree.addAllReset());
             }
         }
         expect(TokenType.R_BRACE);
@@ -539,10 +542,9 @@ public final class Analyser {
     private List<Instruction> analyseCallExpr(Token nameToken) throws CompileError {
         List<Instruction> instructions=new ArrayList<>();
         List<TokenType> tokenTypes=this.table.getFunctionParamsType(nameToken);
-        if(this.table.checkOutFunc(nameToken.getValueString())){}
-        else{
-            instructions.addAll(this.table.addstackllocInstruction(nameToken.getValueString()));
-        }
+
+        instructions.addAll(this.table.addstackllocInstruction(nameToken.getValueString()));
+
         expect(TokenType.L_PAREN);
         if(check(TokenType.R_PAREN)==false&&tokenTypes.size()>0)
             instructions.addAll(analyseCallParamList(tokenTypes));
@@ -595,8 +597,10 @@ public final class Analyser {
     private List<Instruction> analyseGroupExpr() throws CompileError {
         List<Instruction> instructions=new ArrayList<>();
         expect(TokenType.L_PAREN);
+        instructions.addAll(OperatorTree.getNewOperator(TokenType.L_PAREN));
         instructions.addAll(analyseExpr());
         expect(TokenType.R_PAREN);
+        instructions.addAll(OperatorTree.getNewOperator(TokenType.R_PAREN));
         return instructions;
     }
 
@@ -623,30 +627,9 @@ public final class Analyser {
 
     private List<Instruction> analyseOperatorExpr() throws CompileError {
         List<Instruction> instructions=new ArrayList<>();
-        analyseMul0rDivExpr();
-        while(check(TokenType.PLUS)||check(TokenType.MINUS)){
-            var opetator=next();
-            instructions.addAll(analyseExpr());
-            instructions.addAll(analyseMul0rDivExpr());
-            if(opetator.getTokenType()==TokenType.PLUS){
-                instructions.add(new Instruction(Operation.add_i));
-            }else if(opetator.getTokenType()==TokenType.MINUS){
-                instructions.add(new Instruction(Operation.sub_i));
-            }
-        }
-        return instructions;
-    }
-
-    private List<Instruction> analyseMul0rDivExpr() throws CompileError {
-        List<Instruction> instructions=new ArrayList<>();
-        while(check(TokenType.MUL)||check(TokenType.DIV)){
-            var nameToken=next();
-            instructions.addAll(analyseExpr());
-            if(nameToken.getTokenType()==TokenType.MUL)
-                instructions.add(new Instruction(Operation.mul_i));
-            else
-                instructions.add(new Instruction(Operation.div_i));
-        }
+        var opetator=next();
+        instructions.addAll(OperatorTree.getNewOperator(opetator.getTokenType()));
+        instructions.addAll(analyseExpr());
         return instructions;
     }
 

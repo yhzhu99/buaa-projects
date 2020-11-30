@@ -132,7 +132,7 @@ public class Table {
             this.addGlobal(token);
             this.symbolEntries.add(symbolEntry);
             if(symbolEntry.getNametype()== NameType.Proc){
-                this.functionTables.add(new FunctionTable(symbolEntry.getName(),this.functionTables.size()-1-outFuncNum,symbolEntry.getTokenType()));
+                this.functionTables.add(new FunctionTable(symbolEntry.getName(),this.global.size()-1,symbolEntry.getTokenType()));
             }
         }
         else{
@@ -206,7 +206,7 @@ public class Table {
         }
         long id=getGlobalId(new Token(TokenType.IDENT,"main",new Pos(-1,-1),new Pos(-1,-1)));
         addGlobal(new Token(TokenType.IDENT,"_start",new Pos(-1,-1),new Pos(-1,-1)));
-        FunctionTable functionTable=new FunctionTable("_start",getGlobalId(new Token(TokenType.IDENT,"_start",new Pos(-1,-1),new Pos(-1,-1))),TokenType.VOID_KW);
+        FunctionTable functionTable=new FunctionTable("_start",this.global.size()-1,TokenType.VOID_KW);
 
         List<Instruction> instructions=functionTable.getInstructions();
 
@@ -229,7 +229,6 @@ public class Table {
         }
         List<Instruction> instructions=new ArrayList<>();
         instructions.add(new Instruction(Operation.stackalloc,(long)func.getReturnSoltNmum()));
-        instructions.add(new Instruction(Operation.stackalloc,(long)func.getParamSoltNum()));
 
         return instructions;
     }

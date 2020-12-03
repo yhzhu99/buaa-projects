@@ -65,6 +65,24 @@ scrapy genspider pkx "http://data.carnoc.com/corp/airport/pkx__airportflight.htm
 
 我在此最终将最外层的flight文件夹，重命名为了：pkx_flight
 
+目录结构：
+
+```
+pkx_flight/
+    scrapy.cfg            # deploy configuration file
+    main.py               # 执行定时爬取脚本
+    flight/               # project's Python module, you'll import your code from here
+        __init__.py
+        items.py          # project items definition file
+        middlewares.py    # project middlewares file (定义中间件，未用到)
+        pipelines.py      # project pipelines file (含写入至文件的操作)
+        settings.py       # project settings file
+        spiders/          # a directory where you'll later put your spiders
+            __init__.py
+            pkx.py        # 选取html页面中元素的定义
+            test.py       # 测试Python中对json操作的一些用法
+```
+
 **Note:**
 
 - 在最外层的pkx_flight目录下开发（如VS Code中，打开该目录），防止import module error
@@ -137,7 +155,7 @@ python main.py # 开始定时爬取
 
 ## Project 2: 香港交通情况（动态，含反爬）
 
-> > [香港交通情况数据地址](https://report.amap.com/detail.do?city=810000)
+> [香港交通情况数据地址](https://report.amap.com/detail.do?city=810000)
 
 ### 爬取对象
 
@@ -185,6 +203,47 @@ driver.close()
 ![](img/2020-12-03-08-32-12.png)
 
 可见第一张表已成功爬得，而第二张表未爬取成功（高德地图有很强的反爬措施）
+
+以下进行数据处理，只获取第一张表（修改xpath，添加筛选），并将其输出至json文件。代码如下：
+
+```python
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import time
+from datetime import datetime
+import json
+
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+driver = webdriver.Chrome(
+    executable_path='chromedriver',
+    options=chrome_options)
+url='https://report.amap.com/detail.do?city=810000'
+driver.get(url)
+time.sleep(3) # 等待页面加载一段时间
+node_list = driver.find_elements_by_xpath("//table[@id='first_table']/tbody/tr")
+res=[]
+for node in node_list:
+    li=node.text.split()
+    content={
+        '排名':li[0],
+        '区域':li[1],
+        '拥堵指数':li[2],
+        '旅行速度':li[3]
+    }
+    res.append(content)
+ti = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+filename = '[香港区域拥堵情况]'+ti
+with open(filename+'.json',"w", encoding="utf-8") as f:
+    f.write(json.dumps(res,indent=2, ensure_ascii=False))
+
+driver.close()
+
+```
+
+结果：
+
+![](img/2020-12-03-22-02-59.png)
 
 #### 通过api
 
@@ -246,23 +305,21 @@ print("fetch data success! ",ti)
 
 ### 爬取对象
 
-![](img/2020-12-03-09-05-10.png)
+![](img/2020-12-03-21-22-53.png)
 
 其下有页码，在此需爬所有页中的内容。
-
-![](img/2020-12-03-09-04-56.png)
 
 ### 爬取过程
 
 审查页面元素获得xpath："//table/tbody/tr"
 
-![](img/2020-12-03-09-08-17.png)
+![](img/2020-12-03-21-22-29.png)
 
 观察不同页面的url，如第3页为：http://www.cdairport.com/flightInfor.aspx?page=3
 
 故可根据该url的规律爬取所有页面中的内容。
 
-在`ctu/main.py`下编写代码如下：
+在`ctu_flight/main.py`下编写代码如下：
 
 ```python
 from selenium import webdriver
@@ -274,11 +331,11 @@ chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(
     executable_path='chromedriver',
     options=chrome_options)
-for i in range(42): # 总页数为42
+for i in range(88): # 总页数为88
     url0='http://www.cdairport.com/flightInfor.aspx'
     url=url0+'?page='+str(i+1)
     driver.get(url)
-    time.sleep(3) # 等待页面加载一段时间
+    time.sleep(1) # 等待页面加载一段时间
     node_list = driver.find_elements_by_xpath("//table/tbody/tr")
     for node in node_list:
         print(node.text)
@@ -287,4 +344,20 @@ driver.close()
 
 结果：
 
-![](img/2020-12-03-09-18-10.png)
+![](img/2020-12-03-21-26-09.png)
+
+其字段分别对应了：航班号、始发地、目的地、计划起飞时间
+
+## Project 4: 中国主要城市交通健康榜
+
+> [中国主要城市交通健康榜 ](https://report.amap.com/diagnosis/index.do)
+
+目前还有Bug没有解决：使用selenium方法，如下图，右侧的滚动表格暂时只能爬取当前在网页所显示的部分（约18条），而不能将整个列表都爬到。（代码在traffic_health_list/main.py下）
+
+![](img/2020-12-03-21-42-52.png)
+
+当然使用api获取请求的方式可解决该问题。
+
+![](img/2020-12-03-21-41-18.png)
+
+如上图，获取到了对应数据的请求。

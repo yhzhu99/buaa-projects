@@ -1,3 +1,7 @@
-# miniplc0-java
+# c0-java
 
-这里是 miniplc0 实验的 Java 版本。
+gradle fatjar
+
+java -jar ./build/libs/miniplc0java.jar -l -o a.s0 a.c0
+
+java -jar ./build/libs/miniplc0java.jar -l -o a.s0 a.c0

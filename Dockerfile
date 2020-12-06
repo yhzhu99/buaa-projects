@@ -1,4 +1,4 @@
-FROM java:14
+FROM java:8
 WORKDIR /app/
 COPY ./* ./
 # RUN

@@ -1,6 +1,5 @@
-# gradle 好大
-FROM gradle:jdk14
-WORKDIR /app
-COPY build.gradle gradle settings.gradle .project miniplc0-java.iml .classpath /app/
-COPY src /app/src
-RUN gradle fatjar --no-daemon
+FROM java:15
+WORKDIR /app/
+COPY ./* ./
+RUN javac -encoding utf-8 App.java
+

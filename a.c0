@@ -1,3 +1,0 @@
-fn main()->int{
-    let a:int=-3;
-}

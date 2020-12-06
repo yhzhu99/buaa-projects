@@ -1,5 +1,7 @@
-[jobs.miniplc0]
-image = {source = "dockerfile", path = ".", tag = "miniplc0-java"}
+[jobs.c0]
+
+image = { source = "dockerfile", path = ".", tag = "pascal-lex-example" }
+
 run = [
-  "java -jar build/libs/miniplc0java.jar -l $input -o $output",
+  "java App b $input $asm",
 ]

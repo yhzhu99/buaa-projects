@@ -1,6 +1,0 @@
-fn main()->int{
-    let a:int=-3;
-    if (a)>0 {
-        return;
-    }
-}

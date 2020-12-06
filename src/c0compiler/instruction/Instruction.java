@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Instruction {
     private Operation opt;
     private Long x;
-    private int length;
+    private final int length;
     public Instruction(Operation opt) {
         this.opt = opt;
         length=0;

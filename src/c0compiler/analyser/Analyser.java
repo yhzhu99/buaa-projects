@@ -376,10 +376,7 @@ public final class Analyser {
             instructions.addAll(OperatorTree.addAllReset());
             instructions.add(new Instruction(Operation.store_64));
         }
-        else if (this.deep==1)
-            addSymbol(nameToken,NameType.Var,ty.getTokenType(),this.deep,true,false,nameToken.getStartPos());
-        else
-            addSymbol(nameToken,NameType.Var,ty.getTokenType(),this.deep,false,false,nameToken.getStartPos());
+        else addSymbol(nameToken,NameType.Var,ty.getTokenType(),this.deep, this.deep == 1,false,nameToken.getStartPos());
         expect(TokenType.SEMICOLON);
         return instructions;
     }
@@ -414,10 +411,7 @@ public final class Analyser {
         Token nameToken=expect(TokenType.IDENT);
         expect(TokenType.COLON);
         Token ty=expectTy();
-        if (token==null)
-            addSymbol(nameToken,NameType.Params,ty.getTokenType(),this.deep+1,true,false,nameToken.getStartPos());
-        else
-            addSymbol(nameToken,NameType.Params,ty.getTokenType(),this.deep+1,true,true,nameToken.getStartPos());
+        addSymbol(nameToken,NameType.Params,ty.getTokenType(),this.deep+1,true, token != null,nameToken.getStartPos());
     }
 
 

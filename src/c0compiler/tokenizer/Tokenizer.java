@@ -6,7 +6,7 @@ import c0compiler.error.TokenizeError;
 
 public class Tokenizer {
 
-    private StringIter it;
+    private final StringIter it;
 
     public Tokenizer(StringIter it) {
         this.it = it;

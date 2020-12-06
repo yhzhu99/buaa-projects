@@ -93,31 +93,31 @@ public enum TokenType {
             case None:
                 return "NullToken";
             case FN_KW:
-                return "fn";
+                return "FN_KW";
             case LET_KW:
-                return "let";
+                return "LET_KW";
             case CONST_KW:
-                return "const";
+                return "CONST_KW";
             case AS_KW:
-                return "as";
+                return "AS_KW";
             case WHILE_KW:
-                return "while";
+                return "WHILE_KW";
             case IF_KW:
-                return "if";
+                return "IF_KW";
             case ELSE_KW:
-                return "else";
+                return "ELSE_KW";
             case RETRUN_KW:
-                return "return";
+                return "RETRUN_KW";
             case BREAK_KW:
-                return "break";
+                return "BREAK_KW";
             case CONTINUE_KW:
                 return "continue";
             case INT_KW:
-                return "int";
+                return "INT_KW";
             case DOUBLE_KW:
-                return "double";
+                return "DOUBLE_KW";
             case VOID_KW:
-                return "void";
+                return "VOID_KW";
             case UNIT_LITERAL:
                 return "UNIT_LITERAL";
             case STRING_LITERAL:

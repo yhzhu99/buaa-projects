@@ -1,0 +1,7 @@
+[jobs.c0]
+
+image = { source = "dockerfile", path = ".", tag = "c0" }
+
+run = [
+  "java -jar ./out/artifacts/c0_jar/c0.jar b $input $asm",
+]

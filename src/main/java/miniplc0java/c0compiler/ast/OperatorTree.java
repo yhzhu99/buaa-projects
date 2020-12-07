@@ -10,7 +10,7 @@ import java.util.List;
 public class OperatorTree {
     public static List<Integer> stack=new ArrayList<>();
     //+ - * / ( ) < > <= >= == != -
-    static int[][] priority ={
+    static int priority[][]={
             {1,1,-1,-1,-1,1,   1,1,1,1,1,1,  -1},
             {1,1,-1,-1,-1,1,  1,1,1,1,1,1,   -1},
             {1,1,1,1,-1,1,   1,1,1,1,1,1,    -1},

@@ -29,6 +29,6 @@ public class AnalyzeError extends CompileError {
 
     @Override
     public String toString() {
-        return "Analyze Error: " + code + ", at: " + pos;
+        return new StringBuilder().append("Analyze Error: ").append(code).append(", at: ").append(pos).toString();
     }
 }

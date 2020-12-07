@@ -186,6 +186,21 @@ public class Table {
         }
         if(flag) return tokenTypes;
 
+        for (FunctionTable func:outFunctionTables) {
+            if(func.getName().equals(nameToken.getValueString())){
+                flag=true;
+                for (SymbolEntry symbolEntry:func.getSymbolEntries()){
+                    if(symbolEntry.getNametype()==NameType.Params){
+                        tokenTypes.add(symbolEntry.getTokenType());
+                    }
+                    else break;
+                }
+                if(flag)
+                    break;
+            }
+        }
+        if(flag) return tokenTypes;
+
         throw new AnalyzeError(ErrorCode.ExpectFuncToken, nameToken.getStartPos());
     }
 

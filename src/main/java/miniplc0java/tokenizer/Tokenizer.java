@@ -57,7 +57,7 @@ public class Tokenizer {
     private Token lexUInt() throws TokenizeError {
         char peek;
         Pos startPos=it.currentPos(),endPos;
-        Long value=(long)0;//in1=(long)1;
+        long value=(long)0;//in1=(long)1;
         while(Character.isDigit(it.peekChar())){
             peek = it.nextChar();
             value=value*(long)10+Long.parseLong(String.valueOf(peek));
@@ -86,7 +86,7 @@ public class Tokenizer {
             v.append(peek);
             if(peek=='\\'){
                 peek = it.nextChar();
-                if(peek=='n'||peek=='r'||peek=='t'||peek=='\\'||peek=='\"'||peek=='\''||peek=='\\'){
+                if(peek == 'n' || peek == 'r' || peek == 't' || peek == '\"' || peek == '\'' || peek == '\\'){
                     v.append(peek); 
                 }
                 else
@@ -136,32 +136,22 @@ public class Tokenizer {
         }
         endPos=it.currentPos();
         value=new String(v);
-        if(value.equals("fn"))
-          return new Token(TokenType.FN_KW,value,startPos,endPos);
-        else if(value.equals("let"))
-            return new Token(TokenType.LET_KW,value,startPos,endPos);
-        else if(value.equals("const"))
-            return new Token(TokenType.CONST_KW,value,startPos,endPos);
-        else if(value.equals("as"))
-            return new Token(TokenType.AS_KW,value,startPos,endPos);
-        else if(value.equals("while"))
-            return new Token(TokenType.WHILE_KW,value,startPos,endPos);
-        else if(value.equals("if"))
-            return new Token(TokenType.IF_KW,value,startPos,endPos);
-        else if(value.equals("else"))
-            return new Token(TokenType.ELSE_KW,value,startPos,endPos);
-        else if(value.equals("return"))
-            return new Token(TokenType.RETRUN_KW,value,startPos,endPos);
-        else if(value.equals("break"))
-            return new Token(TokenType.BREAK_KW,value,startPos,endPos);
-        else if(value.equals("continue"))
-            return new Token(TokenType.CONTINUE_KW,value,startPos,endPos);
-        else if(value.equals("int"))
-            return new Token(TokenType.INT_KW,value,startPos,endPos);
-        else if(value.equals("void"))
-            return new Token(TokenType.VOID_KW,value,startPos,endPos);
-        
-        return new Token(TokenType.IDENT,value,startPos,endPos);
+        return switch (value) {
+            case "fn" -> new Token(TokenType.FN_KW, value, startPos, endPos);
+            case "let" -> new Token(TokenType.LET_KW, value, startPos, endPos);
+            case "const" -> new Token(TokenType.CONST_KW, value, startPos, endPos);
+            case "as" -> new Token(TokenType.AS_KW, value, startPos, endPos);
+            case "while" -> new Token(TokenType.WHILE_KW, value, startPos, endPos);
+            case "if" -> new Token(TokenType.IF_KW, value, startPos, endPos);
+            case "else" -> new Token(TokenType.ELSE_KW, value, startPos, endPos);
+            case "return" -> new Token(TokenType.RETRUN_KW, value, startPos, endPos);
+            case "break" -> new Token(TokenType.BREAK_KW, value, startPos, endPos);
+            case "continue" -> new Token(TokenType.CONTINUE_KW, value, startPos, endPos);
+            case "int" -> new Token(TokenType.INT_KW, value, startPos, endPos);
+            case "void" -> new Token(TokenType.VOID_KW, value, startPos, endPos);
+            default -> new Token(TokenType.IDENT, value, startPos, endPos);
+        };
+
         // 请填空：
         // 直到查看下一个字符不是数字或字母为止:
         // -- 前进一个字符，并存储这个字符

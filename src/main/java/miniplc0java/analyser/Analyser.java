@@ -308,7 +308,7 @@ public final class Analyser {
      */
     //
     private void analyseProgram() throws CompileError {
-        while(check(TokenType.EOF)==false){
+        while(!check(TokenType.EOF)){
             if(check(TokenType.FN_KW)){
                 analyseFunction();
             }else if(check(TokenType.LET_KW)||check(TokenType.CONST_KW)){
@@ -326,7 +326,7 @@ public final class Analyser {
         List<Instruction> instructions;
         addSymbol(nameToken,NameType.Proc, TokenType.VOID_KW,this.deep,true,true,nameToken.getStartPos());
         expect(TokenType.L_PAREN);
-        if(check(TokenType.R_PAREN)==false)
+        if(!check(TokenType.R_PAREN))
             analyseFunctionParamList();
         expect(TokenType.R_PAREN);
         expect(TokenType.ARROW);
@@ -334,9 +334,8 @@ public final class Analyser {
         if(ty.getTokenType()!= TokenType.VOID_KW){
             this.table.setFuncReturn(nameToken.getValueString(),this.deep,nameToken.getStartPos(),ty.getTokenType());
         }
-        instructions=new ArrayList<>();
 
-        instructions.addAll(analyseBlockStmt());
+        instructions = new ArrayList<>(analyseBlockStmt());
         instructions.add(new Instruction(Operation.ret));
         this.table.addAllInstructions(instructions,this.deep+1);
         if (!this.table.isInitialized())
@@ -357,8 +356,7 @@ public final class Analyser {
 
     private List<TokenType> getList(TokenType... tokenTypes) {
         List<TokenType> t=new ArrayList<>();
-        for (TokenType tokenType:tokenTypes)
-            t.add(tokenType);
+        Collections.addAll(t, tokenTypes);
         return t;
     }
 
@@ -376,10 +374,7 @@ public final class Analyser {
             instructions.addAll(OperatorTree.addAllReset());
             instructions.add(new Instruction(Operation.store_64));
         }
-        else if (this.deep==1)
-            addSymbol(nameToken,NameType.Var,ty.getTokenType(),this.deep,true,false,nameToken.getStartPos());
-        else
-            addSymbol(nameToken,NameType.Var,ty.getTokenType(),this.deep,false,false,nameToken.getStartPos());
+        else addSymbol(nameToken,NameType.Var,ty.getTokenType(),this.deep, this.deep == 1,false,nameToken.getStartPos());
         expect(TokenType.SEMICOLON);
         return instructions;
     }
@@ -414,10 +409,7 @@ public final class Analyser {
         Token nameToken=expect(TokenType.IDENT);
         expect(TokenType.COLON);
         Token ty=expectTy();
-        if (token==null)
-            addSymbol(nameToken,NameType.Params,ty.getTokenType(),this.deep+1,true,false,nameToken.getStartPos());
-        else
-            addSymbol(nameToken,NameType.Params,ty.getTokenType(),this.deep+1,true,true,nameToken.getStartPos());
+        addSymbol(nameToken,NameType.Params,ty.getTokenType(),this.deep+1,true, token != null,nameToken.getStartPos());
     }
 
 
@@ -425,7 +417,7 @@ public final class Analyser {
         this.deep++;
         List<Instruction> instructions=new ArrayList<>();
         expect(TokenType.L_BRACE);
-        while (check(TokenType.R_BRACE)==false){
+        while (!check(TokenType.R_BRACE)){
             if(check(TokenType.LET_KW)||check(TokenType.CONST_KW)){
                 instructions.addAll(analyseDeclStmt());
             }
@@ -517,7 +509,7 @@ public final class Analyser {
     private List<Instruction> analyseReturnStmt() throws CompileError {
         Token token=expect(TokenType.RETRUN_KW);
         List<Instruction> instructions=new ArrayList<>();
-        if(check(TokenType.SEMICOLON)==false){
+        if(!check(TokenType.SEMICOLON)){
             if (this.table.getNowFuncTable().getTokenType()== TokenType.VOID_KW)
                 throw new AnalyzeError(ErrorCode.WrongReturn, token.getStartPos());
             instructions.add(new Instruction(Operation.arga,(long)0));
@@ -579,12 +571,11 @@ public final class Analyser {
     }
 
     private List<Instruction> analyseCallExpr(Token nameToken) throws CompileError {
-        List<Instruction> instructions=new ArrayList<>();
         List<TokenType> tokenTypes=this.table.getFunctionParamsType(nameToken);
-        instructions.addAll(this.table.addstackllocInstruction(nameToken.getValueString()));
+        List<Instruction> instructions = new ArrayList<>(this.table.addstackllocInstruction(nameToken.getValueString()));
 
         expect(TokenType.L_PAREN);
-        if(check(TokenType.R_PAREN)==false&&tokenTypes.size()>0)
+        if(!check(TokenType.R_PAREN) &&tokenTypes.size()>0)
             instructions.addAll(analyseCallParamList(tokenTypes));
         else if(check(TokenType.R_PAREN)&&tokenTypes.size()==0){ }
         else{
@@ -740,8 +731,7 @@ public final class Analyser {
     }
     private List<Instruction> analyseAsExpr() throws CompileError {
         Token ty=null;
-        List<Instruction> instructions=new ArrayList<>();
-        instructions.addAll(OperatorTree.addAllReset());
+        List<Instruction> instructions = new ArrayList<>(OperatorTree.addAllReset());
         while(check(TokenType.AS_KW)){
             expect(TokenType.AS_KW);
             ty=expectTy();

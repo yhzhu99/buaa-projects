@@ -37,6 +37,6 @@ public class TokenizeError extends CompileError {
 
     @Override
     public String toString() {
-        return new StringBuilder().append("Tokenize Error: ").append(err).append(", at: ").append(pos).append(", get ").append(c).toString();
+        return "Tokenize Error: " + err + ", at: " + pos + ", get " + c;
     }
 }

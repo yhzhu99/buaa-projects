@@ -109,8 +109,8 @@ public class Token {
     }
 
     public String toStringAlt() {
-        return new StringBuilder().append("Token(").append(this.tokenType).append(", value: ").append(value)
-                .append("at: ").append(this.startPos).toString();
+        return "Token(" + this.tokenType + ", value: " + value +
+                "at: " + this.startPos;
     }
 
     public int getIs_const() {

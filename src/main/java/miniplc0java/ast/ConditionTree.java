@@ -34,13 +34,11 @@ public class ConditionTree {
         }
         off=0;
         int size=booleanTrees.size();
-        for(int i=0;i<size;i++){
-            BooleanTree booleanTree=booleanTrees.get(i);
+        for (BooleanTree booleanTree : booleanTrees) {
             booleanTree.setJump(off);
-            off+=booleanTree.getTrueInstructionsSize()+1;
+            off += booleanTree.getTrueInstructionsSize() + 1;
         }
-        List<Instruction> instructions=new ArrayList<>();
-        instructions.addAll(deep(0));
+        List<Instruction> instructions = new ArrayList<>(deep(0));
         return instructions;
     }
 

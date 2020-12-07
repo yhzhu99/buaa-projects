@@ -1,6 +1,6 @@
-package miniplc0java.error;
+package c0java.error;
 
-import miniplc0java.util.Pos;
+import c0java.util.Pos;
 
 public class AnalyzeError extends CompileError {
     private static final long serialVersionUID = 1L;

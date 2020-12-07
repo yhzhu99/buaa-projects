@@ -1,15 +1,12 @@
-package miniplc0java.analyser;
+package c0java.analyser;
 
-import miniplc0java.analyser.FunctionTable;
-import miniplc0java.analyser.NameType;
-import miniplc0java.analyser.SymbolEntry;
-import miniplc0java.error.AnalyzeError;
-import miniplc0java.error.ErrorCode;
-import miniplc0java.instruction.Instruction;
-import miniplc0java.instruction.Operation;
-import miniplc0java.tokenizer.Token;
-import miniplc0java.tokenizer.TokenType;
-import miniplc0java.util.Pos;
+import c0java.error.AnalyzeError;
+import c0java.error.ErrorCode;
+import c0java.instruction.Instruction;
+import c0java.instruction.Operation;
+import c0java.tokenizer.Token;
+import c0java.tokenizer.TokenType;
+import c0java.util.Pos;
 
 import java.util.ArrayList;
 import java.util.List;

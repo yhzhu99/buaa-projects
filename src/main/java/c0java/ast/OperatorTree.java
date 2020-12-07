@@ -1,8 +1,8 @@
-package miniplc0java.ast;
+package c0java.ast;
 
-import miniplc0java.instruction.Instruction;
-import miniplc0java.instruction.Operation;
-import miniplc0java.tokenizer.TokenType;
+import c0java.instruction.Instruction;
+import c0java.instruction.Operation;
+import c0java.tokenizer.TokenType;
 
 import java.util.ArrayList;
 import java.util.List;

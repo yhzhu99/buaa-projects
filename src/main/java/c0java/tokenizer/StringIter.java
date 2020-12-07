@@ -1,8 +1,8 @@
-package miniplc0java.tokenizer;
+package c0java.tokenizer;
 
-import miniplc0java.util.Pos;
-import miniplc0java.error.ErrorCode;
-import miniplc0java.error.TokenizeError;
+import c0java.util.Pos;
+import c0java.error.ErrorCode;
+import c0java.error.TokenizeError;
 
 import java.util.ArrayList;
 import java.util.Optional;

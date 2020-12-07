@@ -1,11 +1,11 @@
-package miniplc0java.util;
+package c0java.util;
 
-import miniplc0java.analyser.FunctionTable;
-import miniplc0java.analyser.NameType;
-import miniplc0java.analyser.Table;
-import miniplc0java.instruction.Instruction;
-import miniplc0java.tokenizer.Token;
-import miniplc0java.tokenizer.TokenType;
+import c0java.analyser.FunctionTable;
+import c0java.analyser.NameType;
+import c0java.analyser.Table;
+import c0java.instruction.Instruction;
+import c0java.tokenizer.Token;
+import c0java.tokenizer.TokenType;
 
 import java.util.ArrayList;
 import java.util.List;

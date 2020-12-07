@@ -1,6 +1,6 @@
-package miniplc0java.analyser;
+package c0java.analyser;
 
-import miniplc0java.tokenizer.TokenType;
+import c0java.tokenizer.TokenType;
 
 public class SymbolEntry {
     String name;

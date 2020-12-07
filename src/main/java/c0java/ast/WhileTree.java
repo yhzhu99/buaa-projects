@@ -1,8 +1,7 @@
-package miniplc0java.ast;
+package c0java.ast;
 
-import miniplc0java.ast.BooleanTree;
-import miniplc0java.instruction.Instruction;
-import miniplc0java.instruction.Operation;
+import c0java.instruction.Instruction;
+import c0java.instruction.Operation;
 
 import java.util.ArrayList;
 import java.util.List;

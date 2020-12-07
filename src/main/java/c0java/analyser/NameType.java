@@ -1,4 +1,4 @@
-package miniplc0java.analyser;
+package c0java.analyser;
 
 public enum NameType {
     Proc,

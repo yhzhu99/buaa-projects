@@ -1,16 +1,16 @@
-package miniplc0java.analyser;
+package c0java.analyser;
 
-import miniplc0java.ast.WhileTree;
-import miniplc0java.ast.BooleanTree;
-import miniplc0java.ast.ConditionTree;
-import miniplc0java.ast.OperatorTree;
-import miniplc0java.error.*;
-import miniplc0java.instruction.Instruction;
-import miniplc0java.instruction.Operation;
-import miniplc0java.tokenizer.Token;
-import miniplc0java.tokenizer.TokenType;
-import miniplc0java.tokenizer.Tokenizer;
-import miniplc0java.util.Pos;
+import c0java.ast.WhileTree;
+import c0java.ast.BooleanTree;
+import c0java.ast.ConditionTree;
+import c0java.ast.OperatorTree;
+import c0java.error.*;
+import c0java.instruction.Instruction;
+import c0java.instruction.Operation;
+import c0java.tokenizer.Token;
+import c0java.tokenizer.TokenType;
+import c0java.tokenizer.Tokenizer;
+import c0java.util.Pos;
 
 import java.util.*;
 

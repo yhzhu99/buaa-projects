@@ -1,9 +1,9 @@
-package miniplc0java.analyser;
+package c0java.analyser;
 
 
-import miniplc0java.instruction.Instruction;
-import miniplc0java.tokenizer.Token;
-import miniplc0java.tokenizer.TokenType;
+import c0java.instruction.Instruction;
+import c0java.tokenizer.Token;
+import c0java.tokenizer.TokenType;
 
 import java.util.ArrayList;
 import java.util.List;

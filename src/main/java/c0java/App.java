@@ -1,13 +1,13 @@
-package miniplc0java;
+package c0java;
 
-import miniplc0java.analyser.Analyser;
-import miniplc0java.analyser.FunctionTable;
-import miniplc0java.analyser.Table;
-import miniplc0java.tokenizer.StringIter;
-import miniplc0java.tokenizer.Token;
-import miniplc0java.tokenizer.TokenType;
-import miniplc0java.tokenizer.Tokenizer;
-import miniplc0java.util.OutPutBinary;
+import c0java.analyser.Analyser;
+import c0java.analyser.FunctionTable;
+import c0java.analyser.Table;
+import c0java.tokenizer.StringIter;
+import c0java.tokenizer.Token;
+import c0java.tokenizer.TokenType;
+import c0java.tokenizer.Tokenizer;
+import c0java.util.OutPutBinary;
 
 import java.io.*;
 import java.util.ArrayList;

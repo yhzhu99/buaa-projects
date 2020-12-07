@@ -1,7 +1,7 @@
-package miniplc0java.tokenizer;
+package c0java.tokenizer;
 
-import miniplc0java.analyser.NameType;
-import miniplc0java.util.Pos;
+import c0java.analyser.NameType;
+import c0java.util.Pos;
 
 import java.util.Objects;
 

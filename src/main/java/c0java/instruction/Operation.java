@@ -1,4 +1,4 @@
-package miniplc0java.instruction;
+package c0java.instruction;
 
 public enum Operation {
     loca,arga,globa,add_i,sub_i,mul_i,div_i,store_64,cmp_i,push, set_lt,br_false,

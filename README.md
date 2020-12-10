@@ -4,7 +4,7 @@
 
 [TOC]
 
-## 项目索引
+## 1. 项目索引
 
 ```yaml
 - ctu_flight # 成都双流国际机场
@@ -18,9 +18,9 @@
     - main.py # 运行脚本
 ```
 
-## 环境配置
+## 2. 环境配置
 
-### 静态网页
+### 2.1. 静态网页
 
 - 安装Scrapy
 
@@ -28,7 +28,7 @@
 pip install Scrapy
 ```
 
-### 动态网页
+### 2.2. 动态网页
 
 - 安装selenium
 
@@ -52,7 +52,7 @@ pip install selenium
 
 ![](img/2020-12-03-08-13-19.png)
 
-### 定时爬取的方法
+### 2.3. 定时爬取的方法
 
 见以下代码示例：
 
@@ -65,11 +65,11 @@ while True:
     time.sleep(3600*24) # 定时运行，单位为秒
 ```
 
-## Project 1: 北京大兴机场（静态）
+## 3. Project 1: 北京大兴机场（静态）
 
 > [北京大兴机场数据地址](http://data.carnoc.com/corp/airport/pkx__airportflight.html)
 
-### 初始化项目
+### 3.1. 初始化项目
 
 ```bash
 scrapy startproject flight
@@ -101,7 +101,7 @@ pkx_flight/
 
 - 在最外层的pkx_flight目录下开发（如VS Code中，打开该目录），防止import module error
 
-### 如何运行
+### 3.2. 如何运行
 
 在外层pkx_flight目录下，`main.py`为定时（每2小时）爬取的脚本，亦可单次运行
 
@@ -110,9 +110,9 @@ scrapy crawl pkx # 单次爬取，pkx为在PkxSpider Class中定义的name
 python main.py # 开始定时爬取
 ```
 
-### 数据介绍
+### 3.3. 数据介绍
 
-#### 数据来源
+#### 3.3.1. 数据来源
 
 数据来自于[民航资源网](http://www.carnoc.com/)，从中选取北京大兴机场作为分析目标
 
@@ -124,7 +124,7 @@ python main.py # 开始定时爬取
 
 我从中选择爬取北京大兴机场航班进港与出港情况的数据
 
-#### 数据字段说明
+#### 3.3.2. 数据字段说明
 
 | 字段名            | 说明                |
 | ----------------- | ------------------- |
@@ -141,7 +141,7 @@ python main.py # 开始定时爬取
 | actual_time       | 实际到达时间        |
 | state             | 状态                |
 
-### 爬取结果
+### 3.4. 爬取结果
 
 - 所爬原始结果
 
@@ -167,11 +167,11 @@ python main.py # 开始定时爬取
 
 ![](img/2020-11-29-12-30-08.png)
 
-## Project 2: 香港交通情况（动态，含反爬）
+## 4. Project 2: 香港交通情况（动态，含反爬）
 
 > [香港交通情况数据地址](https://report.amap.com/detail.do?city=810000)
 
-### 爬取对象
+### 4.1. 爬取对象
 
 检查页面元素查看数据所在位置：
 
@@ -187,9 +187,9 @@ python main.py # 开始定时爬取
 
 以上数据是由js渲染所得，在此选择使用selenium来爬。
 
-### 爬取过程
+### 4.2. 爬取过程
 
-#### 通过selenium
+#### 4.2.1. 通过selenium
 
 编写如下代码`main.py`，试图来爬这两张表：
 
@@ -259,7 +259,7 @@ driver.close()
 
 ![](img/2020-12-03-22-02-59.png)
 
-#### 通过api
+#### 4.2.2. 通过api
 
 检查Network，刷新页面，找到了表格元素渲染的js
 
@@ -313,17 +313,17 @@ print("fetch data success! ",ti)
 | speed | 速度              |
 | travelTime       | 旅行时间        |
 
-## Project 3: 成都双流国际机场（多页处理）
+## 5. Project 3: 成都双流国际机场（多页处理）
 
 > [成都双流国际机场数据地址](http://www.cdairport.com/flightInfor.aspx)
 
-### 爬取对象
+### 5.1. 爬取对象
 
 ![](img/2020-12-03-21-22-53.png)
 
 其下有页码，在此需爬所有页中的内容。
 
-### 爬取过程
+### 5.2. 爬取过程
 
 审查页面元素获得xpath："//table/tbody/tr"
 
@@ -362,7 +362,7 @@ driver.close()
 
 其字段分别对应了：航班号、始发地、目的地、计划起飞时间
 
-## Project 4: 中国主要城市交通健康榜
+## 6. Project 4: 中国主要城市交通健康榜
 
 > [中国主要城市交通健康榜 ](https://report.amap.com/diagnosis/index.do)
 

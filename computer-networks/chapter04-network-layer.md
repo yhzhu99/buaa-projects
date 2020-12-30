@@ -58,9 +58,15 @@ IP地址::={<网络号>,<主机号>}
 - B类地址的主机号是由两个字节，16位组成，所以每一个B类网络中可分配的主机个数为（2^16-2）
 - C类地址的主机号是由一个字节，8位组成，所以每一个C类网络中可分配的主机个数为（2^8-2）
 
-// TODO
+[Reference: Reserved IP addresses](https://en.wikipedia.org/wiki/Reserved_IP_addresses)
 
 ### IP数据报的格式
+
+[Reference: IPv4](https://en.wikipedia.org/wiki/IPv4)
+
+![ipv4](img/ipv4-header.jpg)
+
+
 
 ### 地址解析协议ARP
 

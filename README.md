@@ -4,8 +4,9 @@
 
 ## Computer Networks
 
-- [x] overview
-- [x] chapter01-introduction
+- [x] Overview
+- [x] Chapter01: Introduction
+- [x] Chapter02: The Pysical Layer
 
 ## Compilers
 

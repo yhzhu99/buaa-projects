@@ -7,7 +7,8 @@
 - [x] Overview
 - [x] Chapter01: Introduction
 - [x] Chapter02: The Pysical Layer
-- [ ] Chapter03: The Data Link Layer
+- [x] Chapter03: The Data Link Layer
+- [ ] Chapter04: The Network Layer
 
 ## Compilers 
 

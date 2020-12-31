@@ -59,6 +59,8 @@
 
 Point-to-Point Protocol
 
+互联网用户通常都要连接到某个ISP才能接入到互联网。PPP协议就是**用户计算机和ISP进行通信**时所使用的数据链路层协议。
+
 - 简单
   - 接受方每收到一个帧，就进行CRC检验。如果CRC检验正确，就收下这个帧；反之，就丢弃，其他什么也不做。
 - 封装成帧
@@ -132,6 +134,8 @@ Point-to-Point Protocol
 > page 93
 
 [Reference: MAC帧与PPP帧的区别](https://blog.csdn.net/u012316120/article/details/52432694)
+
+（在局域网中）
 
 ## 交换机和网桥
 

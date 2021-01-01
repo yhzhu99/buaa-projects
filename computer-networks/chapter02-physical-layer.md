@@ -1,4 +1,4 @@
-# Chapter02: The Pysical Layer
+# Chapter02: Pysical Layer
 
 > 5%
 

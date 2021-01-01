@@ -1,4 +1,4 @@
-# Chapter03: The Data Link Layer
+# Chapter03: Data Link Layer
 
 > 30%
 

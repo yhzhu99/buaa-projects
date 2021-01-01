@@ -14,5 +14,8 @@
 
 ## Compilers
 
+> PPT做得太好了，直接看ppt
+
+- [x] [Chapter01: 概论](compilers/chapter01-概论.md)
+
 ## Operating Systems
- 

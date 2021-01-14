@@ -1,4 +1,4 @@
-module c0
+module github.com/TualatinX/c0-go
 
 go 1.15
 

@@ -5,13 +5,12 @@ import (
 	"io/ioutil"
 	"os"
 
-	"c0/global"
-	"c0/initialize"
-	"c0/model"
+	"github.com/TualatinX/c0-go/global"
+	"github.com/TualatinX/c0-go/initialize"
+	"github.com/TualatinX/c0-go/model"
 )
 
 func main() {
-	// token.Test()
 	initialize.InitMySQL()
 	args := os.Args
 	fmt.Println(args[1], args[2])

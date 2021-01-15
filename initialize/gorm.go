@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"github.com/TualatinX/c0-go/global"
-	"github.com/TualatinX/c0-go/model"
+	"c0/global"
+	"c0/model"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

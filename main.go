@@ -5,9 +5,9 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/TualatinX/c0-go/global"
-	"github.com/TualatinX/c0-go/initialize"
-	"github.com/TualatinX/c0-go/model"
+	"c0/global"
+	"c0/initialize"
+	"c0/model"
 )
 
 func main() {

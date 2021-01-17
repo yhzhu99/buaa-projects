@@ -1,0 +1,44 @@
+/* Lexical Parser */
+
+!whitespace : '\t' | '\n' | '\r' | ' ' ;
+!lineComment  : '/' '/' { . } '\n' ;
+
+fnKw: 'f' 'n';
+letKw: 'l' 'e' 't';
+constKw: 'c' 'o' 'n' 's' 't';
+asKw: 'a' 's';
+whileKw: 'w' 'h' 'i' 'l' 'e';
+ifKw: 'i' 'f';
+elseKw: 'e' 'l' 's' 'e';
+returnKw: 'r' 'e' 't' 'u' 'r' 'n';
+breakKw: 'b' 'r' 'e' 'a' 'k';
+continueKw: 'c' 'o' 'n' 't' 'i' 'n' 'u' 'e';
+
+_letter : 'A'-'Z' | 'a'-'z' | '_' ;
+_digit : '0'-'9' ;
+_alpha : _letter | _digit ;
+
+stringLiteral : '"' {_alpha | ' ' | '!' | '?' }'"' ;
+_uInt : '0' | '1'-'9' {_digit} ;
+uIntLiteral : _uInt ;
+floatLiteral : _uInt '.' _uInt ;
+
+ident : _letter {_alpha} ;
+
+plus : '+' ;
+minus : '-' ;
+mul : '*' ;
+div : '/' ;
+assign : '=' ;
+eq : '=' '-' ;
+neq : '!' '=' ;
+lt : '<' ;
+gt : '>' ;
+le : '<' '=' ;
+ge : '>' '=' ;
+lParen : '(' ;
+rParen : ')' ;
+arrow : '-' '>' ;
+comma : ',' ;
+colon : ':' ;
+semicolon : ';' ;

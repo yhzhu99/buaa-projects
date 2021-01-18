@@ -2,7 +2,7 @@ FROM golang:1.15
 WORKDIR /usr/local/go/src/c0-go/
 COPY main.go go.mod go.sum ./
 COPY lexer ./lexer
-COPY token ./util
+COPY token ./token
 COPY util ./util
 RUN go env -w GO111MODULE=auto
 RUN go env -w GOPROXY=https://goproxy.cn,https://goproxy.io,direct

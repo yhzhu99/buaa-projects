@@ -1,0 +1,117 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.topelec.foodtraceability.QueryActivity"
+    android:background="@drawable/foodtraceability_background">
+
+    <FrameLayout
+        android:id="@+id/foodtraceability_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/backgroundView"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="99dp"
+                android:layout_marginLeft="300dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:layout_marginLeft="350dp"
+                android:layout_marginTop="150dp"
+                android:scaleType="fitCenter" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/idView"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="350dp"
+                android:layout_marginTop="280dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameView"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="550dp"
+                android:layout_marginTop="144dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/placeView"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="550dp"
+            android:layout_marginTop="185dp" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/timeView"
+                android:textColor="@android:color/white"
+            android:layout_marginLeft="550dp"
+            android:layout_marginTop="230dp" />
+
+        <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/materialView"
+                android:textColor="@android:color/white"
+            android:layout_marginLeft="550dp"
+                android:layout_marginTop="273dp" />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/foodtraceability_settings"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/btnSettings"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_overlay"
+                android:text="@string/foodtraceability_settings"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/foodtraceability_back"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/btnBack"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_overlay"
+                android:text="@string/back"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,0 +1,126 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.topelec.smartagriculture.MainActivity"
+    android:background="@drawable/smartagriculture_background">
+
+    <FrameLayout
+        android:id="@+id/smartagriculture_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tempView"
+            android:textSize="25dp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="903dp"
+            android:layout_marginTop="395dp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/humView"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_marginLeft="903dp"
+            android:layout_marginTop="437dp"
+            android:textColor="#ffffff" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fanView"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="177dp" />
+
+        <ImageButton
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/btnFanLeft"
+            android:background="@drawable/btn_background"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="270dp" />
+
+        <ImageButton
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/btnFanRight"
+            android:background="@drawable/btn_background"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="245dp"
+            android:layout_marginLeft="900dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/waterView"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="321dp"
+            android:layout_marginTop="380dp" />
+
+        <ImageButton
+            android:layout_width="230dp"
+            android:layout_height="100dp"
+            android:id="@+id/btnWater"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_background"
+            android:layout_marginLeft="370dp"
+            android:layout_marginTop="430dp" />
+
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/smartagriculture_settings"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/btnSettings"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_overlay"
+                android:text="@string/smarthome_settings"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/smartagriculture_back"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/btnBack"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_overlay"
+                android:text="@string/back"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

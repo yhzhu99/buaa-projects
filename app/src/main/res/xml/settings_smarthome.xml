@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:title="系统设置">
+    <PreferenceCategory android:key="config" android:title="@string/smarthome_settings">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="auto_temp_switch"
+            android:summaryOff="开启温度自动控制"
+            android:summaryOn="关闭温度自动控制"
+            android:title="温度自动控制"></CheckBoxPreference>
+
+        <EditTextPreference android:key="temp_settings"
+            android:title="温度值设置"
+            android:summary="请输入您想要保持的温度值"
+            android:dialogTitle="请输入温度值"
+            android:defaultValue="27"
+            android:numeric="integer"
+            android:dependency="auto_temp_switch">
+        </EditTextPreference>
+    <!--<EditTextPreference android:key="hum_settings"-->
+        <!--android:title="湿度值设置"-->
+        <!--android:summary="请输入您想要保持的湿度值"-->
+        <!--android:dialogTitle="请输入温度值"-->
+        <!--android:defaultValue="40"-->
+        <!--android:numeric="integer"-->
+        <!--android:dependency="auto_temp_switch">-->
+    <!--</EditTextPreference>-->
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="auto_bright_switch"
+            android:summaryOff="开启灯光自动管理"
+            android:summaryOn="关闭灯光自动管理"
+            android:title="灯光自动控制"></CheckBoxPreference>
+    </PreferenceCategory>
+</PreferenceScreen>

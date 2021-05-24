@@ -29,7 +29,7 @@ import it.moondroid.coverflowdemo.R;
 
 
 public class MainActivity extends Activity implements
-        View.OnClickListener, SensorControl.LedListener, SensorControl.MotorListener, SensorControl.TempHumListener, SensorControl.LightSensorListener {
+        View.OnClickListener, SensorControl.LedListener, SensorControl.MotorListener, SensorControl.TempHumListener, SensorControl.LightSensorListener , SensorControl.PESensorListener{
 
     private static final String TAG = "MainActivity";
     private static final int REQ_SYSTEM_SETTINGS = 1;
@@ -79,6 +79,7 @@ public class MainActivity extends Activity implements
         public void handleMessage(Message msg) {
             Bundle data;
             data = msg.getData();
+            System.out.println(msg.what);
             switch (msg.what) {
                 //判断发送的消息
                 case 0x01:
@@ -162,7 +163,7 @@ public class MainActivity extends Activity implements
                             tempView.setText(String.valueOf(Temp));
                             //如下温度自动化管理代码
                             if (isAutoTempHum) {
-                                if (Temp > settingTemperature) {
+                                if (Temp > 100) {
                                     //TODO 温度大于设定值，降低温度，执行打开风扇动作
                                     if (!fanStatus) {
                                         mSensorControl.fanForward(true);
@@ -179,16 +180,22 @@ public class MainActivity extends Activity implements
                         case 0x02:
                             Hum = data.getInt("senser_data");
                             humView.setText(String.valueOf(Hum));
-                            //如下温度自动化管理代码
-                            if (Hum > 20) {
-                                //TODO 温度大于设定值，降低温度，执行打开风扇动作
-                                if (!fanStatus) {
-                                    mSensorControl.fanForward(true);
+                            //如下湿度自动化管理代码
+                            if (Hum > 60) {
+                                //TODO 湿度大于设定值，降低湿度，执行打开风扇动作
+//                                if (!fanStatus) {
+//                                    mSensorControl.fanForward(true);
+//                                }
+                                if (isAutoBrightness) {
+                                    mSensorControl.allLeds_Off(false);
                                 }
                             } else {
-                                //TODO 实时温度小于设定值，停止降低温度，如果此时风扇是运行状态，则执行停止风扇动作。
-                                if (fanStatus) {
-                                    mSensorControl.fanStop(true);
+                                //TODO 实时湿度小于设定值，停止降低湿度，如果此时风扇是运行状态，则执行停止风扇动作。
+//                                if (fanStatus) {
+//                                    mSensorControl.fanStop(true);
+//                                }
+                                if (isAutoBrightness) {
+                                    mSensorControl.allLeds_On(false);
                                 }
                             }
 
@@ -200,12 +207,57 @@ public class MainActivity extends Activity implements
                 case 0x04:
                     if (data.getByte("senser_status") == 0x01) {
                         brightnessView.setImageDrawable(getResources().getDrawable((R.drawable.smarthome_bright)));
-                        if (isAutoBrightness)
-                            mSensorControl.allLeds_Off(true);
+                        humView.setText("天亮");if (fanStatus) {
+                            mSensorControl.fanStop(true);
+                        }
+                        System.out.println("--------a");
+                        System.out.println(isAutoBrightness);
+                        System.out.println("--------a");
+//                        if (isAutoBrightness) {
+//                            mSensorControl.allLeds_Off(false);
+//                        }
+                        if (!fanStatus) {
+                            mSensorControl.fanForward(true);
+                        }
                     } else {
                         brightnessView.setImageDrawable(getResources().getDrawable(R.drawable.smarthome_dark));
-                        if (isAutoBrightness)
-                            mSensorControl.allLeds_On(true);
+
+                        humView.setText("天暗");
+                        System.out.println("--------b");
+                        System.out.println(isAutoBrightness);
+                        System.out.println("--------b");
+//                        if (isAutoBrightness){
+//                            mSensorControl.allLeds_On(false);
+//                        }
+                        if (fanStatus) {
+                            mSensorControl.fanStop(true);
+                        }
+                    }
+                    break;
+                case Command.PE_SENSOR:
+
+                    if (data.getByte("sensor_status") == 0x01) {
+
+                        System.out.println("normal");
+                        humView.setText("正常");
+                        if (fanStatus) {
+                            mSensorControl.fanStop(true);
+                        }
+                        if (isAutoBrightness) {
+                            mSensorControl.allLeds_Off(false);
+                        }
+                        if (!fanStatus) {
+                            mSensorControl.fanForward(true);
+                        }
+                    } else {
+                        System.out.println("blocked");
+                        humView.setText("有遮挡");
+                        if (isAutoBrightness){
+                            mSensorControl.allLeds_On(false);
+                        }
+                        if (fanStatus) {
+                            mSensorControl.fanStop(true);
+                        }
                     }
                     break;
                 default:
@@ -234,6 +286,10 @@ public class MainActivity extends Activity implements
                     break;
                 case 3:
                     mSensorControl.checkBrightness(true);
+                    i++;
+                    break;
+                case 4:
+                    mSensorControl.checkPE(true);
                     i = 1;
                     break;
                 default:
@@ -312,6 +368,7 @@ public class MainActivity extends Activity implements
         mSensorControl.addMotorListener(this);
         mSensorControl.addTempHumListener(this);
         mSensorControl.addLightSensorListener(this);
+        mSensorControl.addPESensorListener(this);
     }
 
 
@@ -512,6 +569,7 @@ public class MainActivity extends Activity implements
         mSensorControl.removeMotorListener(this);
         mSensorControl.removeTempHumListener(this);
         mSensorControl.removeLightSensorListener(this);
+        mSensorControl.removePESensorListener(this);
         mSensorControl.closeSerialDevice();
     }
 
@@ -557,6 +615,16 @@ public class MainActivity extends Activity implements
         msg.what = 0x04;
         Bundle data = new Bundle();
         data.putByte("senser_status", senser_status);
+        msg.setData(data);
+        myHandler.sendMessage(msg);
+    }
+
+    @Override
+    public void peSensorReceive(byte sensor_status) {
+        Message msg = new Message();
+        msg.what = Command.PE_SENSOR;
+        Bundle data = new Bundle();
+        data.putByte("sensor_status",sensor_status);
         msg.setData(data);
         myHandler.sendMessage(msg);
     }

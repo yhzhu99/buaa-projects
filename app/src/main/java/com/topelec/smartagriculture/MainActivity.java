@@ -325,7 +325,7 @@ public class MainActivity extends Activity implements
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         isAuto = settings.getBoolean("auto_switch", false);
         toControl = settings.getString("setting_list", "2");
-        settingTemperature = Integer.parseInt(settings.getString("temp_settings", "27"));
+        settingTemperature = Integer.parseInt(settings.getString("temp_settings", "100"));
         settingHumidity = Integer.parseInt(settings.getString("hum_settings", "40"));
 
     }

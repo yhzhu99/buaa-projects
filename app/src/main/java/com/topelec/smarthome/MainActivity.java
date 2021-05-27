@@ -240,9 +240,6 @@ public class MainActivity extends Activity implements
 
                         System.out.println("normal");
                         humView.setText("正常");
-                        if (fanStatus) {
-                            mSensorControl.fanStop(true);
-                        }
                         if (isAutoBrightness) {
                             mSensorControl.allLeds_Off(false);
                         }

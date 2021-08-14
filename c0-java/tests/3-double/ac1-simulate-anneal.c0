@@ -1,0 +1,102 @@
+const magic: int = 1000000009;
+const magic2: int = 1919839;
+const min_temp: double = 0.001;
+
+const f_low: double = -2.0;
+const f_high: double = 2.0;
+
+let state: int = 19260817;
+
+let x_old: double;
+let x_new: double;
+let s_old: double = 1926.0817;
+let s_new: double;
+
+let temp: double = 10000.0;
+
+fn f(x: double) -> double {
+    return 3.0 - (x * x);
+}
+
+fn random() -> double {
+    let result: int;
+    state = state + state * 8192;
+    state = state + state / 131072;
+    state = state + state * 32;
+    result = state / 65536;
+    if result < 0 {
+        result = -result;
+    }
+    return (result as double / 281474976710656 as double) ;
+}
+
+fn approx_exp(x: double) -> double {
+    let temp: double;
+    if x > 0.1 {
+        temp = approx_exp(x / 2.0);
+        return x * x;
+    } else if x < -0.1 {
+        temp = approx_exp(x / 2.0);
+        return x * x;
+    } else {
+        return ((x + 3.0) * (x + 3.0) + 3.0) / ((x - 3.0) * (x - 3.0) + 3.0);
+    }
+}
+
+fn judge(delta: double, temp: double) -> int {
+    if delta < 0.0 {
+        return 1;
+    } else {
+        if approx_exp(-delta / temp / 16.0) > random() {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+}
+
+fn run_anneal() -> double {
+    let delta: double;
+    let delta_s: double;
+    let round: int = 0;
+    x_old = random() * (f_high - f_low) + f_low;
+    x_new = x_old;
+    s_old = f(x_old);
+    s_new = s_old;
+    while temp > 0.001 {
+        delta = (random() - 0.5) * 4.0;
+        x_new = x_old + delta;
+        if x_new > f_high {
+            x_new = x_new - 2.0 * delta;
+        } else if x_new < f_low {
+            x_new = x_new - 2.0 * delta;
+        }
+
+        s_new = f(x_new);
+
+        delta_s = s_old - s_new;
+
+        if judge(delta_s, temp) {
+            s_old = s_new;
+            x_old = x_new;
+        }
+
+        if delta_s < 0.0 {
+            temp = temp * 0.98;
+
+            putstr("round=");
+            putint(round);
+            putstr(" temp=");
+            putdouble(temp);
+            putstr(" value=");
+            putdouble(s_old);
+            putln();
+        }
+        round = round + 1;
+    }
+    return s_old;
+}
+
+fn main() -> void {
+    putdouble(run_anneal());
+}

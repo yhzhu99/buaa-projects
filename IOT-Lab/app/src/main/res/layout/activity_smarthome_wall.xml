@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.topelec.smarthomewall.SmarthomeWallActivity"
+    android:background="@drawable/smarthomewall_background">
+
+    <FrameLayout
+        android:id="@+id/smarthomewall_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/kichen_window"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smarthomewall_kichen_window_day"
+            android:layout_marginLeft="48.45dp"
+            android:layout_marginTop="38.2dp" />
+
+        <ImageView
+            android:id="@+id/kichen_curtain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smarthomewall_kichen_curtains_open"
+            android:layout_marginLeft="18.89dp"
+            android:layout_marginTop="13.58dp" />
+
+        <ImageView
+            android:id="@+id/fire_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smarthomewall_fire_warning"
+            android:layout_marginLeft="406dp"
+            android:layout_marginTop="150dp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/e_meter"
+            android:layout_width="53dp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:typeface="normal"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="147dp"
+            android:layout_marginTop="210dp"
+            android:textSize="15dp"
+            android:gravity="center_vertical|right" />
+
+        <Button
+            android:id="@+id/camera_button"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="right"
+            android:background="@drawable/btn_background" />
+        <ImageView
+            android:id="@+id/bedroom_window"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smarthomewall_bedroom_window_day"
+            android:layout_marginLeft="656.44dp"
+            android:layout_marginTop="107.77dp" />
+        <ImageView
+            android:id="@+id/bedroom_curtain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smarthomewall_bedroom_curtains_open"
+            android:layout_marginLeft="648dp"
+            android:layout_marginTop="85dp" />
+        <ImageView
+            android:id="@+id/bedroom_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="645dp"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/smarthomewall_light"
+            android:visibility="visible" />
+        <ImageView
+            android:id="@+id/air_con_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smarthomewall_air_con_status_on"
+            android:layout_marginLeft="577.16dp"
+            android:layout_marginTop="201.16dp"
+            android:visibility="invisible" />
+        <ImageView
+            android:id="@+id/doppler_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smarthomewall_breakin"
+            android:layout_marginLeft="825dp"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/tempView"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:typeface="monospace"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="560dp"
+            android:layout_marginTop="62dp"
+            android:textSize="30dp"
+            android:gravity="center_vertical|right"
+            android:text="0" />
+        <TextView
+            android:id="@+id/humView"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:typeface="monospace"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="560dp"
+            android:layout_marginTop="115dp"
+            android:textSize="30dp"
+            android:gravity="center_vertical|right"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/pm25View"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:typeface="monospace"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="935dp"
+            android:layout_marginTop="127dp"
+            android:textSize="30dp"
+
+            android:gravity="left|center_vertical"
+            android:text="0" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--LED控制页面-->
+        <LinearLayout
+            android:id="@+id/led_control_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black_overlay"
+            style="?metaButtonBarButtonStyle"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="200dp"
+            android:layout_marginTop="100dp"
+            android:visibility="gone">
+            <ImageButton
+                android:id="@+id/led_view_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/button_cancle"
+                android:background="@drawable/btn_background"
+                android:layout_gravity="right" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请拖动游标调整电灯亮度"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp" />
+            <SeekBar
+                android:id="@+id/led_control_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="255"
+                android:progress="0"
+                android:thumb="@drawable/thumb_image"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp" />
+        </LinearLayout>
+        <!--空调控制页面-->
+        <LinearLayout
+            android:id="@+id/air_con_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black_overlay"
+            style="?metaButtonBarButtonStyle"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="200dp"
+            android:layout_marginTop="100dp"
+            android:visibility="gone">
+            <ImageButton
+                android:id="@+id/air_con_view_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/button_cancle"
+                android:background="@drawable/btn_background"
+                android:layout_gravity="right" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="空调（继电器）控制"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_icon_blue"
+                android:layout_gravity="center"
+                android:text="开启"
+                android:textSize="30dp"
+                android:id="@+id/air_con_button"
+                android:padding="30dp"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+        <!--窗帘控制页面-->
+        <LinearLayout
+            android:id="@+id/curtains_control_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black_overlay"
+            style="?metaButtonBarButtonStyle"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="200dp"
+            android:layout_marginTop="100dp"
+            android:visibility="gone">
+            <ImageButton
+                android:id="@+id/curtains_view_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/button_cancle"
+                android:background="@drawable/btn_background"
+                android:layout_gravity="right" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="窗帘控制"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_icon_blue"
+                    android:layout_gravity="center"
+                    android:text="关闭"
+                    android:textSize="30dp"
+                    android:id="@+id/curtain_close_button"
+                    android:padding="30dp"
+                    android:textColor="#ffffff" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_icon_blue"
+                    android:layout_gravity="center"
+                    android:text="打开"
+                    android:textSize="30dp"
+                    android:id="@+id/curtain_open_button"
+                    android:padding="30dp"
+                    android:textColor="#ffffff" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_icon_blue"
+                    android:layout_gravity="center"
+                    android:text="暂停"
+                    android:textSize="30dp"
+                    android:id="@+id/curtain_stop_button"
+                    android:padding="30dp"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <!--系统设置按钮页面-->
+        <LinearLayout
+            android:id="@+id/smarthomewall_controls"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                style="?metaButtonBarButtonStyle">
+                <Button
+                    android:id="@+id/led_control"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="灯光控制"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:typeface="normal"
+
+                    android:textColor="#ffffff"
+                    android:background="@drawable/btn_icon_white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                style="?metaButtonBarButtonStyle">
+                <Button
+                    android:id="@+id/air_con_control"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="空调控制"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:typeface="normal"
+
+                    android:textColor="#ffffff"
+                    android:background="@drawable/btn_icon_white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                style="?metaButtonBarButtonStyle">
+                <Button
+                    android:id="@+id/curtains_control"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="窗帘控制"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:typeface="normal"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/btn_icon_white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                style="?metaButtonBarButtonStyle">
+                <Button
+                    android:id="@+id/remote_control"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="遥控器"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:typeface="normal"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/btn_icon_white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                style="?metaButtonBarButtonStyle">
+                <Button
+                    android:id="@+id/system_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="系统设置"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:typeface="normal"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/btn_icon_white"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/smarthomewall_lockpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/smarthomewall_locked_background"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/locked_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:clickable="true" />
+
+    </FrameLayout>
+
+</FrameLayout>

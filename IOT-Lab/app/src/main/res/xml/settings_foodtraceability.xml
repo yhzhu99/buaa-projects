@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:title="系统设置">
+    <PreferenceCategory android:key="config" android:title="@string/foodtraceability_settings">
+
+
+
+        <Preference android:key="author"
+            android:title="取消授权"
+            android:summary="授权设置"
+            android:enabled="true">
+        </Preference>
+        <EditTextPreference android:key="name"
+            android:title="名称"
+            android:summary="名称"
+            android:dialogTitle="名称设置"
+            android:defaultValue="花生酱">
+            </EditTextPreference>
+        <EditTextPreference android:key="time"
+            android:title="生产时间"
+            android:summary="生产日期"
+            android:dialogTitle="生产时期设置"
+            android:defaultValue="2016-8-9">
+        </EditTextPreference>
+
+        <EditTextPreference android:key="place"
+            android:title="产地"
+            android:summary="产地"
+            android:dialogTitle="产地设置"
+            android:defaultValue="北京，中国">
+        </EditTextPreference>
+
+        <EditTextPreference android:key="material"
+            android:title="材料"
+            android:summary="食品用料"
+            android:dialogTitle="用料设置"
+            android:defaultValue="黄油 色拉油 食盐 白糖">
+        </EditTextPreference>
+        <!--<EditTextPreference android:key="hum_settings"-->
+        <!--android:title="湿度值设置"-->
+        <!--android:summary="请输入您想要保持的湿度值"-->
+        <!--android:dialogTitle="请输入温度值"-->
+        <!--android:defaultValue="40"-->
+        <!--android:numeric="integer"-->
+        <!--android:dependency="auto_temp_switch">-->
+        <!--</EditTextPreference>-->
+        <EditTextPreference android:key="id"
+            android:title="当前授权Id"
+            android:summary="无存在的授权ID"
+            android:dialogTitle="请输入要授权的ID号"
+            android:enabled="false">
+        </EditTextPreference>
+    </PreferenceCategory>
+</PreferenceScreen>

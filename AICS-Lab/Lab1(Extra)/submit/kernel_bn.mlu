@@ -1,0 +1,81 @@
+#include "mlu.h"
+#include "marco.h"
+#define EPS 0.0001
+#define BETA  0.5 //0.5  
+#define GAMMA 2.0 //2.0
+// M 128, N 256, LEN (M*N)
+
+__mlu_entry__ void bnKernel(half *input, half *output)
+{
+    //向量行存储
+    __nram__ half input_nram[LEN];//输入
+    __nram__ half tans_nram[LEN];
+    __nram__ half temp1_nram[M];
+    __nram__ half avg_nram[M];
+    __nram__ half var_nram[M];
+    __nram__ half sta_nram[LEN];
+    __nram__ half esp_nram[M];
+    __nram__ half beta_nram[LEN];
+    __nram__ half temp2_nram[M];
+    __nram__ half result_nram[LEN];
+
+    __nram__ half REN = 1 / (half)N; // 1/N
+
+    //初始化
+    __nramset_half(temp1_nram, M, 0.0);
+    __nramset_half(temp2_nram, M, 0.0);
+    __nramset_half(result_nram, LEN, 0.0);
+    __nramset_half(esp_nram, M, EPS);
+    __nramset_half(beta_nram, LEN, BETA);
+
+   
+
+    // INPUT TO NRAN
+    __memcpy(input_nram, input, LEN * sizeof(half), GDRAM2NRAM);
+
+    // tans
+    __bang_transpose(tans_nram, input_nram, M, N);//矩阵转置，[M][N]->[N][M]
+
+    // add SUM(X)
+    for (int32_t i = 0; i < N; i++)
+    {
+        __bang_add(temp1_nram, tans_nram + i * M, temp1_nram, M);//求和
+    }
+    // AVG = sum(x) / N
+    __bang_mul_const(avg_nram, temp1_nram, REN, M);//均值
+
+    // variance
+    // SUM((X-AVG)^2)
+    for (int32_t i = 0; i < N; i++)//方差
+    {
+        __bang_sub(temp1_nram, tans_nram + i * M, avg_nram, M); // X  - AVG
+        __bang_mul(temp1_nram, temp1_nram, temp1_nram, M);      // (X-AVG)^2
+        __bang_add(temp2_nram, temp1_nram, temp2_nram, M);      // temp2 = SUM((X-AVG)^2)
+    }
+    // var = temp2 / N
+    __bang_mul_const(var_nram, temp2_nram, REN, M);
+
+    // 标准化 x
+
+    __bang_active_sqrt(temp2_nram, var_nram, M);    // temp2 = sqrt(var)
+    __bang_add(temp2_nram, temp2_nram, esp_nram, M);  // temp2 = sqrt(var) + esp
+    __bang_active_recip(temp2_nram, temp2_nram, M); // temp2 = 1/temp2 = 1/sqrt(var) + esp
+
+    for (int32_t i = 0; i < N; i++)
+    {
+        __bang_sub(temp1_nram, tans_nram + i * M, avg_nram, M);  // temp1 = X  - AVG
+        __bang_mul(sta_nram + i * M, temp1_nram, temp2_nram, M); // sta = temp1 * temp2 = X  - AVG / sqrt(var) + esp
+    }
+
+    // result = 2.0 * staX + beta  
+    __bang_mul_const(result_nram, sta_nram, GAMMA, LEN); // 2.0
+    __bang_add(result_nram, result_nram, beta_nram, LEN); // RESULT += beta
+
+    // tans return
+    __bang_transpose(tans_nram, result_nram, N, M);
+
+    // OUTPUT TO GD
+    __memcpy(output, tans_nram, LEN * sizeof(half), NRAM2GDRAM);
+
+
+}

@@ -1,0 +1,8 @@
+#include "mlu.h"
+#define INPUT_SIZE 20
+#define INPUT_NUM  256
+
+__mlu_entry__ void SoftmaxKernel(half* input, half* output)
+{
+}
+

@@ -119,6 +119,7 @@
     <string name="buscard_recharge_succeed">充值成功</string>
 
     <string name="buscard_shortage">余额不足，请充值</string>
+    <string name="buscard_time_limit">刷卡间隔太短，请稍后再试</string>
 
     <string name="buscard_authored_already">本卡已授权</string>
 

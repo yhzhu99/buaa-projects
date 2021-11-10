@@ -123,7 +123,7 @@ public class ResumeActivity extends Activity {
             if (newSum < 0) {
                 showMsgPage(R.drawable.buscard_consume_check_wrong,getResources().getString(R.string.buscard_shortage),"",searchResult);
             }else if(timeStamp-searchTime<10000 && searchTime!=0){
-                //showMsgPage(R.drawable.buscard_consume_check_wrong,getResources().getString(R.string.buscard_shortage),"",searchResult);
+                showMsgPage(R.drawable.buscard_consume_check_wrong,getResources().getString(R.string.buscard_time_limit),"",searchResult);
                 System.out.println("刷卡间隔太短，请稍后再试");
             } else {
                 if (Double.toString(newSum).equals(updateHFCard(CARD_ID, CardId, SUM, Double.toString(newSum)))) {

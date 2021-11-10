@@ -18,7 +18,7 @@ import com.buaa.database.DatabaseHelper;
 
 import it.moondroid.durian.R;
 
-public class ResumeActivity extends Activity {
+public class CanteenResumeActivity extends Activity {
 
     private static final String TAG = ".ResumeActivity";
     private static final double stepValue = 60.00;

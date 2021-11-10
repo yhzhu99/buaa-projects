@@ -71,6 +71,10 @@
          <category android:name="android.intent.category.DEFAULT" />
          </intent-filter>
          </activity>
+         <activity android:name="com.buaa.foodtraceability.SettingsActivity" />
+         <activity android:name="com.buaa.canteen.CanteenActivityGroup">
+         <intent-filter>
+         <action android:name="com.buaa.canteen.ACTION_BUSCARD" />
 
          <!--&lt;!&ndash;智能家居实验墙&ndash;&gt;-->
         <!--<activity android:name="com.buaa.smarthomewall.SmarthomeWallActivity">-->

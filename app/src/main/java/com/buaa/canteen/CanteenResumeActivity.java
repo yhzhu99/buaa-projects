@@ -13,14 +13,14 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.buaa.buscard.CardActivityGroup;
+import com.buaa.canteen.CanteenActivityGroup;
 import com.buaa.database.DatabaseHelper;
 
 import it.moondroid.durian.R;
 
 public class CanteenResumeActivity extends Activity {
 
-    private static final String TAG = ".ResumeActivity";
+    private static final String TAG = ".CanteenResumeActivity";
     private static final double stepValue = 60.00;
 
     private ImageView statusView;
@@ -40,7 +40,7 @@ public class CanteenResumeActivity extends Activity {
     private final static String CONSUME_TIME = "consume_time";
 
     /**
-     * 用于同步UI,接受CardActivityGroup的broadcast
+     * 用于同步UI,接受CanteenActivityGroup的broadcast
      */
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -217,7 +217,7 @@ public class CanteenResumeActivity extends Activity {
 
         /**用于接收group发送过来的广播**/
         /***用于接收group发送过来的广播***/
-        IntentFilter filter = new IntentFilter(CardActivityGroup.resume_action);
+        IntentFilter filter = new IntentFilter(CanteenActivityGroup.resume_action);
         registerReceiver(broadcastReceiver,filter);
     }
 

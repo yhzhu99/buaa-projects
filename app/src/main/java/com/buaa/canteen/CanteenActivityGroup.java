@@ -20,7 +20,7 @@ import it.moondroid.durian.R;
 public class CanteenActivityGroup extends ActivityGroup {
 
     @SuppressWarnings("unused")
-    private static final String TAG = ".CardActivityGroup";
+    private static final String TAG = ".CanteenActivityGroup";
     public static final String resume_action = "com.buaa.buscard.resume_action";
     public static final String recharge_action = "com.buaa.buscard.recharge_action";
 
@@ -268,7 +268,7 @@ public class CanteenActivityGroup extends ActivityGroup {
     private void initView() {
         bodyView.removeAllViews();
         this.getWindow().getDecorView().setBackgroundResource(R.drawable.buscard_consume_background);
-        View v = getLocalActivityManager().startActivity("resume_radio",new Intent(CardActivityGroup.this,ResumeActivity.class)).getDecorView();
+        View v = getLocalActivityManager().startActivity("resume_radio",new Intent(CanteenActivityGroup.this,CanteenResumeActivity.class)).getDecorView();
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int dmheight = dm.heightPixels;
@@ -284,12 +284,12 @@ public class CanteenActivityGroup extends ActivityGroup {
                 bodyView.removeAllViews();
 
                 bodyView.addView(getLocalActivityManager().startActivity("resume_radio",
-                        new Intent(CardActivityGroup.this, ResumeActivity.class)).getDecorView());
+                        new Intent(CanteenActivityGroup.this, CanteenResumeActivity.class)).getDecorView());
                 break;
             case 1:
                 bodyView.removeAllViews();
                 bodyView.addView(getLocalActivityManager().startActivity("recharge_radio",
-                        new Intent(CardActivityGroup.this, RechargeActivity.class)).getDecorView());
+                        new Intent(CanteenActivityGroup.this, CanteenRechargeActivity.class)).getDecorView());
                 break;
 
             default:

@@ -23,7 +23,7 @@ import it.moondroid.durian.R;
 
 public class CanteenRechargeActivity extends Activity {
 
-    private final static String TAG = ".RechargeActivity";
+    private final static String TAG = ".CanteenRechargeActivity";
     private ImageView statusView;
     private TextView idView;
     private TextView sumView;
@@ -158,7 +158,7 @@ public class CanteenRechargeActivity extends Activity {
                     return;
                 }
                 Log.v(TAG,"button cancel clicked");
-                AlertDialog.Builder builder = new AlertDialog.Builder(RechargeActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(CanteenRechargeActivity.this);
                 builder.setTitle(getResources().getString(R.string.buscard_if_cancel_item));
                 builder.setPositiveButton(getResources().getString(R.string.buscard_OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -329,7 +329,7 @@ public class CanteenRechargeActivity extends Activity {
     protected void onStart() {
         super.onStart();
         /**用于接收group发送过来的广播**/
-        IntentFilter filter = new IntentFilter(CardActivityGroup.recharge_action);
+        IntentFilter filter = new IntentFilter(CanteenActivityGroup.recharge_action);
         registerReceiver(mBroadcastReceiver,filter);
     }
     @Override

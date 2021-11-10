@@ -9,10 +9,14 @@
     <string name="title4">食品溯源</string>
     <string name="title5">Zigbee传感器测试</string>
     <string name="title6">RFID测试</string>
+    <string name="title7">榴莲餐厅</string>
 
     <drawable name="clr_normal">#00000000</drawable>
     <drawable name="clr_pressed">#9FC2C5BF</drawable>
     <string name="back">回主页</string>
+
+    <!--榴莲餐厅-->
+
 
     <!--智能家居-->
     <string name="smarthome_settings">智能家居系统设置</string>

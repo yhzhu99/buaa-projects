@@ -37,6 +37,7 @@ public class CoverFlowActivity extends AppCompatActivity {
         mData.add(new GameEntity(R.drawable.image_3, R.string.title3));
         mData.add(new GameEntity(R.drawable.image_4, R.string.title4));
         mData.add(new GameEntity(R.drawable.image_5,R.string.title5));
+        mData.add(new GameEntity(R.drawable.image_7,R.string.title7));
 //        mData.add(new GameEntity(R.drawable.image_5,R.string.title5));
 //        mData.add(new GameEntity(R.drawable.image_6,R.string.title6));
 

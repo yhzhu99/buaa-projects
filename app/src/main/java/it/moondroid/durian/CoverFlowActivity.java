@@ -74,23 +74,23 @@ public class CoverFlowActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
-                        Intent intent = new Intent("com.topelec.smarthome.ACTION_SMARTHOME");
+                        Intent intent = new Intent("com.buaa.smarthome.ACTION_SMARTHOME");
                         startActivity(intent);
                         break;
                     case 1:
-                        Intent intent1 = new Intent("com.topelec.smartagriculture.ACTION_AGRICULTURE");
+                        Intent intent1 = new Intent("com.buaa.smartagriculture.ACTION_AGRICULTURE");
                         startActivity(intent1);
                         break;
                     case 2:
-                        Intent intent2 = new Intent("com.topelec.buscard.ACTION_BUSCARD");
+                        Intent intent2 = new Intent("com.buaa.buscard.ACTION_BUSCARD");
                         startActivity(intent2);
                         break;
                     case 3:
-                        Intent intent3 = new Intent("com.topelec.foodtraceability.ACTION_FOODTRACEABILITY");
+                        Intent intent3 = new Intent("com.buaa.foodtraceability.ACTION_FOODTRACEABILITY");
                         startActivity(intent3);
                         break;
                     case 4:
-                        Intent intent4 = new Intent("com.topelec.sensortest.ACTION_ZIGBEE");
+                        Intent intent4 = new Intent("com.buaa.sensortest.ACTION_ZIGBEE");
                         startActivity(intent4);
                         break;
                     case 5:

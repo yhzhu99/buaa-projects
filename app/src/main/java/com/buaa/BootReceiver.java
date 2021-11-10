@@ -35,7 +35,7 @@ public class BootReceiver extends BroadcastReceiver {
 //        public void onReceive(Context context, Intent intent) {
 //            // 在这里干你想干的事（启动一个Service，Activity等），本例是启动一个定时调度程序，每30分钟启动一个Service去更新数据
 //            mAlarmSender = PendingIntent.getService(context, 0, new Intent(context,
-//                    com.topelec.smarthomewall.SmarthomeWallActivity.class), 0);
+//                    com.buaa.smarthomewall.SmarthomeWallActivity.class), 0);
 //            long firstTime = SystemClock.elapsedRealtime();
 //            AlarmManager am = (AlarmManager) context
 //                    .getSystemService(Activity.ALARM_SERVICE);

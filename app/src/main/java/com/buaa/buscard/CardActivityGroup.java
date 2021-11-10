@@ -21,8 +21,8 @@ public class CardActivityGroup extends ActivityGroup {
 
     @SuppressWarnings("unused")
     private static final String TAG = ".CardActivityGroup";
-    public static final String resume_action = "com.topelec.buscard.resume_action";
-    public static final String recharge_action = "com.topelec.buscard.recharge_action";
+    public static final String resume_action = "com.buaa.buscard.resume_action";
+    public static final String recharge_action = "com.buaa.buscard.recharge_action";
 
     private FrameLayout bodyView;
     private LinearLayout resumeView, rechargeView;

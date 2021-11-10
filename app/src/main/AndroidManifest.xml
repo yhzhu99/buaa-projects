@@ -22,7 +22,7 @@
          android:configChanges="orientation|keyboardHidden|screenSize"
          android:theme="@style/FullscreenTheme">
          <intent-filter>
-         <action android:name="com.topelec.smarthome.ACTION_SMARTHOME" />
+         <action android:name="com.buaa.smarthome.ACTION_SMARTHOME" />
 
 
          <category android:name="android.intent.category.DEFAULT" />
@@ -31,7 +31,7 @@
          <activity android:name="com.buaa.smarthome.Settings" />
          <activity android:name="com.buaa.smartagriculture.MainActivity">
          <intent-filter>
-         <action android:name="com.topelec.smartagriculture.ACTION_AGRICULTURE" />
+         <action android:name="com.buaa.smartagriculture.ACTION_AGRICULTURE" />
 
 
          <category android:name="android.intent.category.DEFAULT" />
@@ -40,7 +40,7 @@
          <activity android:name="com.buaa.smartagriculture.SmartAgricultureSettings" />
          <activity android:name="com.buaa.foodtraceability.QueryActivity">
          <intent-filter>
-         <action android:name="com.topelec.foodtraceability.ACTION_FOODTRACEABILITY" />
+         <action android:name="com.buaa.foodtraceability.ACTION_FOODTRACEABILITY" />
 
 
          <category android:name="android.intent.category.DEFAULT" />
@@ -49,7 +49,7 @@
          <activity android:name="com.buaa.foodtraceability.SettingsActivity" />
          <activity android:name="com.buaa.buscard.CardActivityGroup">
          <intent-filter>
-         <action android:name="com.topelec.buscard.ACTION_BUSCARD" />
+         <action android:name="com.buaa.buscard.ACTION_BUSCARD" />
 
 
          <category android:name="android.intent.category.DEFAULT" />
@@ -65,7 +65,7 @@
          android:label="@string/title_activity_zigbeetest"
          android:theme="@style/FullscreenTheme">
          <intent-filter>
-         <action android:name="com.topelec.sensortest.ACTION_ZIGBEE" />
+         <action android:name="com.buaa.sensortest.ACTION_ZIGBEE" />
 
 
          <category android:name="android.intent.category.DEFAULT" />
@@ -73,7 +73,7 @@
          </activity>
 
          <!--&lt;!&ndash;智能家居实验墙&ndash;&gt;-->
-        <!--<activity android:name="com.topelec.smarthomewall.SmarthomeWallActivity">-->
+        <!--<activity android:name="com.buaa.smarthomewall.SmarthomeWallActivity">-->
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -81,7 +81,7 @@
             <!--</intent-filter>-->
         <!--</activity>-->
         <!--<activity-->
-            <!--android:name="com.topelec.smarthomewall.SettingsSmarthomewall"-->
+            <!--android:name="com.buaa.smarthomewall.SettingsSmarthomewall"-->
             <!--android:label="@string/title_activity_settings_smarthomewall"></activity>-->
 
         <receiver android:name="com.buaa.BootReceiver">

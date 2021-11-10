@@ -1,1 +1,3 @@
-# IOT-Lab-4A
+# IOT Lab
+
+UI Based on CoverFlow Project

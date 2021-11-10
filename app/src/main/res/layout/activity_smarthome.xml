@@ -1,0 +1,153 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.topelec.smarthome.MainActivity"
+    android:background="@drawable/smarthome_background">
+
+    <FrameLayout
+        android:id="@+id/smarthome_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLed1"
+            android:src="@drawable/smarthome_led_off"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_background"
+            android:layout_weight="1"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="0dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLed2"
+            android:scaleType="fitCenter"
+            android:src="@drawable/smarthome_led_off"
+            android:background="@drawable/btn_background"
+            android:layout_weight="1"
+            android:layout_marginLeft="185dp"
+            android:layout_marginTop="0dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLed3"
+            android:src="@drawable/smarthome_led_off"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_background"
+            android:layout_marginLeft="693dp"
+            android:layout_marginTop="0dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLed4"
+            android:src="@drawable/smarthome_led_off"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_background"
+            android:layout_marginLeft="863dp"
+            android:layout_marginTop="0dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tempView"
+            android:textSize="17dp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="740dp"
+            android:layout_marginTop="140dp"
+            android:gravity="center_vertical|right" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/humView"
+            android:textSize="17dp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="740dp"
+            android:layout_marginTop="160dp"
+            android:gravity="center_vertical|right" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fanView"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="148dp"
+            android:layout_marginTop="188dp" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnStart"
+            android:src="@drawable/smarthome_btn_motor_off"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_background"
+            android:layout_weight="1"
+            android:layout_marginLeft="95dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginTop="260dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/brightnessView"
+            android:src="@drawable/smarthome_bright"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="374dp"
+            android:layout_marginTop="18dp" />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/smarthome_settings"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/btnSettings"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/smarthome_settings"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/smarthome_back"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/btnBack"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/back"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

@@ -1,0 +1,40 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.topelec.buscard.ResumeActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resume_statusView"
+        android:layout_marginLeft="640dp"
+        android:layout_marginTop="178dp"
+        android:src="@drawable/buscard_consume_check_right" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resume_idView"
+        android:layout_marginLeft="720dp"
+        android:layout_marginTop="445dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stepView"
+        android:layout_marginTop="393dp"
+        android:layout_marginLeft="750dp"
+        android:textColor="@color/accent_material_light"
+        android:text="2.0"
+        android:textSize="30dp"
+        android:gravity="left|center_vertical" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resume_sumView"
+        android:text="100"
+        android:layout_marginLeft="750dp"
+        android:layout_marginTop="346dp"
+        android:textSize="30dp"
+        android:textColor="@color/accent_material_light"
+        android:gravity="left|center_vertical" />
+
+</FrameLayout>

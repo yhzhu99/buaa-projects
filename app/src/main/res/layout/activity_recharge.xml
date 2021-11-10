@@ -1,0 +1,70 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.topelec.buscard.RechargeActivity">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resume_statusView"
+        android:src="@drawable/buscard_recharge_standby"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="120dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/idView"
+        android:hint="此处显示卡号"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="260dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_author"
+        android:src="@drawable/buscard_button_author"
+        android:background="@drawable/btn_background"
+        android:layout_marginLeft="292dp"
+        android:layout_marginTop="152dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_cancel_author"
+        android:src="@drawable/buscard_button_cancle"
+        android:background="@drawable/btn_background"
+        android:layout_marginLeft="385dp"
+        android:layout_marginTop="152dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resume_sumView"
+        android:layout_marginTop="357dp"
+        android:layout_marginLeft="150dp"
+        android:textColor="@color/accent_material_light"
+        android:textSize="20dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="7"
+        android:id="@+id/rechargeText"
+        android:hint="@string/buscard_recharge_hint"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="430dp"
+        android:textColor="@color/accent_material_light"
+        android:textSize="20dp" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRecharge"
+        android:src="@drawable/buscard_button_recharge"
+        android:background="@drawable/btn_background"
+        android:layout_marginLeft="340dp"
+        android:layout_marginTop="400dp" />
+
+</FrameLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--动态显示界面-->
+    <FrameLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/body">
+    </FrameLayout>
+
+    <!--底部功能菜单栏  -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/bottomlist"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:weightSum="2"
+        tools:ignore="UselessParent"
+        android:background="@color/black_overlay"
+        style="?metaButtonBarStyle">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/resume_radio"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+            <TextView  android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buscard_button_resume"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/recharge_radio"
+            android:gravity="center|center"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buscard_button_recharge"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/buscard_back"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/btnBack"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_overlay"
+                android:text="@string/back"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

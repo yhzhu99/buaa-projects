@@ -1,0 +1,375 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context="com.topelec.sensortest.zigbeetest">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:keepScreenOn="true"
+            android:text="@string/zigbee_content"
+            android:textColor="#33b5e5"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/fullscreen_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_rectangle"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/shake_sensor"
+                        android:layout_gravity="center"
+                        android:textSize="30dp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/sensor_check_result"
+                        android:layout_gravity="left"
+                        android:textSize="25dp"
+                        android:layout_marginTop="20dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3">
+                        <TextView
+                            android:id="@+id/shake_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="正常"
+                            android:gravity="center"
+                            android:textSize="50dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_rectangle"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/doppler_sensor"
+                        android:layout_gravity="center"
+                        android:textSize="30dp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/sensor_check_result"
+                        android:layout_gravity="left"
+                        android:textSize="25dp"
+                        android:layout_marginTop="20dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3">
+                        <TextView
+                            android:id="@+id/doppler_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="正常"
+                            android:gravity="center"
+                            android:textSize="50dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_rectangle"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/Three_axis_acceleration_sensor"
+                        android:layout_gravity="center"
+                        android:textSize="30dp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="20dp" />
+                    <TextView
+                        android:id="@+id/acce_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/sensor_check_result"
+                        android:layout_gravity="left"
+                        android:textSize="25dp"
+                        android:layout_marginTop="20dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="X轴AD值："
+                                android:gravity="left|center_vertical"
+                                android:textSize="25dp" />
+                            <TextView
+                                android:id="@+id/x_ad"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:textSize="25dp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Y轴AD值："
+                                android:gravity="left|center_vertical"
+                                android:textSize="25dp" />
+                            <TextView
+                                android:id="@+id/y_ad"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:textSize="25dp" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Z轴AD值："
+                                android:gravity="left|center_vertical"
+                                android:textSize="25dp" />
+                            <TextView
+                                android:id="@+id/z_ad"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="left|center_vertical"
+                                android:textSize="25dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_rectangle">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="无极调光灯控制："
+                    android:gravity="center"
+                    android:textSize="30dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="40dp" />
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/seekBar"
+                    android:layout_gravity="center"
+                    android:max="255"
+                    android:progress="0"
+                    android:thumb="@drawable/thumb_image" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_rectangle"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/PE_sensor"
+                        android:textAlignment="center"
+                        android:textSize="30dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/sensor_check_result"
+                        android:layout_gravity="left"
+                        android:textSize="25dp"
+                        android:layout_marginTop="20dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3">
+                        <TextView
+                            android:id="@+id/infra_red_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="正常"
+                            android:gravity="center"
+                            android:textSize="50dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_rectangle"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/smoke_sensor"
+                        android:layout_gravity="center"
+                        android:textSize="30dp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/sensor_check_result"
+                        android:layout_gravity="left"
+                        android:textSize="25dp"
+                        android:layout_marginTop="20dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3">
+                        <TextView
+                            android:id="@+id/smoke_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="正常"
+                            android:gravity="center"
+                            android:textSize="45dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_rectangle"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/hall_sensor"
+                        android:layout_gravity="center"
+                        android:textSize="30dp"
+                        android:textAlignment="center"
+                        android:layout_marginTop="20dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/sensor_check_result"
+                        android:layout_gravity="left"
+                        android:textSize="25dp"
+                        android:layout_marginTop="20dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3">
+                        <TextView
+                            android:id="@+id/hall_status"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="正常"
+                            android:gravity="center"
+                            android:textSize="50dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </FrameLayout>
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/btnBack"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/back"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

@@ -64,7 +64,6 @@ public class ResumeActivity extends Activity {
     };
 
     private void hideMsgPage(){
-
         statusView.setImageDrawable(null);
         idView.setText("");
         stepView.setText("");

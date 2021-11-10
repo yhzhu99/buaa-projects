@@ -3,4 +3,57 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自助点单系统"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="30dp"
+            android:layout_weight="5"/>
+        <Button
+            android:id="@+id/recharge_page"
+            android:text="充值"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"/>
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/menu_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        />
+    <LinearLayout
+        android:id="@+id/bottom_display"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_weight="6"
+        >
+
+        <TextView
+            android:id="@+id/display_total"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="总额:"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_weight="5"
+            />
+        <Button
+            android:id="@+id/checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="结算"
+            android:textSize="25dp"/>
+    </LinearLayout>
+
 </LinearLayout>

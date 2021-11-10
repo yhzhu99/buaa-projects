@@ -95,7 +95,7 @@ public class CoverFlowActivity extends AppCompatActivity {
                         startActivity(intent4);
                         break;
                     case 5:
-                        Intent intent7 = new Intent("com.buaa.sensortest.ACTION_ZIGBEE");
+                        Intent intent7 = new Intent("com.buaa.canteen.ACTION_CANTEEN");
                         startActivity(intent7);
                         break;
                     default:

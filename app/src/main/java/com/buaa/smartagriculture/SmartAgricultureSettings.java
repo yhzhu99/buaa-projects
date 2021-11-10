@@ -1,4 +1,4 @@
-package com.topelec.smartagriculture;
+package com.buaa.smartagriculture;
 
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;

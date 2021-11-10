@@ -1,4 +1,4 @@
-package com.topelec.smarthome;
+package com.buaa.smarthome;
 
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;

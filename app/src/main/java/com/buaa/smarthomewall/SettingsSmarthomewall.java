@@ -1,4 +1,4 @@
-package com.topelec.smarthomewall;
+package com.buaa.smarthomewall;
 
 
 import android.annotation.TargetApi;

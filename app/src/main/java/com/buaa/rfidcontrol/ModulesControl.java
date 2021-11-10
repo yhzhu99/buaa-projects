@@ -1,13 +1,12 @@
-package com.topelec.rfidcontrol;
+package com.buaa.rfidcontrol;
 
 import android.os.Bundle;
 import android.os.ConditionVariable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.TableRow;
 
-import com.topelec.zigbeecontrol.Command;
+import com.buaa.zigbeecontrol.Command;
 
 import java.io.File;
 import java.io.FileDescriptor;

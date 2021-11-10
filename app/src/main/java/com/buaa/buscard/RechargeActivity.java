@@ -1,4 +1,4 @@
-package com.topelec.buscard;
+package com.buaa.buscard;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.topelec.database.DatabaseHelper;
+import com.buaa.database.DatabaseHelper;
 import it.moondroid.durian.R;
 
 public class RechargeActivity extends Activity {

@@ -1,4 +1,4 @@
-package com.topelec;
+package com.buaa;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

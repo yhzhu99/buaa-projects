@@ -1,4 +1,4 @@
-package com.topelec.zigbeecontrol;
+package com.buaa.zigbeecontrol;
 
 /**
  * Created by Amber on 2015/3/19.

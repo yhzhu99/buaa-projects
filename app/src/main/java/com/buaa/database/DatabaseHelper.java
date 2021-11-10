@@ -1,4 +1,4 @@
-package com.topelec.database;
+package com.buaa.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

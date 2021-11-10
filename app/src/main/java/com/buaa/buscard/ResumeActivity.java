@@ -1,4 +1,4 @@
-package com.topelec.buscard;
+package com.buaa.buscard;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -13,7 +13,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.topelec.database.DatabaseHelper;
+import com.buaa.database.DatabaseHelper;
 import it.moondroid.durian.R;
 
 public class ResumeActivity extends Activity {

@@ -18,7 +18,7 @@
          </activity>
 
          <activity
-         android:name="com.topelec.smarthome.MainActivity"
+         android:name="com.buaa.smarthome.MainActivity"
          android:configChanges="orientation|keyboardHidden|screenSize"
          android:theme="@style/FullscreenTheme">
          <intent-filter>
@@ -28,8 +28,8 @@
          <category android:name="android.intent.category.DEFAULT" />
          </intent-filter>
          </activity>
-         <activity android:name="com.topelec.smarthome.Settings" />
-         <activity android:name="com.topelec.smartagriculture.MainActivity">
+         <activity android:name="com.buaa.smarthome.Settings" />
+         <activity android:name="com.buaa.smartagriculture.MainActivity">
          <intent-filter>
          <action android:name="com.topelec.smartagriculture.ACTION_AGRICULTURE" />
 
@@ -37,8 +37,8 @@
          <category android:name="android.intent.category.DEFAULT" />
          </intent-filter>
          </activity>
-         <activity android:name="com.topelec.smartagriculture.SmartAgricultureSettings" />
-         <activity android:name="com.topelec.foodtraceability.QueryActivity">
+         <activity android:name="com.buaa.smartagriculture.SmartAgricultureSettings" />
+         <activity android:name="com.buaa.foodtraceability.QueryActivity">
          <intent-filter>
          <action android:name="com.topelec.foodtraceability.ACTION_FOODTRACEABILITY" />
 
@@ -46,8 +46,8 @@
          <category android:name="android.intent.category.DEFAULT" />
          </intent-filter>
          </activity>
-         <activity android:name="com.topelec.foodtraceability.SettingsActivity" />
-         <activity android:name="com.topelec.buscard.CardActivityGroup">
+         <activity android:name="com.buaa.foodtraceability.SettingsActivity" />
+         <activity android:name="com.buaa.buscard.CardActivityGroup">
          <intent-filter>
          <action android:name="com.topelec.buscard.ACTION_BUSCARD" />
 
@@ -55,12 +55,12 @@
          <category android:name="android.intent.category.DEFAULT" />
          </intent-filter>
          </activity>
-         <activity android:name="com.topelec.buscard.RechargeActivity" />
-         <activity android:name="com.topelec.buscard.ResumeActivity" />
+         <activity android:name="com.buaa.buscard.RechargeActivity" />
+         <activity android:name="com.buaa.buscard.ResumeActivity" />
 
 
          <activity
-         android:name="com.topelec.sensortest.zigbeetest"
+         android:name="com.buaa.sensortest.zigbeetest"
          android:configChanges="orientation|keyboardHidden|screenSize"
          android:label="@string/title_activity_zigbeetest"
          android:theme="@style/FullscreenTheme">
@@ -84,7 +84,7 @@
             <!--android:name="com.topelec.smarthomewall.SettingsSmarthomewall"-->
             <!--android:label="@string/title_activity_settings_smarthomewall"></activity>-->
 
-        <receiver android:name="com.topelec.BootReceiver">
+        <receiver android:name="com.buaa.BootReceiver">
             <intent-filter>
                 <!-- 系统启动完成后会调用-->
                 <action android:name="android.intent.action.BOOT_COMPLETED">

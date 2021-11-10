@@ -1,4 +1,4 @@
-package com.topelec.sensortest;
+package com.buaa.sensortest;
 
 import android.annotation.SuppressLint;
 import android.os.Message;
@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.topelec.zigbeecontrol.Command;
-import com.topelec.zigbeecontrol.SensorControl;
+import com.buaa.zigbeecontrol.Command;
+import com.buaa.zigbeecontrol.SensorControl;
 
 import it.moondroid.durian.R;
 

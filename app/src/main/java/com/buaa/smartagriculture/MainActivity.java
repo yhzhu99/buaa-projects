@@ -1,4 +1,4 @@
-package com.topelec.smartagriculture;
+package com.buaa.smartagriculture;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -15,8 +15,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.topelec.zigbeecontrol.Command;
-import com.topelec.zigbeecontrol.SensorControl;
+import com.buaa.zigbeecontrol.Command;
+import com.buaa.zigbeecontrol.SensorControl;
 
 import it.moondroid.durian.R;
 

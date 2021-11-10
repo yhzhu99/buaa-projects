@@ -1,4 +1,4 @@
-package com.topelec.smarthome;
+package com.buaa.smarthome;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.topelec.zigbeecontrol.Command;
-import com.topelec.zigbeecontrol.SensorControl;
+import com.buaa.zigbeecontrol.Command;
+import com.buaa.zigbeecontrol.SensorControl;
 
 import it.moondroid.durian.R;
 

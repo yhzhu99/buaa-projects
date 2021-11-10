@@ -1,4 +1,4 @@
-package com.topelec.buscard;
+package com.buaa.buscard;
 
 import android.annotation.SuppressLint;
 import android.support.v7.app.ActionBar;

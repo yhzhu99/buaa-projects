@@ -1,4 +1,4 @@
-package com.topelec.foodtraceability;
+package com.buaa.foodtraceability;
 
 //import android.app.Activity;
 import android.annotation.SuppressLint;
@@ -17,8 +17,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.topelec.rfidcontrol.ModulesControl;
-import com.topelec.zigbeecontrol.Command;
+import com.buaa.rfidcontrol.ModulesControl;
+import com.buaa.zigbeecontrol.Command;
 
 import it.moondroid.durian.R;
 

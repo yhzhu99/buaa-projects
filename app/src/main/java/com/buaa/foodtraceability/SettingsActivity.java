@@ -1,4 +1,4 @@
-package com.topelec.foodtraceability;
+package com.buaa.foodtraceability;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

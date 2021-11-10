@@ -1,4 +1,4 @@
-package com.topelec.buscard;
+package com.buaa.buscard;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityGroup;
@@ -13,8 +13,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.topelec.rfidcontrol.ModulesControl;
-import com.topelec.zigbeecontrol.Command;
+import com.buaa.rfidcontrol.ModulesControl;
+import com.buaa.zigbeecontrol.Command;
 
 import it.moondroid.durian.R;
 public class CardActivityGroup extends ActivityGroup {

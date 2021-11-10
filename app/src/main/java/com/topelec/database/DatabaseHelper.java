@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     /**创建高频表的SQL语句**/
     private static final String CREATE_HF_TABLE = "CREATE TABLE HFCard("
-            + "_id INTEGER PRIMARY KEY AUTOINCREMENT," + "card_id TEXT,"
+            + "_id INTEGER PRIMARY KEY AUTOINCREMENT," + "card_id TEXT," + "consume_time BIGINT,"
             + "sum REAL DEFAULT 0.00);";
 
 

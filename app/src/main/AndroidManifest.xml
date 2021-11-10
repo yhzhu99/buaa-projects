@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="it.moondroid.coverflowdemo">
+    package="it.moondroid.durian">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme.NoActionBar">
 
          <activity
-         android:name=".CoverFlowActivity"
+         android:name="it.moondroid.durian.CoverFlowActivity"
          android:label="@string/app_name">
          <intent-filter>
          <action android:name="android.intent.action.MAIN" />

@@ -20,7 +20,7 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
-import it.moondroid.coverflowdemo.R;
+import it.moondroid.durian.R;
 
 import java.util.List;
 

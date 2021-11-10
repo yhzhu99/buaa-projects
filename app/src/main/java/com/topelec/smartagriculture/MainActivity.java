@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.topelec.zigbeecontrol.Command;
 import com.topelec.zigbeecontrol.SensorControl;
 
-import it.moondroid.coverflowdemo.R;
+import it.moondroid.durian.R;
 
 
 public class MainActivity extends Activity implements

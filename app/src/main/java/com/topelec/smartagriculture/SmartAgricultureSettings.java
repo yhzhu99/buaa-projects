@@ -8,7 +8,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.widget.Toast;
 
-import it.moondroid.coverflowdemo.R;
+import it.moondroid.durian.R;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On

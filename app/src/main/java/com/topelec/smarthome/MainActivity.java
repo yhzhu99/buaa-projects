@@ -2,19 +2,14 @@ package com.topelec.smarthome;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -25,7 +20,7 @@ import android.widget.TextView;
 import com.topelec.zigbeecontrol.Command;
 import com.topelec.zigbeecontrol.SensorControl;
 
-import it.moondroid.coverflowdemo.R;
+import it.moondroid.durian.R;
 
 
 public class MainActivity extends Activity implements

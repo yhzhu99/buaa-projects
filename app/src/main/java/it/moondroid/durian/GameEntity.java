@@ -1,4 +1,4 @@
-package it.moondroid.coverflowdemo;
+package it.moondroid.durian;
 
 /**
  * Created by marco.granatiero on 03/02/2015.

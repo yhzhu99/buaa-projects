@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
-import it.moondroid.coverflowdemo.R;
+import it.moondroid.durian.R;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

@@ -16,7 +16,7 @@ public class BootReceiver extends BroadcastReceiver {
 
         if (intent.getAction().equals(ACTION));
         {
-            Intent intent2 = new Intent(context, it.moondroid.coverflowdemo.CoverFlowActivity.class);
+            Intent intent2 = new Intent(context, it.moondroid.durian.CoverFlowActivity.class);
             intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent2);
 

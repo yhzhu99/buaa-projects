@@ -8,7 +8,7 @@ import android.preference.PreferenceActivity;
 import android.widget.Toast;
 
 
-import it.moondroid.coverflowdemo.R;
+import it.moondroid.durian.R;
 /**
  * Created by Amber on 2015/3/25.
  */

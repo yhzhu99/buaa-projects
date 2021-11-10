@@ -3,29 +3,24 @@ package com.topelec.foodtraceability;
 //import android.app.Activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.topelec.rfidcontrol.ModulesControl;
 import com.topelec.zigbeecontrol.Command;
 
-import it.moondroid.coverflowdemo.R;
+import it.moondroid.durian.R;
 
 
 public class QueryActivity extends Activity {

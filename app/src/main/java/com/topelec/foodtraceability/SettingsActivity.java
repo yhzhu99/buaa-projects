@@ -7,7 +7,7 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 
-import it.moondroid.coverflowdemo.R;
+import it.moondroid.durian.R;
 
 /**
  * Created by Amber on 2015/4/14.

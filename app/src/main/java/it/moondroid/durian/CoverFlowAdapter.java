@@ -1,4 +1,4 @@
-package it.moondroid.coverflowdemo;
+package it.moondroid.durian;
 
 import android.content.Context;
 import android.view.LayoutInflater;

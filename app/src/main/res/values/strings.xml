@@ -73,6 +73,11 @@
     <string name="title_activity_main">Buscard</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
+    <string name="canteen_button_order">点单</string>
+    <string name="canteen_button_recharge">充值</string>
+    <string name="canteen_button_checkout">结算</string>
+
+
     <!--公交一卡通-->
     <string name="buscard_action_settings">Settings</string>
 

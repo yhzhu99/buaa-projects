@@ -200,7 +200,7 @@ public class ResumeActivity extends Activity {
      * 更新一条记录
      * @param key
      * @param data
-     * @return 返回充值后的金额金额字符串，错误返回 -1
+     * @return 返回充值后的金额金额字符串，错误返回 null
      */
     private String updateHFCard(String key, String data,String Column, String value) {
         ContentValues values = new ContentValues();

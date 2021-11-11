@@ -88,7 +88,7 @@
             android:textColor="#000000"
             android:textSize="28dp" />
 
-        <CheckBox
+        <RadioButton
             android:id="@+id/checkBox1"
             android:layout_width="177dp"
             android:layout_height="87dp"
@@ -96,7 +96,7 @@
             android:layout_y="225dp"
             android:text="选择" />
 
-        <CheckBox
+        <RadioButton
             android:id="@+id/checkBox2"
             android:layout_width="90dp"
             android:layout_height="71dp"

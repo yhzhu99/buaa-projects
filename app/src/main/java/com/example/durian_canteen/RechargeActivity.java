@@ -27,6 +27,7 @@ public class RechargeActivity extends Activity {
     EditText card_sum; //卡片余额显示
     int count = 2;
     EditText canteen_recharge_edit; //充值金额
+    EditText msg;
     private static class RFIDHandler extends Handler {
 
         public RFIDHandler(RechargeActivity activity) {
@@ -114,6 +115,7 @@ public class RechargeActivity extends Activity {
         Button cancel = findViewById(R.id.cancel_card);
         card_sum = findViewById(R.id.card_sum);
         canteen_recharge_edit = findViewById(R.id.canteen_recharge_edit);
+        msg = findViewById(R.id.hint_msg);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,18 +127,19 @@ public class RechargeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(card == null){
-                    System.out.println("请放卡");
+                    msg.setText("请先放卡");
                 }else if (CardSum == null){
-                    System.out.println("请先开卡");
+                    msg.setText("请先开卡");
                 } else{
                     double value = Double.parseDouble(canteen_recharge_edit.getText().toString());
                     if (value == 0.0){
-
+                        msg.setText("请输入充值金额");
                     } else{
                         double newvalue = value+CardSum;
                         rechargeCard(newvalue);
                         canteen_recharge_edit.setText("0.0");
                         card_sum.setText(Double.toString(newvalue));
+                        msg.setText("充值成功！");
                     }
                 }
             }
@@ -145,14 +148,15 @@ public class RechargeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(card == null){
-                    System.out.println("请放卡");
+                    msg.setText("请先放卡");
                 }else if (CardSum != null){
-                    System.out.println("已开卡，无需再开卡");
+                    msg.setText("已开卡，无需再开卡");
                 } else{
                     //开卡
                     sqlUtil.insertCard(card);
                     CardSum = sqlUtil.getCardSUM(card);
-                    card_sum.setText(Double.toString(CardSum));
+                    card_sum.setText("0.0");
+                    msg.setText("开卡成功！");
                 }
             }
         });
@@ -160,14 +164,14 @@ public class RechargeActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(card == null){
-                    System.out.println("请放卡");
+                    msg.setText("请先放卡");
                 }else if (CardSum == null){
-                    System.out.println("没开卡，无法注销");
+                    msg.setText("卡未开，无法注销");
                 } else{
-                    //开卡
                     sqlUtil.deleteCard(card);
                     CardSum = null;
                     card_sum.setText("0.0");
+                    msg.setText("注销成功");
                 }
             }
         });

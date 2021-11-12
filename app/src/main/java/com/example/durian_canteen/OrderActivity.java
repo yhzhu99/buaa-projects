@@ -8,13 +8,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import android.widget.RadioButton;
+import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import androidx.annotation.Nullable;
+import android.widget.CompoundButton;
 
 public class OrderActivity extends Activity {
     private final int DISH_NUMBER = 2;
+    public int sumMoney = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +30,10 @@ public class OrderActivity extends Activity {
         ImageView[] views = new ImageView[105];
         views[0] = (ImageView) findViewById(R.id.dish1);
         views[1] = (ImageView) findViewById(R.id.dish2);
-        RadioButton[] radioButtons = new RadioButton[105];
-        radioButtons[0] = (RadioButton) findViewById(R.id.radio_dish1);
-        radioButtons[1] = (RadioButton) findViewById(R.id.radio_dish2);
+        CheckBox[] chooseButtons = new CheckBox[105];
+        chooseButtons[0] = (CheckBox) findViewById(R.id.choose_dish1);
+        chooseButtons[1] = (CheckBox) findViewById(R.id.choose_dish2);
+
         TextView[] dishTexts = new TextView[105];
         dishTexts[0] = (TextView) findViewById(R.id.text_dish1);
         dishTexts[1] = (TextView) findViewById(R.id.text_dish2);
@@ -37,9 +41,44 @@ public class OrderActivity extends Activity {
         dishMoney[0] = 88;
         dishMoney[1] = 58;
 
+        TextView totalMoneyText = new TextView(this);
+        totalMoneyText = (TextView) findViewById(R.id.display_total);
+        totalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
         System.out.println("----------aaa--------"+dishTexts[0].getText().toString()+dishTexts[1].getText().toString());
-        dishTexts[0].setText("牛排");
+        // dishTexts[0].setText("牛排");
         System.out.println("----------bbb--------"+dishTexts[0].getText().toString()+dishTexts[1].getText().toString());
+
+        TextView finalTotalMoneyText = totalMoneyText;
+        chooseButtons[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(((CompoundButton) view).isChecked()){
+                    System.out.println("1 Checked");
+                    sumMoney+=88;
+                    finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
+                } else {
+                    System.out.println("1 Un-Checked");
+                    sumMoney-=88;
+                    finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
+                }
+            }
+        });
+
+        chooseButtons[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(((CompoundButton) view).isChecked()){
+                    System.out.println("2 Checked");
+                    sumMoney+=58;
+                    finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
+                } else {
+                    System.out.println("2 Un-Checked");
+                    sumMoney-=58;
+                    finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
+                }
+            }
+        });
+
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,4 +89,6 @@ public class OrderActivity extends Activity {
         });
 
     }
+
+
 }

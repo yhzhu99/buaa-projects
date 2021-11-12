@@ -31,7 +31,7 @@ import java.lang.ref.WeakReference;
 
 public class OrderActivity extends Activity implements SensorControl.LedListener{
 
-    private boolean isLed1On;
+    boolean isLed1On;
     SensorControl mSensorControl;
 
     private final int DISH_NUMBER = 2;
@@ -72,10 +72,12 @@ public class OrderActivity extends Activity implements SensorControl.LedListener
                 case Command.HF_ACTIVE:       //激活卡片，寻卡，返回结果
                     // 没有识别到卡
 //                    System.out.println(count);
-                    count +=1;
-                    if(count>2){
+                    count += 1;
+                    if(count > 2){
                         setCardNUll();
                         showMsg.setText("当前没有识别到卡");
+                        mSensorControl.led1_Off(false);
+                        isLed1On = false;
                     }
                     break;
                 case Command.HF_ID:      //防冲突（获取卡号）返回结果
@@ -87,7 +89,7 @@ public class OrderActivity extends Activity implements SensorControl.LedListener
                         count = 0;
                         if(card == null){
                             card = newcard;
-                            System.out.println("6666---------"+card);
+//                            System.out.println("6666---------"+card);
                             Double sum = sqlUtil.getCardSUM(card);
                             if((Double)sum!=null){
                                 CardSum = sum;
@@ -228,8 +230,11 @@ public class OrderActivity extends Activity implements SensorControl.LedListener
                 }else{
                     double newvalue = cardSumTmp-sumMoney;
                     consumeCard(newvalue);
+                    mSensorControl.led1_On(false);
+
                     // Double sum = sqlUtil.getCardSUM(card);
                     showMsg.setText("已成功支付，当前余额为："+String.valueOf(newvalue)+"（元）");
+                    isLed1On = true;
                 }
             }
         });
@@ -242,17 +247,25 @@ public class OrderActivity extends Activity implements SensorControl.LedListener
                 startActivity(intent);
             }
         });
-        
+
+//         以下 zigbee
+
         show_led.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("led");
-                mSensorControl.led1_On(false);
-               
+                if (isLed1On == false) {
+                    mSensorControl.led1_On(false);
+                    isLed1On = true;
+                }
+                else {
+                    mSensorControl.led1_Off(false);
+                    isLed1On = false;
+                }
+
             }
         });
 
-        // 以下 zigbee
         mSensorControl = new SensorControl();
         mSensorControl.addLedListener(this);
 

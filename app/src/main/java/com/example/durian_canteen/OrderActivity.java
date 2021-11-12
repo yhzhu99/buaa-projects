@@ -29,7 +29,7 @@ import com.example.zigbeecontrol.SensorControl;
 
 import java.lang.ref.WeakReference;
 
-public class OrderActivity extends Activity extends SensorControl.LedListener{
+public class OrderActivity extends Activity implements SensorControl.LedListener{
 
     private boolean isLed1On;
     SensorControl mSensorControl;
@@ -120,6 +120,18 @@ public class OrderActivity extends Activity extends SensorControl.LedListener{
             super.handleMessage(msg);
         }
     };
+
+    @Override
+    public void LedControlResult(byte led_id, byte led_status) {
+        Message msg = new Message();
+        msg.what = 0x01l
+        Bundle data = new Bundle();
+        data.putByte("led_id", led_id);
+        data.putByte("led_status", led_status);
+        msg.setData(data);
+        myHandler.sendMessage(msg);
+
+    }
 
     Handler myHandler = new Handler() {
         public void handleMessage(Message msg) {

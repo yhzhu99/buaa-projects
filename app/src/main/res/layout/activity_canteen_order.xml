@@ -49,17 +49,17 @@
 
             android:layout_marginStart="198dp"
             android:layout_marginTop="30dp"
-            android:layout_x="487dp"
-            android:layout_y="34dp"
-            android:src="@drawable/dish" />
+            android:layout_x="465dp"
+            android:layout_y="40dp"
+            android:src="@drawable/dish1" />
 
         <TextView
             android:id="@+id/text_dish1"
             android:layout_width="166dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_marginTop="60dp"
-            android:layout_x="67dp"
-            android:layout_y="233dp"
+            android:layout_x="214dp"
+            android:layout_y="220dp"
             android:gravity="center_horizontal"
             android:text="@string/dish1"
             android:textColor="#000000"
@@ -71,17 +71,17 @@
             android:layout_height="169dp"
             android:layout_marginStart="198dp"
             android:layout_marginLeft="198dp"
-            android:layout_x="35dp"
-            android:layout_y="38dp"
-            android:src="@drawable/dish" />
+            android:layout_x="161dp"
+            android:layout_y="40dp"
+            android:src="@drawable/dish2" />
 
         <TextView
             android:id="@+id/text_dish2"
             android:layout_width="187dp"
-            android:layout_height="91dp"
+            android:layout_height="80dp"
             android:layout_marginTop="60dp"
             android:layout_x="530dp"
-            android:layout_y="214dp"
+            android:layout_y="220dp"
             android:gravity="center_horizontal"
             android:text="@string/dish2"
             android:textColor="#000000"
@@ -89,19 +89,19 @@
 
         <CheckBox
             android:id="@+id/choose_dish1"
-            android:layout_width="177dp"
-            android:layout_height="87dp"
-            android:layout_x="252dp"
-            android:layout_y="225dp"
+            android:layout_width="90dp"
+            android:layout_height="80dp"
+            android:layout_x="368dp"
+            android:layout_y="220dp"
             android:checked="false"
             android:text="选择" />
 
         <CheckBox
             android:id="@+id/choose_dish2"
             android:layout_width="90dp"
-            android:layout_height="71dp"
-            android:layout_x="737dp"
-            android:layout_y="224dp"
+            android:layout_height="80dp"
+            android:layout_x="700dp"
+            android:layout_y="220dp"
             android:checked="false"
             android:text="选择" />
 
@@ -127,10 +127,10 @@
 
         <Button
             android:id="@+id/checkout"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:text="结算"
-            android:textSize="25dp"/>
+            android:text="结   算"
+            android:textSize="25dp" />
     </LinearLayout>
 
 
@@ -148,15 +148,15 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:gravity="center_vertical|left"
-            android:text="消息提示:"
+            android:text="（消息提示）"
             android:textSize="35dp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/checkout_msg"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:text="结果"
+            android:text="消息提示"
             android:textSize="25dp" />
     </LinearLayout>
 </LinearLayout>

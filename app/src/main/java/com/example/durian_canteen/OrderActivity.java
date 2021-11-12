@@ -186,7 +186,8 @@ public class OrderActivity extends Activity {
             @Override
             public void onClick(View v) {
                 System.out.println("consume");
-                if (sumMoney > Integer.parseInt(String.valueOf(CardSum))){
+                 int cardSumTmp = CardSum.intValue();
+                if (sumMoney > cardSumTmp){
                     System.out.println("余额不足");
                     showMsg.setText("余额不足");
                 }else{

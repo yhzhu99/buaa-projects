@@ -1,10 +1,14 @@
 package com.example.durian_canteen;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import android.widget.RadioButton;
@@ -12,18 +16,116 @@ import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.widget.CompoundButton;
+
+import com.example.rfidcontrol.ModulesControl;
+import com.example.zigbeecontrol.Command;
+
+import java.lang.ref.WeakReference;
 
 public class OrderActivity extends Activity {
     private final int DISH_NUMBER = 2;
     public int sumMoney = 0;
+    String card = null; //卡片ID
+    Double CardSum = null; //卡片余额
+    ModulesControl mModulesControl;
+    SqlUtil sqlUtil;
+    // EditText card_sum; //卡片余额显示
+    TextView showMsg;
+    int count = 2; // 控制延时
+    private static class RFIDHandler extends Handler {
+        public RFIDHandler(OrderActivity activity) {
+            WeakReference<OrderActivity> mActivity = new WeakReference<OrderActivity>(activity);
+        }
+    }
+    @SuppressLint("HandlerLeak")
+    Handler rfidHandler = new RFIDHandler(this) {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            Bundle data;
+            switch (msg.what) {
+                //判断发送的消息
+                case Command.HF_TYPE:  //设置卡片类型TypeA返回结果  ,错误类型:1
+                    data = msg.getData();
+                    System.out.println("TYPE");
+                    if (!data.getBoolean("result")) {
+                        System.out.println(0);
+                    }
+                    break;
+                case  Command.HF_FREQ:  //射频控制（打开或者关闭）返回结果   ,错误类型:1
+                    data = msg.getData();
+                    System.out.println("FREQ");
+                    if (!data.getBoolean("result")) {
+                        System.out.println(1);
+                    }
+                    break;
+                case Command.HF_ACTIVE:       //激活卡片，寻卡，返回结果
+                    // 没有识别到卡
+                    System.out.println(count);
+                    count +=1;
+                    if(count>2){
+                        setCardNUll();
+                        showMsg.setText("当前没有识别到卡");
+                    }
+                    break;
+                case Command.HF_ID:      //防冲突（获取卡号）返回结果
+                    data = msg.getData();
+
+                    System.out.println("ID");
+                    if (data.getBoolean("result")) {
+                        String newcard = data.getString("cardNo");
+                        count = 0;
+                        if(card == null){
+                            card = newcard;
+                            System.out.println("6666---------"+card);
+                            Double sum = sqlUtil.getCardSUM(card);
+                            if((Double)sum!=null){
+                                CardSum = sum;
+                                // card_sum.setText(Double.toString(sum));
+                                showMsg.setText("当前余额为："+Double.toString(sum)+"（元）");
+                            } else {
+                                CardSum = null;
+                                // card_sum.setText("0.0");
+                                showMsg.setText("卡还没有被注册");
+                            }
+                        } else if (!card.equals(newcard)){
+                            card = newcard;
+
+                            Double sum = sqlUtil.getCardSUM(card);
+                            if((Double)sum!=null){
+                                CardSum = sum;
+                                // card_sum.setText(Double.toString(sum));
+                                showMsg.setText("当前余额为："+Double.toString(sum)+"（元）");
+                            } else {
+                                CardSum = null;
+                                // card_sum.setText("0.0");
+                                showMsg.setText("卡还没有被注册");
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sqlUtil = SqlUtil.getInstance(this);
+        mModulesControl = new ModulesControl(rfidHandler);
+        mModulesControl.actionControl(true);
+
         setContentView(R.layout.activity_canteen_order);
-        Button checkout = findViewById(R.id.recharge_page);
-        System.out.println(checkout);
+        Button checkout = findViewById(R.id.recharge_page); // 充值
+        Button consume = (Button) findViewById(R.id.consume);
+        // System.out.println(checkout);
         ImageView bgImg = new ImageView(this);
         bgImg = (ImageView) findViewById(R.id.dish_bg);
         bgImg.setAlpha(0.5f);
@@ -49,6 +151,8 @@ public class OrderActivity extends Activity {
         System.out.println("----------bbb--------"+dishTexts[0].getText().toString()+dishTexts[1].getText().toString());
 
         TextView finalTotalMoneyText = totalMoneyText;
+
+        showMsg = (TextView) findViewById(R.id.display_msg);
         chooseButtons[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +182,21 @@ public class OrderActivity extends Activity {
             }
         });
 
+        consume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("consume");
+                if (sumMoney > Integer.parseInt(String.valueOf(CardSum))){
+                    System.out.println("余额不足");
+                    showMsg.setText("余额不足");
+                }else{
+                    consumeCard(sumMoney);
+                    Double sum = sqlUtil.getCardSUM(card);
+                    showMsg.setText("已成功支付，当前余额为："+String.valueOf(sum)+"（元）");
+                }
+            }
+        });
+
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +207,13 @@ public class OrderActivity extends Activity {
         });
 
     }
-
+    protected void setCardNUll(){
+        card = null;
+        CardSum = null;
+        // card_sum.setText("0.0");
+    }
+    protected void consumeCard(double x){
+        sqlUtil.updatesum(card, -x);
+    }
 
 }

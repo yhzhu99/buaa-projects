@@ -25,6 +25,7 @@ public class RechargeActivity extends Activity {
     ModulesControl mModulesControl;
     SqlUtil sqlUtil;
     EditText card_sum; //卡片余额显示
+    int count = 2;
     EditText canteen_recharge_edit; //充值金额
     private static class RFIDHandler extends Handler {
 
@@ -41,27 +42,38 @@ public class RechargeActivity extends Activity {
                 //判断发送的消息
                 case Command.HF_TYPE:  //设置卡片类型TypeA返回结果  ,错误类型:1
                     data = msg.getData();
+                    System.out.println("TYPE");
                     if (!data.getBoolean("result")) {
                         System.out.println(0);
                     }
                     break;
                 case  Command.HF_FREQ:  //射频控制（打开或者关闭）返回结果   ,错误类型:1
                     data = msg.getData();
+                    System.out.println("FREQ");
                     if (!data.getBoolean("result")) {
                         System.out.println(1);
                     }
                     break;
                 case Command.HF_ACTIVE:       //激活卡片，寻卡，返回结果
                     // 没有识别到卡
-                    setCardNUll();
+                    System.out.println(count);
+                    count +=1;
+                    if(count>2){
+                        setCardNUll();
+                    }
+
+
                     break;
                 case Command.HF_ID:      //防冲突（获取卡号）返回结果
                     data = msg.getData();
+
+                    System.out.println("ID");
                     if (data.getBoolean("result")) {
                         String newcard = data.getString("cardNo");
+                        count = 0;
                         if(card == null){
                             card = newcard;
-                            double sum = sqlUtil.getCardSUM(card);
+                            Double sum = sqlUtil.getCardSUM(card);
                             if((Double)sum!=null){
                                 CardSum = sum;
                                 card_sum.setText(Double.toString(sum));
@@ -71,7 +83,8 @@ public class RechargeActivity extends Activity {
                             }
                         } else if (!card.equals(newcard)){
                             card = newcard;
-                            double sum = sqlUtil.getCardSUM(card);
+
+                            Double sum = sqlUtil.getCardSUM(card);
                             if((Double)sum!=null){
                                 CardSum = sum;
                                 card_sum.setText(Double.toString(sum));

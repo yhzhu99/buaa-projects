@@ -191,9 +191,10 @@ public class OrderActivity extends Activity {
                     System.out.println("余额不足");
                     showMsg.setText("余额不足");
                 }else{
-                    consumeCard(sumMoney);
-                    Double sum = sqlUtil.getCardSUM(card);
-                    showMsg.setText("已成功支付，当前余额为："+String.valueOf(sum)+"（元）");
+                    double newvalue = cardSumTmp-sumMoney;
+                    consumeCard(newvalue);
+                    // Double sum = sqlUtil.getCardSUM(card);
+                    showMsg.setText("已成功支付，当前余额为："+String.valueOf(newvalue)+"（元）");
                 }
             }
         });
@@ -214,7 +215,7 @@ public class OrderActivity extends Activity {
         // card_sum.setText("0.0");
     }
     protected void consumeCard(double x){
-        sqlUtil.updatesum(card, -x);
+        sqlUtil.updatesum(card, x);
     }
 
 }

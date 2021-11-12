@@ -59,7 +59,7 @@ public class RechargeActivity extends Activity {
                     data = msg.getData();
                     if (data.getBoolean("result")) {
                         String newcard = data.getString("cardNo");
-                        if(card!=null && !card.equals(newcard)){
+                        if(card ==null || !card.equals(newcard)){
                             card = newcard;
                             double sum = sqlUtil.getCardSUM(card);
                             if((Double)sum!=null){

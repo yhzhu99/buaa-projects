@@ -21,8 +21,10 @@ import java.lang.ref.WeakReference;
 public class RechargeActivity extends Activity {
     String card = null;
     ModulesControl mModulesControl;
+    SqlUtil sqlUtil;
     EditText card_account;
     EditText canteen_recharge_edit;
+    double account_value;
     private static class RFIDHandler extends Handler {
 
         public RFIDHandler(RechargeActivity activity) {
@@ -70,6 +72,7 @@ public class RechargeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canteen_recharge);
         Button cancel = findViewById(R.id.back_button);
+        Button recharge = findViewById(R.id.recharge_button);
         card_account = findViewById(R.id.card_account);
         canteen_recharge_edit = findViewById(R.id.canteen_recharge_edit);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +82,24 @@ public class RechargeActivity extends Activity {
                 startActivity(intent);
             }
         });
+        recharge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double value = Double.parseDouble(canteen_recharge_edit.getText().toString());
+                rechargeCard(value);
+                canteen_recharge_edit.setText(Double.toString(account_value));
+            }
+        });
+        sqlUtil = SqlUtil.getInstance(this);
         mModulesControl = new ModulesControl(rfidHandler);
         mModulesControl.actionControl(true);
     }
     protected void setCardNUll(){
         card = null;
         card_account.setText("0.0");
+    }
+    protected void rechargeCard(double x){
+        account_value+=x;
+//        sqlUtil.updateaccount(account_value);
     }
 }

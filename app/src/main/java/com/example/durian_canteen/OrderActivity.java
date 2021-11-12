@@ -55,12 +55,12 @@ public class OrderActivity extends Activity {
                 if(((CompoundButton) view).isChecked()){
                     System.out.println("1 Checked");
                     sumMoney+=88;
-                    finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
+
                 } else {
                     System.out.println("1 Un-Checked");
                     sumMoney-=88;
-                    finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
                 }
+                finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
             }
         });
 
@@ -70,12 +70,11 @@ public class OrderActivity extends Activity {
                 if(((CompoundButton) view).isChecked()){
                     System.out.println("2 Checked");
                     sumMoney+=58;
-                    finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
                 } else {
                     System.out.println("2 Un-Checked");
                     sumMoney-=58;
-                    finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
                 }
+                finalTotalMoneyText.setText("总价："+String.valueOf(sumMoney)+"（元）");
             }
         });
 

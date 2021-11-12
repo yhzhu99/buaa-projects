@@ -126,7 +126,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/checkout"
+            android:id="@+id/consume"
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:text="结   算"
@@ -153,7 +153,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/checkout_msg"
+            android:id="@+id/show_msg"
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:text="消息提示"

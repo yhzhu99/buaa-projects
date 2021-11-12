@@ -34,15 +34,15 @@ public class SqlUtil {
     private static void setContext(Activity activity) {
         mContext = activity;
     }
-    public Double getCardAccount(String card){
+    public Double getCardSUM(String card){
         Cursor cursor = mDatabase.query(TABLE_NAME, new String[]{SUM},CARD_ID + "=?", new String[] {card}, null, null,null);
         if (cursor!=null){
             cursor.moveToFirst();
         }
         if (cursor.getCount() == 1){
-            double account = cursor.getDouble(0);
+            double sum = cursor.getDouble(0);
             cursor.close();
-            return account;
+            return sum;
         } else if (cursor.getCount() == 0){
             cursor.close();
             return null;
@@ -52,10 +52,19 @@ public class SqlUtil {
         }
     }
 
-    public void updateaccount(String card_id, double x){
+    public void updatesum(String card_id, double x){
         ContentValues value = new ContentValues();
         value.put(SUM,x);
         mDatabase.update(TABLE_NAME,value,CARD_ID+ "=?",new String[]{card_id});
+    }
+
+    public void insertCard(String card_id){
+        ContentValues values = new ContentValues();
+        values.put(CARD_ID,card_id);
+        mDatabase.insert(TABLE_NAME,null,values);
+    }
+    public void deleteCard(String card_id){
+        mDatabase.delete(TABLE_NAME, CARD_ID+"=?",new String[]{card_id});
     }
     //    public boolean haveBook(String card) {
 //        Cursor cursor = mDatabase.query(TABLE_NAME, new String[]{CARD_ID}, CARD_ID + "=?", new String[] {card}, null, null,null);

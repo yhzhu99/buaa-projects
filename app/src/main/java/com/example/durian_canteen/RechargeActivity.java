@@ -17,14 +17,15 @@ import com.example.rfidcontrol.ModulesControl;
 import com.example.zigbeecontrol.Command;
 
 import java.lang.ref.WeakReference;
+import java.security.CryptoPrimitive;
 
 public class RechargeActivity extends Activity {
-    String card = null;
+    String card = null; //卡片ID
+    Double CardSum = null; //卡片余额
     ModulesControl mModulesControl;
     SqlUtil sqlUtil;
-    EditText card_account;
-    EditText canteen_recharge_edit;
-    double account_value;
+    EditText card_sum; //卡片余额显示
+    EditText canteen_recharge_edit; //充值金额
     private static class RFIDHandler extends Handler {
 
         public RFIDHandler(RechargeActivity activity) {
@@ -57,8 +58,18 @@ public class RechargeActivity extends Activity {
                 case Command.HF_ID:      //防冲突（获取卡号）返回结果
                     data = msg.getData();
                     if (data.getBoolean("result")) {
-                        card = data.getString("cardNo");
-                        card_account.setText(card);
+                        String newcard = data.getString("cardNo");
+                        if(card!=null && !card.equals(newcard)){
+                            card = newcard;
+                            double sum = sqlUtil.getCardSUM(card);
+                            if((Double)sum!=null){
+                                CardSum = sum;
+                                card_sum.setText(Double.toString(sum));
+                            } else {
+                                CardSum = null;
+                                card_sum.setText("0.0");
+                            }
+                        }
                     }
                     break;
                 default:
@@ -71,11 +82,16 @@ public class RechargeActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canteen_recharge);
-        Button cancel = findViewById(R.id.back_button);
+        sqlUtil = SqlUtil.getInstance(this);
+        mModulesControl = new ModulesControl(rfidHandler);
+        mModulesControl.actionControl(true);
+        Button back = findViewById(R.id.back_button);
         Button recharge = findViewById(R.id.recharge_button);
-        card_account = findViewById(R.id.card_account);
+        Button activate = findViewById(R.id.activate_card);
+        Button cancel = findViewById(R.id.cancel_card);
+        card_sum = findViewById(R.id.card_sum);
         canteen_recharge_edit = findViewById(R.id.canteen_recharge_edit);
-        cancel.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RechargeActivity.this,OrderActivity.class);
@@ -85,21 +101,61 @@ public class RechargeActivity extends Activity {
         recharge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double value = Double.parseDouble(canteen_recharge_edit.getText().toString());
-                rechargeCard(value);
-                canteen_recharge_edit.setText(Double.toString(account_value));
+                if(card == null){
+                    System.out.println("请放卡");
+                }else if (CardSum == null){
+                    System.out.println("请先开卡");
+                } else{
+                    double value = Double.parseDouble(canteen_recharge_edit.getText().toString());
+                    if (value == 0.0){
+
+                    } else{
+                        double newvalue = value+CardSum;
+                        rechargeCard(newvalue);
+                        canteen_recharge_edit.setText("0.0");
+                        card_sum.setText(Double.toString(newvalue));
+                    }
+                }
             }
         });
-        sqlUtil = SqlUtil.getInstance(this);
-        mModulesControl = new ModulesControl(rfidHandler);
-        mModulesControl.actionControl(true);
+        activate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(card == null){
+                    System.out.println("请放卡");
+                }else if (CardSum != null){
+                    System.out.println("已开卡，无需再开卡");
+                } else{
+                    //开卡
+                    sqlUtil.insertCard(card);
+                    CardSum = sqlUtil.getCardSUM(card);
+                    card_sum.setText(Double.toString(CardSum));
+                }
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(card == null){
+                    System.out.println("请放卡");
+                }else if (CardSum == null){
+                    System.out.println("没开卡，无法注销");
+                } else{
+                    //开卡
+                    sqlUtil.deleteCard(card);
+                    CardSum = null;
+                    card_sum.setText("0.0");
+                }
+            }
+        });
+
     }
     protected void setCardNUll(){
         card = null;
-        card_account.setText("0.0");
+        CardSum = null;
+        card_sum.setText("0.0");
     }
     protected void rechargeCard(double x){
-        account_value+=x;
-//        sqlUtil.updateaccount(account_value);
+        sqlUtil.updatesum(card, x);
     }
 }

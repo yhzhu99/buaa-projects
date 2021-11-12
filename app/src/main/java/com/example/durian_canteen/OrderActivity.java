@@ -20,13 +20,20 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.widget.CompoundButton;
+import android.view.View;
+
 
 import com.example.rfidcontrol.ModulesControl;
 import com.example.zigbeecontrol.Command;
+import com.example.zigbeecontrol.SensorControl;
 
 import java.lang.ref.WeakReference;
 
-public class OrderActivity extends Activity {
+public class OrderActivity extends Activity extends SensorControl.LedListener{
+
+    private boolean isLed1On;
+    SensorControl mSensorControl;
+
     private final int DISH_NUMBER = 2;
     public int sumMoney = 0;
     String card = null; //卡片ID
@@ -114,6 +121,21 @@ public class OrderActivity extends Activity {
         }
     };
 
+    Handler myHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            Bundle data;
+            data = msg.getData();
+
+            System.out.println(data);
+            // switch (msg.what) {
+
+            // }
+            super.handleMessage(msg);
+        }
+
+    }
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +147,7 @@ public class OrderActivity extends Activity {
         setContentView(R.layout.activity_canteen_order);
         Button checkout = findViewById(R.id.recharge_page); // 充值
         Button consume = (Button) findViewById(R.id.consume);
+        Button show_led = (Button) findViewById(R.id.show_led);
         // System.out.println(checkout);
         ImageView bgImg = new ImageView(this);
         bgImg = (ImageView) findViewById(R.id.dish_bg);
@@ -207,6 +230,19 @@ public class OrderActivity extends Activity {
                 startActivity(intent);
             }
         });
+        
+        show_led.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("led");
+                mSensorControl.led1_off(false);
+               
+            }
+        });
+
+        // 一下 zigbee
+        mSensorControl = new SensorControl();
+        mSensorControl.addLedListener(this);
 
     }
     protected void setCardNUll(){

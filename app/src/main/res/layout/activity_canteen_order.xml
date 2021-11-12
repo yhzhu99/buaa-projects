@@ -158,5 +158,12 @@
             android:layout_height="match_parent"
             android:text="消息提示"
             android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/show_led"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="led提示"
+            android:textSize="25dp" />
     </LinearLayout>
 </LinearLayout>

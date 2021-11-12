@@ -71,7 +71,7 @@ public class OrderActivity extends Activity implements SensorControl.LedListener
                     break;
                 case Command.HF_ACTIVE:       //激活卡片，寻卡，返回结果
                     // 没有识别到卡
-                    System.out.println(count);
+//                    System.out.println(count);
                     count +=1;
                     if(count>2){
                         setCardNUll();
@@ -81,7 +81,7 @@ public class OrderActivity extends Activity implements SensorControl.LedListener
                 case Command.HF_ID:      //防冲突（获取卡号）返回结果
                     data = msg.getData();
 
-                    System.out.println("ID");
+//                    System.out.println("ID");
                     if (data.getBoolean("result")) {
                         String newcard = data.getString("cardNo");
                         count = 0;
@@ -124,7 +124,7 @@ public class OrderActivity extends Activity implements SensorControl.LedListener
     @Override
     public void LedControlResult(byte led_id, byte led_status) {
         Message msg = new Message();
-        msg.what = 0x01l
+        msg.what = 0x01;
         Bundle data = new Bundle();
         data.putByte("led_id", led_id);
         data.putByte("led_status", led_status);
@@ -145,7 +145,7 @@ public class OrderActivity extends Activity implements SensorControl.LedListener
             super.handleMessage(msg);
         }
 
-    }
+    };
 
 
     @Override
@@ -247,12 +247,12 @@ public class OrderActivity extends Activity implements SensorControl.LedListener
             @Override
             public void onClick(View v) {
                 System.out.println("led");
-                mSensorControl.led1_off(false);
+                mSensorControl.led1_On(false);
                
             }
         });
 
-        // 一下 zigbee
+        // 以下 zigbee
         mSensorControl = new SensorControl();
         mSensorControl.addLedListener(this);
 

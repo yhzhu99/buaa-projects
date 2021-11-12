@@ -57,7 +57,7 @@ public class RechargeActivity extends Activity {
                     break;
                 case Command.HF_ACTIVE:       //激活卡片，寻卡，返回结果
                     // 没有识别到卡
-                    System.out.println(count);
+//                    System.out.println(count);
                     count +=1;
                     if(count>2){
                         setCardNUll();
@@ -68,7 +68,7 @@ public class RechargeActivity extends Activity {
                 case Command.HF_ID:      //防冲突（获取卡号）返回结果
                     data = msg.getData();
 
-                    System.out.println("ID");
+//                    System.out.println("ID");
                     if (data.getBoolean("result")) {
                         String newcard = data.getString("cardNo");
                         count = 0;

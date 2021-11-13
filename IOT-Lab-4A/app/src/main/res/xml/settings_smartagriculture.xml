@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:title="系统设置">
+    <PreferenceCategory android:key="config" android:title="@string/smartagriculture_system_settings">
+        <CheckBoxPreference android:key="auto_switch" android:summaryOff="开启智能自管理" android:title="自动管理" android:summaryOn="关闭自动控制" android:defaultValue="false"></CheckBoxPreference>
+
+        <ListPreference
+            android:key="setting_list"
+            android:title="@string/smartagriculture_system_settings"
+            android:defaultValue="2"
+            android:entries="@array/smartagriculture_settings_list"
+            android:entryValues="@array/smartagriculture_settings_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:dependency="auto_switch"/>
+
+        <EditTextPreference android:key="temp_settings"
+            android:title="温度设置"
+            android:summary="请输入您想要保持的温度值"
+            android:dialogTitle="请输入温度值"
+            android:defaultValue="27"
+            android:numeric="integer"
+            android:dependency="auto_switch">
+        </EditTextPreference>
+
+    <EditTextPreference android:key="hum_settings"
+        android:title="湿度值设置"
+        android:summary="请输入您想要保持的湿度值"
+        android:dialogTitle="请输入温度值"
+        android:defaultValue="40"
+        android:numeric="integer"
+        android:dependency="auto_switch">
+    </EditTextPreference>
+
+    </PreferenceCategory>
+</PreferenceScreen>

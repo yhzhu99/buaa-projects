@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:rotationX="0">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="自助点单系统"
+
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/recharge_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="充值"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <AbsoluteLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:rotationX="0">
+
+
+        <ImageView
+            android:id="@+id/dish_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:background="@drawable/dish_bg" />
+
+        <ImageView
+            android:id="@+id/dish1"
+            android:layout_width="311dp"
+            android:layout_height="161dp"
+
+            android:layout_marginStart="198dp"
+            android:layout_marginTop="30dp"
+            android:layout_x="465dp"
+            android:layout_y="40dp"
+            android:src="@drawable/dish1" />
+
+        <TextView
+            android:id="@+id/text_dish1"
+            android:layout_width="166dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="60dp"
+            android:layout_x="214dp"
+            android:layout_y="220dp"
+            android:gravity="center_horizontal"
+            android:text="@string/dish1"
+            android:textColor="#000000"
+            android:textSize="28dp" />
+
+        <ImageView
+            android:id="@+id/dish2"
+            android:layout_width="273dp"
+            android:layout_height="169dp"
+            android:layout_marginStart="198dp"
+            android:layout_marginLeft="198dp"
+            android:layout_x="161dp"
+            android:layout_y="40dp"
+            android:src="@drawable/dish2" />
+
+        <TextView
+            android:id="@+id/text_dish2"
+            android:layout_width="187dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="60dp"
+            android:layout_x="530dp"
+            android:layout_y="220dp"
+            android:gravity="center_horizontal"
+            android:text="@string/dish2"
+            android:textColor="#000000"
+            android:textSize="28dp" />
+
+        <CheckBox
+            android:id="@+id/choose_dish1"
+            android:layout_width="90dp"
+            android:layout_height="80dp"
+            android:layout_x="368dp"
+            android:layout_y="220dp"
+            android:checked="false"
+            android:text="选择" />
+
+        <CheckBox
+            android:id="@+id/choose_dish2"
+            android:layout_width="90dp"
+            android:layout_height="80dp"
+            android:layout_x="700dp"
+            android:layout_y="220dp"
+            android:checked="false"
+            android:text="选择" />
+
+    </AbsoluteLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_display"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/display_total"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center_vertical|left"
+            android:text="总额:"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/consume"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="结   算"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/display_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center_vertical|left"
+            android:text="（消息提示）"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/show_led"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="消息提示"
+            android:textSize="25dp" />
+    </LinearLayout>
+</LinearLayout>

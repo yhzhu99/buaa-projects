@@ -26,7 +26,7 @@ dependencies {
     implementation 'net.sourceforge.argparse4j:argparse4j:0.8.1'
 
     // Use JUnit test framework
-    testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.0'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.9.0'
 }
 
 application {

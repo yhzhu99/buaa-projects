@@ -1,4 +1,4 @@
-FROM golang:1.15
+FROM golang:1.19
 WORKDIR /usr/local/go/src/c0-go/
 COPY main.go go.mod go.sum ./
 COPY lexer ./lexer

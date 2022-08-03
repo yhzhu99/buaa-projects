@@ -1,3 +1,3 @@
 module c0-go
 
-go 1.15
+go 1.19
